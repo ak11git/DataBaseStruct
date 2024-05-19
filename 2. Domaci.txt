@@ -1,0 +1,14 @@
+Win forma za test mapiranja
+
+AngazujeId i ImaNajamId ne treba jer imaju samo veze a ne i svoj atribut
+
+AngazujeID ne treba??
+Vlasnik.cs za pravno i fizicko??
+Nekretnina.cs za kuca, stan i soba??
+Fizicko i pravno lice?? u kod ne postoje a u eer dijagram ih imamo
+
+
+Menjaju se veze???
+Form.cs funkcije
+
+
