@@ -53,3 +53,5 @@ C:\Users\krstic\Desktop\baze\DataBaseStruct\Project\StanNaDan\obj\Debug\net8.0-w
 C:\Users\krstic\Desktop\baze\DataBaseStruct\Project\StanNaDan\obj\Debug\net8.0-windows\StanNaDan.Forme.VlasniciForm.resources
 C:\Users\krstic\Desktop\baze\DataBaseStruct\Project\StanNaDan\obj\Debug\net8.0-windows\StanNaDan.PocetnaForma.resources
 C:\Users\krstic\Desktop\baze\DataBaseStruct\Project\StanNaDan\obj\Debug\net8.0-windows\StanNaDan.Properties.Resources.resources
+C:\Users\krstic\Desktop\baze\DataBaseStruct\Project\StanNaDan\obj\Debug\net8.0-windows\StanNaDan.Forme.DodajNekretninu.resources
+C:\Users\krstic\Desktop\baze\DataBaseStruct\Project\StanNaDan\obj\Debug\net8.0-windows\StanNaDan.Forme.IzmeniNekretninu.resources

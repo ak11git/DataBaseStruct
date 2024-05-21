@@ -33,15 +33,17 @@
             button1 = new Button();
             button2 = new Button();
             button3 = new Button();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(61, 12);
+            pictureBox1.Location = new Point(12, 53);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(384, 379);
+            pictureBox1.Size = new Size(377, 377);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
@@ -49,7 +51,7 @@
             // 
             button1.BackColor = Color.FromArgb(255, 192, 128);
             button1.Font = new Font("Modern No. 20", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.Location = new Point(128, 397);
+            button1.Location = new Point(81, 436);
             button1.Name = "button1";
             button1.Size = new Size(235, 62);
             button1.TabIndex = 1;
@@ -61,7 +63,7 @@
             // 
             button2.BackColor = Color.FromArgb(255, 192, 128);
             button2.Font = new Font("Modern No. 20", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button2.Location = new Point(128, 465);
+            button2.Location = new Point(81, 504);
             button2.Name = "button2";
             button2.Size = new Size(235, 62);
             button2.TabIndex = 2;
@@ -73,7 +75,7 @@
             // 
             button3.BackColor = Color.FromArgb(255, 192, 128);
             button3.Font = new Font("Modern No. 20", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button3.Location = new Point(128, 533);
+            button3.Location = new Point(81, 572);
             button3.Name = "button3";
             button3.Size = new Size(235, 62);
             button3.TabIndex = 3;
@@ -81,12 +83,23 @@
             button3.UseVisualStyleBackColor = false;
             button3.Click += button3_Click;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Modern No. 20", 20F, FontStyle.Bold);
+            label1.Location = new Point(55, 9);
+            label1.Name = "label1";
+            label1.Size = new Size(291, 41);
+            label1.TabIndex = 4;
+            label1.Text = "STAN NA DAN";
+            // 
             // PocetnaForma
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(501, 627);
+            ClientSize = new Size(401, 646);
+            Controls.Add(label1);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
@@ -96,6 +109,7 @@
             TransparencyKey = Color.Transparent;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -104,5 +118,6 @@
         private Button button1;
         private Button button2;
         private Button button3;
+        private Label label1;
     }
 }

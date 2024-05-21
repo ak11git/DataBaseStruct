@@ -15,3 +15,8 @@ Form.cs funkcije
 izbaci kompozitni, dodaj surogat
 u bazu dodaj svuda ID,
 prekopiraj? formu 
+
+
+
+Dugme obrisi nekretninu DTOMenager treba
+Dugme azuriraj u Izmeni Nekretninu

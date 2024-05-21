@@ -38,9 +38,9 @@ public class Nekretnina {
     public virtual int BrojTerasa { get; set; }
     public virtual int BrojSoba { get; set; }
     public virtual int Internet { get; set; } //moze boolean
-    public virtual int TV { get; set; }
+    public virtual int TV { get; set; } //moze boolean
 
-    public virtual int Kuhinja { get; set; }
+    public virtual int Kuhinja { get; set; } //moze boolean
     public virtual string Dimenzije { get; set; }
 
     public virtual string TipKreveta { get; set; }
@@ -49,7 +49,7 @@ public class Nekretnina {
 
     public virtual int Dvoriste { get; set; } //moze boolean
 
-    public virtual int Sprat { get; set; } //moze boolean
+    public virtual int Sprat { get; set; }
 
     public virtual int Lift  { get; set; } //moze boolean
 
