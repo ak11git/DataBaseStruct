@@ -1,3 +1,9 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using StanNaDan.Entiteti;
+using FluentNHibernate.Mapping;
 
 namespace StanNaDan;
 
@@ -9,12 +15,36 @@ public class AgentMapiranja: SubclassMap<StanNaDan.Entiteti.Agent>
 
         KeyColumn("JMBG");
 
+        
+
         Map(x => x.StrucnaSprema, "STRUCNA_SPREMA");
 
-        // ne treba za strani kljuc jer nasledjuje...
 
-        HasMany(x => x.Angazovanja).KeyColumn("JMBG_AGENTA").LazyLoad().Cascade.All().Inverse();
-        HasMany(x => x.Najmovi).KeyColumn("JMBG_AGENTA").LazyLoad().Cascade.All().Inverse();
+        //strani kljuc ka zaposlenoom
+        HasMany(x => x.Angazovanja).KeyColumn("JMBG").LazyLoad().Cascade.All().Inverse();
+
+        HasMany(x => x.Najmovi).KeyColumn("JMBG").LazyLoad().Cascade.All().Inverse();
+
+
+
+
+
+
+        //        CREATE TABLE AGENT(
+        // JMBG VARCHAR(13) PRIMARY KEY,
+        // STRUCNA_SPREMA VARCHAR(255),
+        // FOREIGN KEY(JMBG) REFERENCES ZAPOSLEN(JMBG)
+        //);
+
+
+
+
+
+
+
+
+
+
     }
 
 }

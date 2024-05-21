@@ -1,3 +1,10 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using StanNaDan.Entiteti;
+using FluentNHibernate.Mapping;
+
 
 namespace StanNaDan;
 
@@ -8,15 +15,26 @@ public class BankovniRacunMapiranja : ClassMap<StanNaDan.Entiteti.BankovniRacun>
     {
         Table("BANKOVNI_RACUN");
 
-        // Kompozitni kljuc
-        CompositeId(x => x.Id)
-            .KeyReference(x => x.BankovniRacun, "BROJ_RACUNA")
-            .KeyReference(x => x.BankovniRacun, "IME_BANKE")
-            .KeyReference(x => x.Vlasnik, "ID_VLASNIKA");
+        // kompozitni kljuc
+        Id(x => x.ID).Column("ID").GeneratedBy.TriggerIdentity();
 
-        References(x => x.Vlasnik).Column("ID").Not.Insert().Not.Update();
+        Map(x => x.BrojRacuna, "BROJ_RACUNA");
 
-        //Map(x => x.BrojRacuna, "BROJ_RACUNA");
-        //Map(x => x.ImeBanke, "IME_BANKE");
+        Map(x => x.ImeBanke, "IME_BANKE");
+
+      
+
+        References(x => x.Vlasnik).Column("ID_VLASNIKA");
+
+
+
+
+        //    CREATE TABLE BANKOVNI_RACUN(
+        // BROJ_RACUNA VARCHAR(255),
+        // IME_BANKE VARCHAR(255),
+        // ID_VLASNIKA INT,
+        // PRIMARY KEY(BROJ_RACUNA, IME_BANKE, ID_VLASNIKA),    
+        // FOREIGN KEY(ID_VLASNIKA) REFERENCES VLASNIK(ID)
+        //);
     }
 }

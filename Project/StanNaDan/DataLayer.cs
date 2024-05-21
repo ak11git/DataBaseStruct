@@ -1,3 +1,12 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using NHibernate;
+using FluentNHibernate.Cfg;
+using FluentNHibernate.Cfg.Db;
+using StanNaDan.Mapiranja;
+
 namespace StanNaDan
 {
     class DataLayer
@@ -28,17 +37,18 @@ namespace StanNaDan
             try
             {
                 var cfg = OracleManagedDataClientConfiguration.Oracle10
+                .ShowSql()
                 .ConnectionString(c =>
-                    c.Is("Data Source=gislab-oracle.elfak.ni.ac.rs:1521/SBP_PDB;User Id=S18856;Password=S18856"));
+                    c.Is("Data Source=gislab-oracle.elfak.ni.ac.rs:1521/SBP_PDB;User Id=S18577;Password=acasomijanatecko"));
 
                 return Fluently.Configure()
                     .Database(cfg)
-                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<NekretninaMapiranja>())
+                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<BrojTelefonaMapiranja>())
                     .BuildSessionFactory();
             }
             catch (Exception ec)
             {
-                MessageBox.Show(ec.Message);
+                System.Windows.Forms.MessageBox.Show(ec.Message);
                 return null;
             }
 

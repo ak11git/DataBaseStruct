@@ -1,5 +1,22 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using StanNaDan.Entiteti;
+using FluentNHibernate.Mapping;
+
+
+
 
 namespace StanNaDan;
+
+//CREATE TABLE IMA_NAJAM(
+// ID_NAJMA INT,
+// ID_NEKRETNINE INT,
+// PRIMARY KEY (ID_NAJMA, ID_NEKRETNINE),
+// FOREIGN KEY (ID_NAJMA) REFERENCES NAJAM(ID),
+// FOREIGN KEY (ID_NEKRETNINE) REFERENCES NEKRETNINA(ID)
+//);
 
 public class ImaNajamMapiranja : ClassMap<StanNaDan.Entiteti.ImaNajam>
 {
@@ -7,12 +24,14 @@ public class ImaNajamMapiranja : ClassMap<StanNaDan.Entiteti.ImaNajam>
     {
         Table("IMA_NAJAM");
 
-        CompositeId(x => x.Id)
-            .KeyReference(x => x.Najam, "ID_NAJMA")
-            .KeyReference(x => x.Nekretnina, "ID_NEKRETNINE");
+        Id(x => x.ID).Column("ID").GeneratedBy.TriggerIdentity();
 
-        References(x => x.Najam).Column("ID").Not.Insert().Not.Update();
-        References(x => x.Nekretnina).Column("ID").Not.Insert().Not.Update();
+        
+        References(x => x.Najam).Column("ID_NAJMA");
+
+
+        References(x => x.Nekretnina).Column("ID_NEKRETNINE");
+
 
     }
 }

@@ -12,3 +12,6 @@ Menjaju se veze???
 Form.cs funkcije
 
 
+izbaci kompozitni, dodaj surogat
+u bazu dodaj svuda ID,
+prekopiraj? formu 

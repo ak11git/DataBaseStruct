@@ -1,0 +1,310 @@
+﻿namespace StanNaDan.Forme
+{
+    partial class NekretnineForm
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            listView1 = new ListView();
+            button1 = new Button();
+            button2 = new Button();
+            button3 = new Button();
+            groupBox1 = new GroupBox();
+            groupBox2 = new GroupBox();
+            groupBox3 = new GroupBox();
+            button4 = new Button();
+            button5 = new Button();
+            button6 = new Button();
+            groupBox4 = new GroupBox();
+            groupBox5 = new GroupBox();
+            groupBox6 = new GroupBox();
+            groupBox7 = new GroupBox();
+            button7 = new Button();
+            button8 = new Button();
+            button9 = new Button();
+            button10 = new Button();
+            button11 = new Button();
+            groupBox1.SuspendLayout();
+            groupBox2.SuspendLayout();
+            groupBox3.SuspendLayout();
+            groupBox4.SuspendLayout();
+            groupBox5.SuspendLayout();
+            groupBox6.SuspendLayout();
+            groupBox7.SuspendLayout();
+            SuspendLayout();
+            // 
+            // listView1
+            // 
+            listView1.Location = new Point(18, 41);
+            listView1.Name = "listView1";
+            listView1.Size = new Size(633, 513);
+            listView1.TabIndex = 0;
+            listView1.UseCompatibleStateImageBehavior = false;
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.FromArgb(255, 192, 128);
+            button1.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
+            button1.Location = new Point(35, 41);
+            button1.Name = "button1";
+            button1.Size = new Size(223, 53);
+            button1.TabIndex = 2;
+            button1.Text = "Dodaj Nekretninu";
+            button1.UseVisualStyleBackColor = false;
+            // 
+            // button2
+            // 
+            button2.BackColor = Color.FromArgb(255, 192, 128);
+            button2.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
+            button2.Location = new Point(35, 100);
+            button2.Name = "button2";
+            button2.Size = new Size(223, 53);
+            button2.TabIndex = 3;
+            button2.Text = "Obriši Nekretninu";
+            button2.UseVisualStyleBackColor = false;
+            // 
+            // button3
+            // 
+            button3.BackColor = Color.FromArgb(255, 192, 128);
+            button3.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
+            button3.Location = new Point(35, 159);
+            button3.Name = "button3";
+            button3.Size = new Size(223, 53);
+            button3.TabIndex = 4;
+            button3.Text = "Izmeni Nekretninu";
+            button3.UseVisualStyleBackColor = false;
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(button3);
+            groupBox1.Controls.Add(button1);
+            groupBox1.Controls.Add(button2);
+            groupBox1.Location = new Point(711, 12);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(300, 260);
+            groupBox1.TabIndex = 5;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Podaci o Nekretninama";
+            // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(listView1);
+            groupBox2.Location = new Point(12, 12);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(669, 571);
+            groupBox2.TabIndex = 6;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Lista Nekretnina";
+            // 
+            // groupBox3
+            // 
+            groupBox3.Controls.Add(button6);
+            groupBox3.Controls.Add(button5);
+            groupBox3.Controls.Add(button4);
+            groupBox3.Location = new Point(711, 302);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(300, 262);
+            groupBox3.TabIndex = 7;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "Vlasnici";
+            // 
+            // button4
+            // 
+            button4.BackColor = Color.FromArgb(255, 192, 128);
+            button4.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
+            button4.Location = new Point(35, 30);
+            button4.Name = "button4";
+            button4.Size = new Size(223, 53);
+            button4.TabIndex = 5;
+            button4.Text = "Dodaj Nekretninu";
+            button4.UseVisualStyleBackColor = false;
+            // 
+            // button5
+            // 
+            button5.BackColor = Color.FromArgb(255, 192, 128);
+            button5.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
+            button5.Location = new Point(35, 89);
+            button5.Name = "button5";
+            button5.Size = new Size(223, 53);
+            button5.TabIndex = 6;
+            button5.Text = "Dodaj Nekretninu";
+            button5.UseVisualStyleBackColor = false;
+            // 
+            // button6
+            // 
+            button6.BackColor = Color.FromArgb(255, 192, 128);
+            button6.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
+            button6.Location = new Point(35, 151);
+            button6.Name = "button6";
+            button6.Size = new Size(223, 53);
+            button6.TabIndex = 7;
+            button6.Text = "Dodaj Nekretninu";
+            button6.UseVisualStyleBackColor = false;
+            // 
+            // groupBox4
+            // 
+            groupBox4.Controls.Add(button7);
+            groupBox4.Location = new Point(1040, 12);
+            groupBox4.Name = "groupBox4";
+            groupBox4.Size = new Size(300, 102);
+            groupBox4.TabIndex = 8;
+            groupBox4.TabStop = false;
+            groupBox4.Text = "Kvartovi";
+            // 
+            // groupBox5
+            // 
+            groupBox5.Controls.Add(button8);
+            groupBox5.Location = new Point(1040, 149);
+            groupBox5.Name = "groupBox5";
+            groupBox5.Size = new Size(300, 100);
+            groupBox5.TabIndex = 9;
+            groupBox5.TabStop = false;
+            groupBox5.Text = "Parkinzi";
+            // 
+            // groupBox6
+            // 
+            groupBox6.Controls.Add(button9);
+            groupBox6.Location = new Point(1040, 282);
+            groupBox6.Name = "groupBox6";
+            groupBox6.Size = new Size(300, 107);
+            groupBox6.TabIndex = 10;
+            groupBox6.TabStop = false;
+            groupBox6.Text = "Sajtovi";
+            // 
+            // groupBox7
+            // 
+            groupBox7.Controls.Add(button11);
+            groupBox7.Controls.Add(button10);
+            groupBox7.Location = new Point(1040, 405);
+            groupBox7.Name = "groupBox7";
+            groupBox7.Size = new Size(300, 161);
+            groupBox7.TabIndex = 11;
+            groupBox7.TabStop = false;
+            groupBox7.Text = "Najmovi";
+            // 
+            // button7
+            // 
+            button7.BackColor = Color.FromArgb(255, 192, 128);
+            button7.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
+            button7.Location = new Point(40, 30);
+            button7.Name = "button7";
+            button7.Size = new Size(223, 53);
+            button7.TabIndex = 8;
+            button7.Text = "Dodaj Nekretninu";
+            button7.UseVisualStyleBackColor = false;
+            // 
+            // button8
+            // 
+            button8.BackColor = Color.FromArgb(255, 192, 128);
+            button8.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
+            button8.Location = new Point(40, 30);
+            button8.Name = "button8";
+            button8.Size = new Size(223, 53);
+            button8.TabIndex = 9;
+            button8.Text = "Dodaj Nekretninu";
+            button8.UseVisualStyleBackColor = false;
+            // 
+            // button9
+            // 
+            button9.BackColor = Color.FromArgb(255, 192, 128);
+            button9.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
+            button9.Location = new Point(40, 30);
+            button9.Name = "button9";
+            button9.Size = new Size(223, 53);
+            button9.TabIndex = 10;
+            button9.Text = "Dodaj Nekretninu";
+            button9.UseVisualStyleBackColor = false;
+            // 
+            // button10
+            // 
+            button10.BackColor = Color.FromArgb(255, 192, 128);
+            button10.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
+            button10.Location = new Point(40, 30);
+            button10.Name = "button10";
+            button10.Size = new Size(223, 53);
+            button10.TabIndex = 11;
+            button10.Text = "Dodaj Nekretninu";
+            button10.UseVisualStyleBackColor = false;
+            // 
+            // button11
+            // 
+            button11.BackColor = Color.FromArgb(255, 192, 128);
+            button11.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
+            button11.Location = new Point(40, 89);
+            button11.Name = "button11";
+            button11.Size = new Size(223, 53);
+            button11.TabIndex = 12;
+            button11.Text = "Dodaj Nekretninu";
+            button11.UseVisualStyleBackColor = false;
+            // 
+            // NekretnineForm
+            // 
+            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ActiveCaption;
+            ClientSize = new Size(1352, 598);
+            Controls.Add(groupBox7);
+            Controls.Add(groupBox6);
+            Controls.Add(groupBox5);
+            Controls.Add(groupBox4);
+            Controls.Add(groupBox3);
+            Controls.Add(groupBox2);
+            Controls.Add(groupBox1);
+            Name = "NekretnineForm";
+            Text = "NekretnineForm";
+            groupBox1.ResumeLayout(false);
+            groupBox2.ResumeLayout(false);
+            groupBox3.ResumeLayout(false);
+            groupBox4.ResumeLayout(false);
+            groupBox5.ResumeLayout(false);
+            groupBox6.ResumeLayout(false);
+            groupBox7.ResumeLayout(false);
+            ResumeLayout(false);
+        }
+
+        #endregion
+
+        private ListView listView1;
+        private Button button1;
+        private Button button2;
+        private Button button3;
+        private GroupBox groupBox1;
+        private GroupBox groupBox2;
+        private GroupBox groupBox3;
+        private Button button6;
+        private Button button5;
+        private Button button4;
+        private GroupBox groupBox4;
+        private GroupBox groupBox5;
+        private GroupBox groupBox6;
+        private GroupBox groupBox7;
+        private Button button7;
+        private Button button8;
+        private Button button9;
+        private Button button11;
+        private Button button10;
+    }
+}

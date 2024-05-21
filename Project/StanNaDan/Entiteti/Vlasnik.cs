@@ -1,9 +1,28 @@
+//CREATE TABLE VLASNIK (
+// ID INT PRIMARY KEY,
+// IME VARCHAR(255),
+// PREZIME VARCHAR(255),
+// ADRESA VARCHAR(255),
+// MESTO VARCHAR(255),
+// DRZAVA VARCHAR(255),
+// DATUM_RODJENJA DATE,
+// JMBG VARCHAR(13) UNIQUE,
+// IME_RODITELJA VARCHAR(255),
+// NAZIV VARCHAR(255),
+// PIB VARCHAR(20) UNIQUE
+//);
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
 namespace StanNaDan.Entiteti;
 
 public class Vlasnik
 {
     public virtual int Id { get; set; }
-    public virtual string Ime { get; set; } // ovo je LIME
+    public virtual string Ime { get; set; }
     public virtual string Prezime { get; set; }
 
     public virtual string Adresa { get; set; }
@@ -23,7 +42,7 @@ public class Vlasnik
 
     public virtual IList<BankovniRacun>? BankovniRacuni { get; set; }
 
-    public virtual IList<BrojTelefona>? BrojeviTelefona { get; set; }
+    public virtual IList<BrojtTelefona>? BrojeviTelefona { get; set; }
 
     public virtual IList<Email>? Emailovi { get; set; }
 
@@ -34,12 +53,13 @@ public class Vlasnik
     {
         BankovniRacuni = new List<BankovniRacun>();
 
-        BrojeviTelefona = new List<BrojTelefona>();
+        BrojeviTelefona = new List<BrojtTelefona>();
 
         Emailovi = new List<Email>();
 
         Nekretnine = new List<Nekretnina>();
     }
+
 }
 
 

@@ -10,15 +10,15 @@ namespace StanNaDan.Entiteti;
 
 public class ImaNajam
 {
-    public virtual ImaNajamId Id { get; set; }
+
+    public virtual int ID { get; set; }
 
     public virtual Najam Najam { get; set; }
     public virtual Nekretnina Nekretnina { get; set; }
 
-    public ImaNajam()
-    {
-        Id = new ImaNajamId();
-    }
+
+
+
 
 
 }

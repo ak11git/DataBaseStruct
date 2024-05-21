@@ -1,4 +1,3 @@
-
 namespace StanNaDan;
 public class SefMapiranja : SubclassMap<StanNaDan.Entiteti.Sef>
 {
