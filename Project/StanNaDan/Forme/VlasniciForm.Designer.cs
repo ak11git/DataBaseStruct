@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
-            groupBox2 = new GroupBox();
             listView1 = new ListView();
-            button1 = new Button();
             button2 = new Button();
-            button3 = new Button();
+            label1 = new Label();
+            label2 = new Label();
+            label3 = new Label();
+            textBox1 = new TextBox();
             groupBox1.SuspendLayout();
-            groupBox2.SuspendLayout();
             SuspendLayout();
             // 
             // groupBox1
@@ -48,18 +48,6 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Lista Vlasnika";
             // 
-            // groupBox2
-            // 
-            groupBox2.Controls.Add(button3);
-            groupBox2.Controls.Add(button2);
-            groupBox2.Controls.Add(button1);
-            groupBox2.Location = new Point(770, 17);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(285, 244);
-            groupBox2.TabIndex = 1;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "Podaci o Vlasnicima";
-            // 
             // listView1
             // 
             listView1.Location = new Point(16, 31);
@@ -68,38 +56,51 @@
             listView1.TabIndex = 0;
             listView1.UseCompatibleStateImageBehavior = false;
             // 
-            // button1
-            // 
-            button1.BackColor = Color.FromArgb(255, 192, 128);
-            button1.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
-            button1.Location = new Point(30, 31);
-            button1.Name = "button1";
-            button1.Size = new Size(223, 53);
-            button1.TabIndex = 3;
-            button1.Text = "Dodaj Vlasnika";
-            button1.UseVisualStyleBackColor = false;
-            // 
             // button2
             // 
             button2.BackColor = Color.FromArgb(255, 192, 128);
             button2.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
-            button2.Location = new Point(30, 90);
+            button2.Location = new Point(802, 281);
             button2.Name = "button2";
-            button2.Size = new Size(223, 53);
+            button2.Size = new Size(243, 53);
             button2.TabIndex = 4;
             button2.Text = "Obriši Vlasnika";
             button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
-            // button3
+            // label1
             // 
-            button3.BackColor = Color.FromArgb(255, 192, 128);
-            button3.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
-            button3.Location = new Point(30, 149);
-            button3.Name = "button3";
-            button3.Size = new Size(223, 53);
-            button3.TabIndex = 5;
-            button3.Text = "Izmeni Vlasnika";
-            button3.UseVisualStyleBackColor = false;
+            label1.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
+            label1.Location = new Point(802, 128);
+            label1.Name = "label1";
+            label1.Size = new Size(243, 138);
+            label1.TabIndex = 5;
+            label1.Text = "NAPOMENA: Brisanjem vlasnika iz ove tabele nepovratno ga izbacujete iz sistema!";
+            // 
+            // label2
+            // 
+            label2.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
+            label2.Location = new Point(802, 17);
+            label2.Name = "label2";
+            label2.Size = new Size(243, 74);
+            label2.TabIndex = 6;
+            label2.Text = "Svi vlasnici svojih nekretnina su prikazani u tabeli. ";
+            // 
+            // label3
+            // 
+            label3.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
+            label3.Location = new Point(874, 412);
+            label3.Name = "label3";
+            label3.Size = new Size(142, 50);
+            label3.TabIndex = 18;
+            label3.Text = "Ukupan broj Vlasnika:";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(973, 465);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(72, 31);
+            textBox1.TabIndex = 17;
             // 
             // VlasniciForm
             // 
@@ -107,22 +108,28 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(1078, 524);
-            Controls.Add(groupBox2);
+            Controls.Add(label3);
+            Controls.Add(textBox1);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Controls.Add(button2);
             Controls.Add(groupBox1);
             Name = "VlasniciForm";
             Text = "VlasniciForm";
+            Load += VlasniciForm_Load;
             groupBox1.ResumeLayout(false);
-            groupBox2.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private GroupBox groupBox1;
-        private GroupBox groupBox2;
         private ListView listView1;
-        private Button button3;
         private Button button2;
-        private Button button1;
+        private Label label1;
+        private Label label2;
+        private Label label3;
+        private TextBox textBox1;
     }
 }

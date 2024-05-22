@@ -30,12 +30,12 @@
         {
             groupBox1 = new GroupBox();
             listView1 = new ListView();
-            groupBox2 = new GroupBox();
-            button11 = new Button();
             button1 = new Button();
-            button2 = new Button();
+            label2 = new Label();
+            label1 = new Label();
+            textBox1 = new TextBox();
+            label3 = new Label();
             groupBox1.SuspendLayout();
-            groupBox2.SuspendLayout();
             SuspendLayout();
             // 
             // groupBox1
@@ -56,50 +56,51 @@
             listView1.TabIndex = 0;
             listView1.UseCompatibleStateImageBehavior = false;
             // 
-            // groupBox2
-            // 
-            groupBox2.Controls.Add(button2);
-            groupBox2.Controls.Add(button1);
-            groupBox2.Controls.Add(button11);
-            groupBox2.Location = new Point(777, 28);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(265, 270);
-            groupBox2.TabIndex = 1;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "Podaci o Najmovima";
-            // 
-            // button11
-            // 
-            button11.BackColor = Color.FromArgb(255, 192, 128);
-            button11.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
-            button11.Location = new Point(22, 30);
-            button11.Name = "button11";
-            button11.Size = new Size(223, 53);
-            button11.TabIndex = 13;
-            button11.Text = "Dodaj Najam";
-            button11.UseVisualStyleBackColor = false;
-            // 
             // button1
             // 
             button1.BackColor = Color.FromArgb(255, 192, 128);
             button1.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
-            button1.Location = new Point(22, 89);
+            button1.Location = new Point(786, 262);
             button1.Name = "button1";
-            button1.Size = new Size(223, 53);
+            button1.Size = new Size(243, 53);
             button1.TabIndex = 14;
             button1.Text = "Obriši Najam";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
-            // button2
+            // label2
             // 
-            button2.BackColor = Color.FromArgb(255, 192, 128);
-            button2.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
-            button2.Location = new Point(22, 148);
-            button2.Name = "button2";
-            button2.Size = new Size(223, 53);
-            button2.TabIndex = 15;
-            button2.Text = "Izmeni Najam";
-            button2.UseVisualStyleBackColor = false;
+            label2.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
+            label2.Location = new Point(786, 38);
+            label2.Name = "label2";
+            label2.Size = new Size(243, 74);
+            label2.TabIndex = 9;
+            label2.Text = "Svi najmovi nekretnina su prikazani u tabeli. ";
+            // 
+            // label1
+            // 
+            label1.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
+            label1.Location = new Point(786, 121);
+            label1.Name = "label1";
+            label1.Size = new Size(243, 120);
+            label1.TabIndex = 8;
+            label1.Text = "NAPOMENA: Brisanjem najma iz ove tabele nepovratno ga izbacujete iz sistema!";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(957, 501);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(72, 31);
+            textBox1.TabIndex = 15;
+            // 
+            // label3
+            // 
+            label3.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
+            label3.Location = new Point(858, 448);
+            label3.Name = "label3";
+            label3.Size = new Size(142, 50);
+            label3.TabIndex = 16;
+            label3.Text = "Ukupan broj Najmova:";
             // 
             // NajmoviForm
             // 
@@ -107,22 +108,28 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(1054, 563);
-            Controls.Add(groupBox2);
+            Controls.Add(label3);
+            Controls.Add(textBox1);
+            Controls.Add(button1);
+            Controls.Add(label2);
+            Controls.Add(label1);
             Controls.Add(groupBox1);
             Name = "NajmoviForm";
             Text = "NajmoviForm";
+            Load += NajmoviForm_Load;
             groupBox1.ResumeLayout(false);
-            groupBox2.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private GroupBox groupBox1;
         private ListView listView1;
-        private GroupBox groupBox2;
-        private Button button2;
         private Button button1;
-        private Button button11;
+        private Label label2;
+        private Label label1;
+        private TextBox textBox1;
+        private Label label3;
     }
 }

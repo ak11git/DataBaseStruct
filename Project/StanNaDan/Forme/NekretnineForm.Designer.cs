@@ -35,7 +35,6 @@
             groupBox1 = new GroupBox();
             groupBox2 = new GroupBox();
             groupBox3 = new GroupBox();
-            button6 = new Button();
             button5 = new Button();
             button4 = new Button();
             groupBox4 = new GroupBox();
@@ -47,6 +46,8 @@
             groupBox7 = new GroupBox();
             button11 = new Button();
             button10 = new Button();
+            label3 = new Label();
+            textBox1 = new TextBox();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -124,32 +125,20 @@
             // 
             // groupBox3
             // 
-            groupBox3.Controls.Add(button6);
             groupBox3.Controls.Add(button5);
             groupBox3.Controls.Add(button4);
-            groupBox3.Location = new Point(711, 302);
+            groupBox3.Location = new Point(711, 282);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(300, 262);
+            groupBox3.Size = new Size(300, 221);
             groupBox3.TabIndex = 7;
             groupBox3.TabStop = false;
             groupBox3.Text = "Vlasnici";
-            // 
-            // button6
-            // 
-            button6.BackColor = Color.FromArgb(255, 192, 128);
-            button6.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
-            button6.Location = new Point(35, 151);
-            button6.Name = "button6";
-            button6.Size = new Size(223, 53);
-            button6.TabIndex = 7;
-            button6.Text = "Dodaj Nekretninu";
-            button6.UseVisualStyleBackColor = false;
             // 
             // button5
             // 
             button5.BackColor = Color.FromArgb(255, 192, 128);
             button5.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
-            button5.Location = new Point(35, 89);
+            button5.Location = new Point(35, 113);
             button5.Name = "button5";
             button5.Size = new Size(223, 53);
             button5.TabIndex = 6;
@@ -162,10 +151,11 @@
             button4.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
             button4.Location = new Point(35, 30);
             button4.Name = "button4";
-            button4.Size = new Size(223, 53);
+            button4.Size = new Size(223, 77);
             button4.TabIndex = 5;
-            button4.Text = "Dodaj Nekretninu";
+            button4.Text = "Prikazi Vlasnika [pravno lice]";
             button4.UseVisualStyleBackColor = false;
+            button4.Click += button4_Click;
             // 
             // groupBox4
             // 
@@ -263,12 +253,30 @@
             button10.Text = "Dodaj Nekretninu";
             button10.UseVisualStyleBackColor = false;
             // 
+            // label3
+            // 
+            label3.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
+            label3.Location = new Point(711, 533);
+            label3.Name = "label3";
+            label3.Size = new Size(142, 50);
+            label3.TabIndex = 20;
+            label3.Text = "Ukupan broj Nekretnina:";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(859, 552);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(72, 31);
+            textBox1.TabIndex = 19;
+            // 
             // NekretnineForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(1352, 598);
+            Controls.Add(label3);
+            Controls.Add(textBox1);
             Controls.Add(groupBox7);
             Controls.Add(groupBox6);
             Controls.Add(groupBox5);
@@ -278,6 +286,7 @@
             Controls.Add(groupBox1);
             Name = "NekretnineForm";
             Text = "NekretnineForm";
+            Load += NekretnineForm_Load;
             groupBox1.ResumeLayout(false);
             groupBox2.ResumeLayout(false);
             groupBox3.ResumeLayout(false);
@@ -286,6 +295,7 @@
             groupBox6.ResumeLayout(false);
             groupBox7.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -297,7 +307,6 @@
         private GroupBox groupBox1;
         private GroupBox groupBox2;
         private GroupBox groupBox3;
-        private Button button6;
         private Button button5;
         private Button button4;
         private GroupBox groupBox4;
@@ -309,5 +318,7 @@
         private Button button9;
         private Button button11;
         private Button button10;
+        private Label label3;
+        private TextBox textBox1;
     }
 }
