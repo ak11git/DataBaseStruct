@@ -56,14 +56,14 @@ namespace StanNaDan.Forme
         {
             if (listView1.SelectedItems.Count == 0)
             {
-                MessageBox.Show("Izaberite odeljenje cije podatke zelite da izmenite!");
+                MessageBox.Show("Izaberite vlasnika cije podatke zelite da izmenite!");
                 return;
             }
 
-            int idOdeljenja = Int32.Parse(listView1.SelectedItems[0].SubItems[0].Text);
+            int idvlasnika = Int32.Parse(listView1.SelectedItems[0].SubItems[0].Text);
             VlasnikBasic vlasnik = null;
             //VlasnikBasic vlasnik = DTOManager.vratiOdeljenjaDo5(idOdeljenja);
-            IzmeniVlasnikaPravno forma = new IzmeniVlasnikaPravno(vlasnik);
+            IzmeniVlasnikaPravno forma = new IzmeniVlasnikaPravno(vlasnik, nekretnina);
             forma.ShowDialog();
             popuniPodacima();
         }

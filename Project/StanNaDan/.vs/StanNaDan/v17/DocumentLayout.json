@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\krstic\\Desktop\\baze\\DataBaseStruct\\Project\\StanNaDan\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1795D3D3-3CF0-4188-8534-3C7177F7C675}|StanNaDan.csproj|C:\\Users\\krstic\\Desktop\\baze\\DataBaseStruct\\Project\\StanNaDan\\forme\\nekretnineform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{1795D3D3-3CF0-4188-8534-3C7177F7C675}|StanNaDan.csproj|c:\\users\\krstic\\desktop\\baze\\databasestruct\\project\\stannadan\\forme\\nekretnineform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{1795D3D3-3CF0-4188-8534-3C7177F7C675}|StanNaDan.csproj|solutionrelative:forme\\nekretnineform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1795D3D3-3CF0-4188-8534-3C7177F7C675}|StanNaDan.csproj|c:\\users\\krstic\\desktop\\baze\\databasestruct\\project\\stannadan\\pocetnaforma.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{1795D3D3-3CF0-4188-8534-3C7177F7C675}|StanNaDan.csproj|solutionrelative:pocetnaforma.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{1795D3D3-3CF0-4188-8534-3C7177F7C675}|StanNaDan.csproj|c:\\users\\krstic\\desktop\\baze\\databasestruct\\project\\stannadan\\dtomanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1795D3D3-3CF0-4188-8534-3C7177F7C675}|StanNaDan.csproj|solutionrelative:dtomanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1795D3D3-3CF0-4188-8534-3C7177F7C675}|StanNaDan.csproj|c:\\users\\krstic\\desktop\\baze\\databasestruct\\project\\stannadan\\dtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1795D3D3-3CF0-4188-8534-3C7177F7C675}|StanNaDan.csproj|solutionrelative:dtos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,8 +22,36 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DTOs.cs",
+              "DocumentMoniker": "C:\\Users\\krstic\\Desktop\\baze\\DataBaseStruct\\Project\\StanNaDan\\DTOs.cs",
+              "RelativeDocumentMoniker": "DTOs.cs",
+              "ToolTip": "C:\\Users\\krstic\\Desktop\\baze\\DataBaseStruct\\Project\\StanNaDan\\DTOs.cs",
+              "RelativeToolTip": "DTOs.cs",
+              "ViewState": "AQIAAIEAAAAAAAAAAAA1wNMAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-25T21:42:36.94Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DTOManager.cs",
+              "DocumentMoniker": "C:\\Users\\krstic\\Desktop\\baze\\DataBaseStruct\\Project\\StanNaDan\\DTOManager.cs",
+              "RelativeDocumentMoniker": "DTOManager.cs",
+              "ToolTip": "C:\\Users\\krstic\\Desktop\\baze\\DataBaseStruct\\Project\\StanNaDan\\DTOManager.cs",
+              "RelativeToolTip": "DTOManager.cs",
+              "ViewState": "AQIAADcAAAAAAAAAAAA0wAYCAABKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-25T23:10:04.208Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -29,19 +61,7 @@
               "ToolTip": "C:\\Users\\krstic\\Desktop\\baze\\DataBaseStruct\\Project\\StanNaDan\\Forme\\NekretnineForm.cs [Design]",
               "RelativeToolTip": "Forme\\NekretnineForm.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-21T01:51:18.565Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PocetnaForma.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\krstic\\Desktop\\baze\\DataBaseStruct\\Project\\StanNaDan\\PocetnaForma.cs",
-              "RelativeDocumentMoniker": "PocetnaForma.cs",
-              "ToolTip": "C:\\Users\\krstic\\Desktop\\baze\\DataBaseStruct\\Project\\StanNaDan\\PocetnaForma.cs [Design]",
-              "RelativeToolTip": "PocetnaForma.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-21T15:30:21.524Z",
+              "WhenOpened": "2024-05-26T01:42:35.111Z",
               "EditorCaption": " [Design]"
             }
           ]

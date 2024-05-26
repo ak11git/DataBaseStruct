@@ -451,7 +451,10 @@ public class VlasnikPregled
     public string PIB { get; set; }
 
 
+    public VlasnikPregled()
+    {
 
+    }
 
     public VlasnikPregled(int id, string ime, string prezime, string adresa, string mesto, string drzava, DateTime datumrodjenja, string jmbg, string naziv, string pib)
     {

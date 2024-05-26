@@ -17,30 +17,32 @@ namespace StanNaDan.Forme
         {
             InitializeComponent();
             nekretnina = n;
-        }
 
-        private void DodajVlasnika_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
-            {
-                e.Handled = true;
-            }
+            textBox6.MaxLength = 9;
         }
 
         private void button11_Click(object sender, EventArgs e)
         {
             VlasnikBasic v = new VlasnikBasic();
             v.Ime = textBox1.Text;
-            v.Drzava = textBox2.Text;
-            //v.Nekretnine = nekretnina;
-            //DTOManager.sacuvajOdeljenjeDo5(o);
+            v.Prezime = textBox2.Text;
+            v.Adresa = textBox3.Text;
+            v.Mesto = textBox4.Text;
+            v.Drzava = comboBox1.SelectedItem.ToString();
+            v.Naziv = textBox5.Text;
+            v.PIB = textBox6.Text;
+            v.Nekretnine.Add(nekretnina);
+            DTOManager.DodajVlasnika(v);
             MessageBox.Show("Uspesno ste dodali novog vlasnika!");
             this.Close();
+        }
+
+        private void textBox6_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }
