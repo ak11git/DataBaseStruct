@@ -69,9 +69,8 @@ public class DTOManager
 
             KvartBasic kb = new KvartBasic(k.Naziv, k.Zona);
             VlasnikBasic vb = new VlasnikBasic(v.Id, v.Ime, v.Prezime,
-                                                v.Adresa, v.Mesto, v.Drzava,
-                                                v.DatumRodjenja, v.JMBG,
-                                                v.Naziv, v.PIB);
+                                                v.Adresa, v.Mesto, v.Drzava
+                                                );
 
             nb = new NekretninaBasic(n.ID, n.TipNekretnine, n.KucniBroj, n.ImeUlice,
                                                      n.Kvadratura, n.BrojKupatila, n.BrojTerasa,
@@ -88,76 +87,6 @@ public class DTOManager
         }
 
         return nb;
-    }
-    public static void DodajNekretninu(NekretninaBasic nb)
-    {
-        ISession session = null;
-
-        try
-        {
-            session = DataLayer.GetSession();
-
-            Kvart k = session.Load<Kvart>(nb.Kvart.Naziv);
-            Vlasnik v = session.Load<Vlasnik>(nb.Vlasnik.Id);
-
-            DodatnaOprema dod = (from p in session.Query<DodatnaOprema>()
-                                 where p.Nekretnina.ID == nb.ID
-                                 select p).FirstOrDefault();
-
-            Parking pk = (from p in session.Query<Parking>()
-                          where p.Nekretnina.ID == nb.ID
-                          select p).FirstOrDefault();
-
-            Sajtovi sajt = (from p in session.Query<Sajtovi>()
-                            where p.Nekretnina.ID == nb.ID
-                            select p).FirstOrDefault();
-
-            ImaNajam imanajam = (from p in session.Query<ImaNajam>()
-                                 where p.Nekretnina.ID == nb.ID
-                                 select p).FirstOrDefault();
-
-            Nekretnina n = new Nekretnina();
-            n.ID = nb.ID;
-            n.TipNekretnine = nb.TipNekretnine;
-            n.KucniBroj = nb.KucniBroj;
-            n.ImeUlice = nb.ImeUlice;
-            n.Kvadratura = nb.Kvadratura;
-            n.BrojKupatila = nb.BrojKupatila;
-            n.BrojTerasa = nb.BrojTerasa;
-            n.BrojSoba = nb.BrojSoba;
-            n.Internet = nb.Internet;
-            n.TV = nb.TV;
-            n.Kuhinja = nb.Kuhinja;
-            n.Dimenzije = nb.Dimenzije;
-            n.TipKreveta = nb.TipKreveta;
-            n.Spratnost = nb.Spratnost;
-            n.Dvoriste = nb.Dvoriste;
-            n.Sprat = nb.Sprat;
-            n.Lift = nb.Lift;
-            n.Vlasnik = v;
-            n.Kvart = k;
-
-            session.SaveOrUpdate(n);
-            session.Flush();
-            pk.Nekretnina = n;
-            dod.Nekretnina = n;
-            sajt.Nekretnina = n;
-            imanajam.Nekretnina = n;
-
-            session.Update(pk);
-            session.Update(dod);
-            session.Update(sajt);
-            session.Update(imanajam);
-            session.Flush();
-        }
-        catch (Exception ec)
-        {
-            MessageBox.Show(ec.Message);
-        }
-        finally
-        {
-            session.Close();
-        }
     }
 
     public static void AzurirajNekretninu(NekretninaBasic nb, int nID)
@@ -192,23 +121,20 @@ public class DTOManager
             n.Kuhinja = nb.Kuhinja;
             n.Dimenzije = nb.Dimenzije;
             n.TipKreveta = nb.TipKreveta;
-            n.Spratnost = nb.Spratnost;
-            n.Dvoriste = nb.Dvoriste;
-            n.Sprat = nb.Sprat;
-            n.Lift = nb.Lift;
+
             n.Vlasnik = v;
             n.Kvart = k;
-            if (n is Kuca kuca)
-            {
-                kuca.Spratnost = nb.Spratnost;
-                kuca.Dvoriste = nb.Dvoriste;
-            }
-            else if (n.TipNekretnine == "STAN")
-            {
-                stan.Sprat = nb.Sprat;
-                stan.Lift = nb.Lift;
-            }
-
+            /*   if (n is Kuca kuca1)
+               {
+                   kuca1.Spratnost = nb.Spratnost;
+                   kuca1.Dvoriste = nb.Dvoriste;
+               }
+               else if (n.TipNekretnine == "STAN")
+               {
+                   stan.Sprat = nb.Sprat;
+                   stan.Lift = nb.Lift;
+               }
+   */
             session.SaveOrUpdate(n);
             session.Flush();
 
@@ -234,23 +160,23 @@ public class DTOManager
             Kvart k = session.Load<Kvart>(nb.Kvart.Naziv);
             Vlasnik v = session.Load<Vlasnik>(nb.Vlasnik.Id);
 
-            DodatnaOprema dod = (from p in session.Query<DodatnaOprema>()
-                                 where p.Nekretnina.ID == nb.ID
-                                 select p).FirstOrDefault();
+            /* DodatnaOprema dod = (from p in session.Query<DodatnaOprema>()
+                                  where p.Nekretnina.ID == nb.ID
+                                  select p).FirstOrDefault();
 
-            Parking pk = (from p in session.Query<Parking>()
-                          where p.Nekretnina.ID == nb.ID
-                          select p).FirstOrDefault();
+             Parking pk = (from p in session.Query<Parking>()
+                           where p.Nekretnina.ID == nb.ID
+                           select p).FirstOrDefault();
 
-            Sajtovi sajt = (from p in session.Query<Sajtovi>()
-                            where p.Nekretnina.ID == nb.ID
-                            select p).FirstOrDefault();
+             Sajtovi sajt = (from p in session.Query<Sajtovi>()
+                             where p.Nekretnina.ID == nb.ID
+                             select p).FirstOrDefault();
 
-            ImaNajam imanajam = (from p in session.Query<ImaNajam>()
-                                 where p.Nekretnina.ID == nb.ID
-                                 select p).FirstOrDefault();
+             ImaNajam imanajam = (from p in session.Query<ImaNajam>()
+                                  where p.Nekretnina.ID == nb.ID
+                                  select p).FirstOrDefault();*/
 
-            Nekretnina n = new Nekretnina();
+            Kuca n = new Kuca();
             n.ID = nb.ID;
             n.TipNekretnine = nb.TipNekretnine;
             n.KucniBroj = nb.KucniBroj;
@@ -271,15 +197,15 @@ public class DTOManager
 
             session.SaveOrUpdate(n);
             session.Flush();
-            pk.Nekretnina = n;
-            dod.Nekretnina = n;
-            sajt.Nekretnina = n;
-            imanajam.Nekretnina = n;
+            /* pk.Nekretnina = n;
+             dod.Nekretnina = n;
+             sajt.Nekretnina = n;
+             imanajam.Nekretnina = n;
 
-            session.Update(pk);
-            session.Update(dod);
-            session.Update(sajt);
-            session.Update(imanajam);
+             session.Update(pk);
+             session.Update(dod);
+             session.Update(sajt);
+             session.Update(imanajam);*/
             session.Flush();
         }
         catch (Exception ec)
@@ -302,23 +228,23 @@ public class DTOManager
             Kvart k = session.Load<Kvart>(nb.Kvart.Naziv);
             Vlasnik v = session.Load<Vlasnik>(nb.Vlasnik.Id);
 
-            DodatnaOprema dod = (from p in session.Query<DodatnaOprema>()
-                                 where p.Nekretnina.ID == nb.ID
-                                 select p).FirstOrDefault();
+            /* DodatnaOprema dod = (from p in session.Query<DodatnaOprema>()
+                                  where p.Nekretnina.ID == nb.ID
+                                  select p).FirstOrDefault();
 
-            Parking pk = (from p in session.Query<Parking>()
-                          where p.Nekretnina.ID == nb.ID
-                          select p).FirstOrDefault();
+             Parking pk = (from p in session.Query<Parking>()
+                           where p.Nekretnina.ID == nb.ID
+                           select p).FirstOrDefault();
 
-            Sajtovi sajt = (from p in session.Query<Sajtovi>()
-                            where p.Nekretnina.ID == nb.ID
-                            select p).FirstOrDefault();
+             Sajtovi sajt = (from p in session.Query<Sajtovi>()
+                             where p.Nekretnina.ID == nb.ID
+                             select p).FirstOrDefault();
 
-            ImaNajam imanajam = (from p in session.Query<ImaNajam>()
-                                 where p.Nekretnina.ID == nb.ID
-                                 select p).FirstOrDefault();
+             ImaNajam imanajam = (from p in session.Query<ImaNajam>()
+                                  where p.Nekretnina.ID == nb.ID
+                                  select p).FirstOrDefault();*/
 
-            Nekretnina n = new Nekretnina();
+            Stan n = new Stan();
             n.ID = nb.ID;
             n.TipNekretnine = nb.TipNekretnine;
             n.KucniBroj = nb.KucniBroj;
@@ -339,15 +265,15 @@ public class DTOManager
 
             session.SaveOrUpdate(n);
             session.Flush();
-            pk.Nekretnina = n;
-            dod.Nekretnina = n;
-            sajt.Nekretnina = n;
-            imanajam.Nekretnina = n;
+            /* pk.Nekretnina = n;
+             dod.Nekretnina = n;
+             sajt.Nekretnina = n;
+             imanajam.Nekretnina = n;
 
-            session.Update(pk);
-            session.Update(dod);
-            session.Update(sajt);
-            session.Update(imanajam);
+             session.Update(pk);
+             session.Update(dod);
+             session.Update(sajt);
+             session.Update(imanajam);*/
             session.Flush();
         }
         catch (Exception ec)
@@ -370,23 +296,23 @@ public class DTOManager
             Kvart k = session.Load<Kvart>(nb.Kvart.Naziv);
             Vlasnik v = session.Load<Vlasnik>(nb.Vlasnik.Id);
 
-            DodatnaOprema dod = (from p in session.Query<DodatnaOprema>()
-                                 where p.Nekretnina.ID == nb.ID
-                                 select p).FirstOrDefault();
+            /*  DodatnaOprema dod = (from p in session.Query<DodatnaOprema>()
+                                   where p.Nekretnina.ID == nb.ID
+                                   select p).FirstOrDefault();
 
-            Parking pk = (from p in session.Query<Parking>()
-                          where p.Nekretnina.ID == nb.ID
-                          select p).FirstOrDefault();
-
-            Sajtovi sajt = (from p in session.Query<Sajtovi>()
+              Parking pk = (from p in session.Query<Parking>()
                             where p.Nekretnina.ID == nb.ID
                             select p).FirstOrDefault();
 
-            ImaNajam imanajam = (from p in session.Query<ImaNajam>()
-                                 where p.Nekretnina.ID == nb.ID
-                                 select p).FirstOrDefault();
+              Sajtovi sajt = (from p in session.Query<Sajtovi>()
+                              where p.Nekretnina.ID == nb.ID
+                              select p).FirstOrDefault();
 
-            Nekretnina n = new Nekretnina();
+              ImaNajam imanajam = (from p in session.Query<ImaNajam>()
+                                   where p.Nekretnina.ID == nb.ID
+                                   select p).FirstOrDefault();*/
+
+            Soba n = new Soba();
             n.ID = nb.ID;
             n.TipNekretnine = nb.TipNekretnine;
             n.KucniBroj = nb.KucniBroj;
@@ -406,15 +332,15 @@ public class DTOManager
 
             session.SaveOrUpdate(n);
             session.Flush();
-            pk.Nekretnina = n;
-            dod.Nekretnina = n;
-            sajt.Nekretnina = n;
-            imanajam.Nekretnina = n;
+            /* pk.Nekretnina = n;
+             dod.Nekretnina = n;
+             sajt.Nekretnina = n;
+             imanajam.Nekretnina = n;
 
-            session.Update(pk);
-            session.Update(dod);
-            session.Update(sajt);
-            session.Update(imanajam);
+             session.Update(pk);
+             session.Update(dod);
+             session.Update(sajt);
+             session.Update(imanajam);*/
             session.Flush();
         }
         catch (Exception ec)
@@ -506,8 +432,7 @@ public class DTOManager
                 return null;
 
 
-            vp = new VlasnikPregled(vl.Id, vl.Ime, vl.Prezime, vl.Adresa, vl.Mesto, vl.Drzava,
-                                    vl.DatumRodjenja, vl.JMBG, vl.Naziv, vl.PIB);
+            vp = new VlasnikPregled(vl.Id, vl.Ime, vl.Prezime, vl.Adresa, vl.Mesto, vl.Drzava);
             session.Close();
         }
         catch (Exception ec)
@@ -718,6 +643,104 @@ public class DTOManager
 
     //kvart pa na dole
 
+
+
+
+
+    //Prikazi Brojeve Racuna Vlasnika
+
+
+
+    //Dodaj Kvart
+    //Obrisi Kvart
+    //Izmeni Kvart
+    #region Poslovnica i Kvart
+    public static void DodajPoslovnicu(PoslovnicaBasic p)
+    {
+        try
+        {
+            ISession s = DataLayer.GetSession();
+
+            Poslovnica o = new Poslovnica();
+
+            o.Adresa = p.Adresa;
+            o.RadnoVreme= p.RadnoVreme;
+            
+
+            s.SaveOrUpdate(o);
+
+            s.Flush();
+
+            s.Close();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        finally
+        {
+            session.Close();
+        }
+    }
+
+
+    public static void DodajKvart(KvartBasic k)
+    {
+        try
+        {
+            ISession s = DataLayer.GetSession();
+
+            Kvart o = new Kvart();
+
+            o.Zona = k.Zona;
+            o.Naziv = k.Naziv;
+
+
+            s.SaveOrUpdate(o);
+
+            s.Flush();
+
+            s.Close();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        finally
+        {
+            session.Close();
+        }
+    }
+
+
+
+
+    #endregion
+
+
+
+
+
+
+
+    //Dodaj Kvart
+    //Obrisi Kvart
+    //Izmeni Kvart
+
+    //Prikazi koji parking ima Nekretnina
+    //Dodaj Parking
+    //Obrisi Parking
+    //Izmeni Parking
+
+    //Prikazi Sajtove na kojima je oglasena Nekretnina??
+    //Dodaj Sajt
+    //Obrisi Sajt
+    //Izmeni Sajt
+
+    //Prikazi najmove Nekretnine
+    //Dodaj Najam
+    //Obrisi Najam
+    //Izmeni Najam
 
 
 
