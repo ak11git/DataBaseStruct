@@ -10,7 +10,8 @@
 
 namespace StanNaDan.Entiteti;
 
-public class Parking { 
+public class Parking
+{
     public virtual int ID { get; set; }
 
     public virtual decimal Cena { get; set; }

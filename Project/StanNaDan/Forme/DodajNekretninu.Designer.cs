@@ -29,11 +29,9 @@
         private void InitializeComponent()
         {
             button1 = new Button();
-            textBox1 = new TextBox();
             textBox2 = new TextBox();
             textBox3 = new TextBox();
             textBox4 = new TextBox();
-            textBox8 = new TextBox();
             textBox14 = new TextBox();
             label1 = new Label();
             label2 = new Label();
@@ -56,6 +54,8 @@
             numericUpDown3 = new NumericUpDown();
             numericUpDown4 = new NumericUpDown();
             numericUpDown5 = new NumericUpDown();
+            comboBox1 = new ComboBox();
+            comboBox2 = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown3).BeginInit();
@@ -73,15 +73,7 @@
             button1.TabIndex = 3;
             button1.Text = "Dodaj Nekretninu";
             button1.UseVisualStyleBackColor = false;
-            // 
-            // textBox1
-            // 
-            textBox1.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
-            textBox1.Location = new Point(229, 34);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "kuća/stan/soba";
-            textBox1.Size = new Size(178, 31);
-            textBox1.TabIndex = 4;
+            button1.Click += button1_Click;
             // 
             // textBox2
             // 
@@ -96,6 +88,7 @@
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(178, 31);
             textBox3.TabIndex = 6;
+            textBox3.KeyPress += textBox3_KeyPress;
             // 
             // textBox4
             // 
@@ -104,13 +97,6 @@
             textBox4.Size = new Size(178, 31);
             textBox4.TabIndex = 7;
             textBox4.KeyPress += textBox4_KeyPress;
-            // 
-            // textBox8
-            // 
-            textBox8.Location = new Point(229, 210);
-            textBox8.Name = "textBox8";
-            textBox8.Size = new Size(178, 31);
-            textBox8.TabIndex = 11;
             // 
             // textBox14
             // 
@@ -225,6 +211,7 @@
             // checkBox4
             // 
             checkBox4.AutoSize = true;
+            checkBox4.Enabled = false;
             checkBox4.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
             checkBox4.Location = new Point(229, 387);
             checkBox4.Name = "checkBox4";
@@ -236,6 +223,7 @@
             // checkBox5
             // 
             checkBox5.AutoSize = true;
+            checkBox5.Enabled = false;
             checkBox5.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
             checkBox5.Location = new Point(291, 335);
             checkBox5.Name = "checkBox5";
@@ -307,6 +295,7 @@
             // 
             // numericUpDown4
             // 
+            numericUpDown4.Enabled = false;
             numericUpDown4.Location = new Point(659, 163);
             numericUpDown4.Name = "numericUpDown4";
             numericUpDown4.Size = new Size(69, 31);
@@ -314,10 +303,29 @@
             // 
             // numericUpDown5
             // 
+            numericUpDown5.Enabled = false;
             numericUpDown5.Location = new Point(659, 210);
             numericUpDown5.Name = "numericUpDown5";
             numericUpDown5.Size = new Size(69, 31);
             numericUpDown5.TabIndex = 44;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "Kuća", "Stan", "Soba" });
+            comboBox1.Location = new Point(229, 37);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(178, 33);
+            comboBox1.TabIndex = 45;
+            // 
+            // comboBox2
+            // 
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Items.AddRange(new object[] { "krevet za 1 osobu", "bračni krevet" });
+            comboBox2.Location = new Point(229, 213);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(178, 33);
+            comboBox2.TabIndex = 46;
             // 
             // DodajNekretninu
             // 
@@ -325,6 +333,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(757, 437);
+            Controls.Add(comboBox2);
+            Controls.Add(comboBox1);
             Controls.Add(numericUpDown5);
             Controls.Add(numericUpDown4);
             Controls.Add(numericUpDown3);
@@ -347,11 +357,9 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(textBox14);
-            Controls.Add(textBox8);
             Controls.Add(textBox4);
             Controls.Add(textBox3);
             Controls.Add(textBox2);
-            Controls.Add(textBox1);
             Controls.Add(button1);
             Name = "DodajNekretninu";
             Text = "DodajNekretninu";
@@ -367,11 +375,9 @@
         #endregion
 
         private Button button1;
-        private TextBox textBox1;
         private TextBox textBox2;
         private TextBox textBox3;
         private TextBox textBox4;
-        private TextBox textBox8;
         private TextBox textBox14;
         private Label label1;
         private Label label2;
@@ -394,5 +400,7 @@
         private NumericUpDown numericUpDown3;
         private NumericUpDown numericUpDown4;
         private NumericUpDown numericUpDown5;
+        private ComboBox comboBox1;
+        private ComboBox comboBox2;
     }
 }

@@ -7,7 +7,7 @@ namespace StanNaDan.Entiteti;
 
 public class Poslovnica
 {
-    public virtual string Adresa { get; set; }  
+    public virtual string Adresa { get; set; }
 
     public virtual string RadnoVreme { get; set; }
 
@@ -21,7 +21,7 @@ public class Poslovnica
 
         Zaposleni = new List<Zaposlen>();
 
-        
+
     }
 
 

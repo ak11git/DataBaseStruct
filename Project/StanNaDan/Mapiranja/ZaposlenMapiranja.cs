@@ -6,7 +6,7 @@ using StanNaDan.Entiteti;
 using FluentNHibernate.Mapping;
 
 
-namespace StanNaDan;
+namespace StanNaDan.Mapiranja;
 
 public class ZaposlenMapiranja : ClassMap<StanNaDan.Entiteti.Zaposlen>
 {

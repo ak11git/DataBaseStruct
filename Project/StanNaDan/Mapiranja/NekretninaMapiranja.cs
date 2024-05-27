@@ -45,12 +45,12 @@ namespace StanNaDan.Mapiranja
             Table("NEKRETNINA");
 
             //mapiranje podklasa
-            DiscriminateSubClassesOnColumn("TIP_NEKRETNINE"); 
+            DiscriminateSubClassesOnColumn("TIP_NEKRETNINE");
 
             //mapiranje primarnog kljuca
             // Id(x => x.Id, "ID").GeneratedBy.TriggerIdentity().UnsavedValue(-1);
             Id(x => x.ID, "ID").GeneratedBy.TriggerIdentity();
-         
+
             Map(x => x.KucniBroj, "KUCNO_BROJ");
             Map(x => x.ImeUlice, "IME_ULICE");
             Map(x => x.Kvadratura, "KVADRATURA");
@@ -62,11 +62,7 @@ namespace StanNaDan.Mapiranja
             Map(x => x.Kuhinja, "KUHINJA");
             Map(x => x.Dimenzije, "DIMENZIJE");
             Map(x => x.TipKreveta, "TIP_KREVETA");
-            Map(x => x.Spratnost, "SPRATNOST");
-            Map(x => x.Dvoriste, "DVORISTE");
-            Map(x => x.Sprat, "SPRAT");
-            Map(x => x.Lift, "LIFT");
-           // Map(x => x.Objekat, "OBJEKAT"); //OVO JE DISKRIMINISUCI VALJDA?
+
 
             References(x => x.Vlasnik).Column("ID_VLASNIKA").LazyLoad();
             HasMany(x => x.DodatnaOprema).KeyColumn("ID").LazyLoad().Cascade.All().Inverse();
@@ -77,7 +73,7 @@ namespace StanNaDan.Mapiranja
 
 
             //mapiranje veze 1:N Prodavnica-Odeljenje
-            
+
 
             References(x => x.Kvart).Column("NAZIV_KVARTA").LazyLoad();
 
@@ -89,7 +85,8 @@ namespace StanNaDan.Mapiranja
     {
         public SobaMapiranja()
         {
-            DiscriminatorValue("SOBA"); //dodati
+            DiscriminatorValue("SOBA");
+            Map(x => x.Objekat, "OBJEKAT"); //dodati
         }
     }
 
@@ -98,6 +95,8 @@ namespace StanNaDan.Mapiranja
         public StanMapiranja()
         {
             DiscriminatorValue("STAN");
+            Map(x => x.Sprat, "SPRAT");
+            Map(x => x.Lift, "LIFT");
         }
     }
 
@@ -106,6 +105,9 @@ namespace StanNaDan.Mapiranja
         public KucaMapiranja()
         {
             DiscriminatorValue("KUCA");
+
+            Map(x => x.Spratnost, "SPRATNOST");
+            Map(x => x.Dvoriste, "DVORISTE");
         }
     }
 }

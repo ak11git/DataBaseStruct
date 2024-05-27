@@ -6,7 +6,7 @@ using StanNaDan.Entiteti;
 using FluentNHibernate.Mapping;
 
 
-namespace StanNaDan;
+namespace StanNaDan.Mapiranja;
 
 public class NajamMapiranja : ClassMap<StanNaDan.Entiteti.Najam>
 {
@@ -30,18 +30,18 @@ public class NajamMapiranja : ClassMap<StanNaDan.Entiteti.Najam>
         //strani kljucevi
 
         References(x => x.Agent).Column("JMBG_AGENTA").LazyLoad();
-       // HasMany(x => x.DodatnaOprema).KeyColumn("ID").LazyLoad().Cascade.All().Inverse();
+        // HasMany(x => x.DodatnaOprema).KeyColumn("ID").LazyLoad().Cascade.All().Inverse();
 
     }
-        // CREATE TABLE NAJAM(
-        // ID INT PRIMARY KEY,
-        // DATUM_DO DATE,
-        // DATUM_OD DATE,
-        // BROJ_DANA INT,
-        // CENA_PO_DANU DECIMAL(10,2),
-        // POPUST DECIMAL(5,2),
-        // PROVIZIJA DECIMAL(10,2),
-        // JMBG_AGENTA VARCHAR(13),
-        // FOREIGN KEY(JMBG_AGENTA) REFERENCES AGENT(JMBG)
-        //);
+    // CREATE TABLE NAJAM(
+    // ID INT PRIMARY KEY,
+    // DATUM_DO DATE,
+    // DATUM_OD DATE,
+    // BROJ_DANA INT,
+    // CENA_PO_DANU DECIMAL(10,2),
+    // POPUST DECIMAL(5,2),
+    // PROVIZIJA DECIMAL(10,2),
+    // JMBG_AGENTA VARCHAR(13),
+    // FOREIGN KEY(JMBG_AGENTA) REFERENCES AGENT(JMBG)
+    //);
 }

@@ -6,7 +6,7 @@ using StanNaDan.Entiteti;
 using FluentNHibernate.Mapping;
 
 
-namespace StanNaDan;
+namespace StanNaDan.Mapiranja;
 
 //CREATE TABLE SAJTOVI(
 // ID_NEKRETNINA INT,
@@ -23,7 +23,7 @@ public class SajtoviMapiranja : ClassMap<StanNaDan.Entiteti.Sajtovi>
 
         Id(x => x.ID).Column("ID").GeneratedBy.TriggerIdentity();
 
-      
+
         Map(x => x.Sajt, "SAJTOVI");
 
         References(x => x.Nekretnina).Column("ID_NEKRETNINE").Not.Nullable();

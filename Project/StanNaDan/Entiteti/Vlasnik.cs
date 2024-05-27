@@ -31,14 +31,7 @@ public class Vlasnik
 
     public virtual string Drzava { get; set; }
 
-    public virtual string ImeRoditelja { get; set; }
-    public virtual DateTime DatumRodjenja { get; set; }
 
-    public virtual string JMBG { get; set; }
-
-    public virtual string Naziv { get; set; }
-
-    public virtual string PIB { get; set; }
 
     public virtual IList<BankovniRacun>? BankovniRacuni { get; set; }
 
@@ -65,10 +58,22 @@ public class Vlasnik
 
 public class FizickoLice : Vlasnik
 {
+    public virtual string JMBG { get; set; }
+    public virtual string ImeRoditelja { get; set; }
+
+    public virtual DateTime DatumRodjenja { get; set; }
+
+    public FizickoLice() : base() { }
+
 }
 
 public class PravnoLice : Vlasnik
 {
+    public virtual string PIB { get; set; }
+    public virtual string Naziv { get; set; }
+
+    public PravnoLice() : base() { }
+
 }
 
 

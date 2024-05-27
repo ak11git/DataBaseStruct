@@ -104,5 +104,25 @@ namespace StanNaDan.Forme
             VlasnikNekretninePravnoLice forma = new VlasnikNekretninePravnoLice(vb);
             forma.ShowDialog();*/
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Izaberite Nekretninu cijeg Vlasnika [fizicko lice] zelite da vidite!");
+                return;
+            }
+
+            int idVlasnika = Int32.Parse(listView1.SelectedItems[0].SubItems[0].Text);
+            /*VlasnikBasic vb = DTOManager.vratiProdavnicu(idProdavnice);
+            VlasnikNekretnineFizickoLice forma = new VlasnikNekretnineFizickoLice(vb);
+            forma.ShowDialog();*/
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            BrojeviRacunaVlasnika forma = new BrojeviRacunaVlasnika();
+            forma.ShowDialog();
+        }
     }
 }

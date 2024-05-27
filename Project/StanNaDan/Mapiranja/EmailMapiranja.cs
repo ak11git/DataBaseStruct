@@ -6,7 +6,7 @@ using StanNaDan.Entiteti;
 using FluentNHibernate.Mapping;
 
 
-namespace StanNaDan;
+namespace StanNaDan.Mapiranja;
 
 //CREATE TABLE EMAIL(
 // ID_VLASNIKA INT,
@@ -25,8 +25,8 @@ public class EmailMapiranja : ClassMap<StanNaDan.Entiteti.Email>
 
         Map(x => x.EMAIL, "EMAIL");
 
-        References(x => x.Vlasnik).Column("ID_VLASNIKA");
-        
+        References(x => x.Vlasnik).Column("ID_VLASNIKA").LazyLoad();
+
 
     }
 }

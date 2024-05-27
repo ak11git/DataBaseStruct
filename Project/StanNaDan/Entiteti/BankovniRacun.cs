@@ -14,11 +14,11 @@ public class BankovniRacun
     public virtual int BrojRacuna { get; set; }
 
     public virtual string ImeBanke { get; set; }
-    
+
     //strani kljuc
     public virtual Vlasnik Vlasnik { get; set; }
 
     //primari key kompozitni
 
-    
+
 }

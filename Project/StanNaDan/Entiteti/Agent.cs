@@ -6,9 +6,9 @@
 
 namespace StanNaDan.Entiteti;
 
-public class Agent: Zaposlen
+public class Agent : Zaposlen
 {
- 
+
 
     public virtual string StrucnaSprema { get; set; }
 

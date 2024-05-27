@@ -35,17 +35,17 @@
             groupBox1 = new GroupBox();
             groupBox2 = new GroupBox();
             groupBox3 = new GroupBox();
+            button7 = new Button();
             button5 = new Button();
             button4 = new Button();
             groupBox4 = new GroupBox();
-            button7 = new Button();
-            groupBox5 = new GroupBox();
             button8 = new Button();
-            groupBox6 = new GroupBox();
+            groupBox5 = new GroupBox();
             button9 = new Button();
+            groupBox6 = new GroupBox();
+            button10 = new Button();
             groupBox7 = new GroupBox();
             button11 = new Button();
-            button10 = new Button();
             label3 = new Label();
             textBox1 = new TextBox();
             groupBox1.SuspendLayout();
@@ -61,7 +61,7 @@
             // 
             listView1.Location = new Point(18, 41);
             listView1.Name = "listView1";
-            listView1.Size = new Size(633, 513);
+            listView1.Size = new Size(633, 548);
             listView1.TabIndex = 0;
             listView1.UseCompatibleStateImageBehavior = false;
             // 
@@ -108,7 +108,7 @@
             groupBox1.Controls.Add(button2);
             groupBox1.Location = new Point(711, 12);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(300, 260);
+            groupBox1.Size = new Size(300, 225);
             groupBox1.TabIndex = 5;
             groupBox1.TabStop = false;
             groupBox1.Text = "Podaci o Nekretninama";
@@ -118,21 +118,34 @@
             groupBox2.Controls.Add(listView1);
             groupBox2.Location = new Point(12, 12);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(669, 571);
+            groupBox2.Size = new Size(669, 607);
             groupBox2.TabIndex = 6;
             groupBox2.TabStop = false;
             groupBox2.Text = "Lista Nekretnina";
             // 
             // groupBox3
             // 
+            groupBox3.Controls.Add(button7);
             groupBox3.Controls.Add(button5);
             groupBox3.Controls.Add(button4);
-            groupBox3.Location = new Point(711, 282);
+            groupBox3.Location = new Point(711, 243);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(300, 221);
+            groupBox3.Size = new Size(300, 288);
             groupBox3.TabIndex = 7;
             groupBox3.TabStop = false;
             groupBox3.Text = "Vlasnici";
+            // 
+            // button7
+            // 
+            button7.BackColor = Color.FromArgb(255, 192, 128);
+            button7.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
+            button7.Location = new Point(35, 196);
+            button7.Name = "button7";
+            button7.Size = new Size(223, 72);
+            button7.TabIndex = 8;
+            button7.Text = "Prikazi Brojeve Racuna Vlasnika";
+            button7.UseVisualStyleBackColor = false;
+            button7.Click += button7_Click;
             // 
             // button5
             // 
@@ -140,10 +153,11 @@
             button5.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
             button5.Location = new Point(35, 113);
             button5.Name = "button5";
-            button5.Size = new Size(223, 53);
+            button5.Size = new Size(223, 77);
             button5.TabIndex = 6;
-            button5.Text = "Dodaj Nekretninu";
+            button5.Text = "Prikazi Vlasnika [fizicko lice]";
             button5.UseVisualStyleBackColor = false;
+            button5.Click += button5_Click;
             // 
             // button4
             // 
@@ -159,74 +173,73 @@
             // 
             // groupBox4
             // 
-            groupBox4.Controls.Add(button7);
+            groupBox4.Controls.Add(button8);
             groupBox4.Location = new Point(1040, 12);
             groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(300, 102);
+            groupBox4.Size = new Size(300, 118);
             groupBox4.TabIndex = 8;
             groupBox4.TabStop = false;
             groupBox4.Text = "Kvartovi";
-            // 
-            // button7
-            // 
-            button7.BackColor = Color.FromArgb(255, 192, 128);
-            button7.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
-            button7.Location = new Point(40, 30);
-            button7.Name = "button7";
-            button7.Size = new Size(223, 53);
-            button7.TabIndex = 8;
-            button7.Text = "Dodaj Nekretninu";
-            button7.UseVisualStyleBackColor = false;
-            // 
-            // groupBox5
-            // 
-            groupBox5.Controls.Add(button8);
-            groupBox5.Location = new Point(1040, 149);
-            groupBox5.Name = "groupBox5";
-            groupBox5.Size = new Size(300, 100);
-            groupBox5.TabIndex = 9;
-            groupBox5.TabStop = false;
-            groupBox5.Text = "Parkinzi";
             // 
             // button8
             // 
             button8.BackColor = Color.FromArgb(255, 192, 128);
             button8.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
-            button8.Location = new Point(40, 30);
+            button8.Location = new Point(40, 35);
             button8.Name = "button8";
-            button8.Size = new Size(223, 53);
+            button8.Size = new Size(223, 64);
             button8.TabIndex = 9;
-            button8.Text = "Dodaj Nekretninu";
+            button8.Text = "Prikazi Kvart Nekretnine";
             button8.UseVisualStyleBackColor = false;
             // 
-            // groupBox6
+            // groupBox5
             // 
-            groupBox6.Controls.Add(button9);
-            groupBox6.Location = new Point(1040, 282);
-            groupBox6.Name = "groupBox6";
-            groupBox6.Size = new Size(300, 107);
-            groupBox6.TabIndex = 10;
-            groupBox6.TabStop = false;
-            groupBox6.Text = "Sajtovi";
+            groupBox5.Controls.Add(button9);
+            groupBox5.Location = new Point(1040, 140);
+            groupBox5.Name = "groupBox5";
+            groupBox5.Size = new Size(300, 140);
+            groupBox5.TabIndex = 9;
+            groupBox5.TabStop = false;
+            groupBox5.Text = "Parkinzi";
             // 
             // button9
             // 
             button9.BackColor = Color.FromArgb(255, 192, 128);
             button9.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
-            button9.Location = new Point(40, 30);
+            button9.Location = new Point(40, 35);
             button9.Name = "button9";
-            button9.Size = new Size(223, 53);
+            button9.Size = new Size(223, 88);
             button9.TabIndex = 10;
-            button9.Text = "Dodaj Nekretninu";
+            button9.Text = "Prikazi koji parking ima Nekretnina";
             button9.UseVisualStyleBackColor = false;
+            // 
+            // groupBox6
+            // 
+            groupBox6.Controls.Add(button10);
+            groupBox6.Location = new Point(1040, 291);
+            groupBox6.Name = "groupBox6";
+            groupBox6.Size = new Size(300, 154);
+            groupBox6.TabIndex = 10;
+            groupBox6.TabStop = false;
+            groupBox6.Text = "Sajtovi";
+            // 
+            // button10
+            // 
+            button10.BackColor = Color.FromArgb(255, 192, 128);
+            button10.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
+            button10.Location = new Point(40, 30);
+            button10.Name = "button10";
+            button10.Size = new Size(223, 96);
+            button10.TabIndex = 11;
+            button10.Text = "Prikazi Sajtove na kojima je oglasena Nekretnina";
+            button10.UseVisualStyleBackColor = false;
             // 
             // groupBox7
             // 
             groupBox7.Controls.Add(button11);
-            groupBox7.Controls.Add(button10);
-            groupBox7.Location = new Point(1040, 405);
+            groupBox7.Location = new Point(1040, 465);
             groupBox7.Name = "groupBox7";
-            groupBox7.Size = new Size(300, 161);
+            groupBox7.Size = new Size(300, 154);
             groupBox7.TabIndex = 11;
             groupBox7.TabStop = false;
             groupBox7.Text = "Najmovi";
@@ -235,28 +248,17 @@
             // 
             button11.BackColor = Color.FromArgb(255, 192, 128);
             button11.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
-            button11.Location = new Point(40, 89);
+            button11.Location = new Point(40, 36);
             button11.Name = "button11";
-            button11.Size = new Size(223, 53);
+            button11.Size = new Size(223, 77);
             button11.TabIndex = 12;
-            button11.Text = "Dodaj Nekretninu";
+            button11.Text = "Prikazi Najmove Nekretnine";
             button11.UseVisualStyleBackColor = false;
-            // 
-            // button10
-            // 
-            button10.BackColor = Color.FromArgb(255, 192, 128);
-            button10.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
-            button10.Location = new Point(40, 30);
-            button10.Name = "button10";
-            button10.Size = new Size(223, 53);
-            button10.TabIndex = 11;
-            button10.Text = "Dodaj Nekretninu";
-            button10.UseVisualStyleBackColor = false;
             // 
             // label3
             // 
             label3.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
-            label3.Location = new Point(711, 533);
+            label3.Location = new Point(711, 569);
             label3.Name = "label3";
             label3.Size = new Size(142, 50);
             label3.TabIndex = 20;
@@ -264,7 +266,7 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(859, 552);
+            textBox1.Location = new Point(859, 588);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(72, 31);
             textBox1.TabIndex = 19;
@@ -274,7 +276,7 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(1352, 598);
+            ClientSize = new Size(1352, 655);
             Controls.Add(label3);
             Controls.Add(textBox1);
             Controls.Add(groupBox7);

@@ -50,12 +50,12 @@
             label2 = new Label();
             label1 = new Label();
             textBox14 = new TextBox();
-            textBox8 = new TextBox();
             textBox4 = new TextBox();
             textBox3 = new TextBox();
             textBox2 = new TextBox();
-            textBox1 = new TextBox();
             button1 = new Button();
+            comboBox1 = new ComboBox();
+            comboBox2 = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)numericUpDown5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown3).BeginInit();
@@ -65,6 +65,7 @@
             // 
             // numericUpDown5
             // 
+            numericUpDown5.Enabled = false;
             numericUpDown5.Location = new Point(684, 211);
             numericUpDown5.Name = "numericUpDown5";
             numericUpDown5.Size = new Size(69, 31);
@@ -72,6 +73,7 @@
             // 
             // numericUpDown4
             // 
+            numericUpDown4.Enabled = false;
             numericUpDown4.Location = new Point(684, 164);
             numericUpDown4.Name = "numericUpDown4";
             numericUpDown4.Size = new Size(69, 31);
@@ -141,6 +143,7 @@
             // checkBox5
             // 
             checkBox5.AutoSize = true;
+            checkBox5.Enabled = false;
             checkBox5.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
             checkBox5.Location = new Point(316, 336);
             checkBox5.Name = "checkBox5";
@@ -152,6 +155,7 @@
             // checkBox4
             // 
             checkBox4.AutoSize = true;
+            checkBox4.Enabled = false;
             checkBox4.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
             checkBox4.Location = new Point(254, 388);
             checkBox4.Name = "checkBox4";
@@ -270,13 +274,6 @@
             textBox14.Size = new Size(178, 31);
             textBox14.TabIndex = 51;
             // 
-            // textBox8
-            // 
-            textBox8.Location = new Point(254, 211);
-            textBox8.Name = "textBox8";
-            textBox8.Size = new Size(178, 31);
-            textBox8.TabIndex = 50;
-            // 
             // textBox4
             // 
             textBox4.Location = new Point(254, 167);
@@ -298,15 +295,6 @@
             textBox2.Size = new Size(178, 31);
             textBox2.TabIndex = 47;
             // 
-            // textBox1
-            // 
-            textBox1.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
-            textBox1.Location = new Point(254, 35);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "kuća/stan/soba";
-            textBox1.Size = new Size(178, 31);
-            textBox1.TabIndex = 46;
-            // 
             // button1
             // 
             button1.BackColor = Color.FromArgb(255, 192, 128);
@@ -319,12 +307,32 @@
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "Kuća", "Stan", "Soba" });
+            comboBox1.Location = new Point(254, 38);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(178, 33);
+            comboBox1.TabIndex = 73;
+            // 
+            // comboBox2
+            // 
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Items.AddRange(new object[] { "krevet za 1 osobu", "bračni krevet" });
+            comboBox2.Location = new Point(254, 214);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(178, 33);
+            comboBox2.TabIndex = 74;
+            // 
             // IzmeniNekretninu
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(800, 450);
+            Controls.Add(comboBox2);
+            Controls.Add(comboBox1);
             Controls.Add(numericUpDown5);
             Controls.Add(numericUpDown4);
             Controls.Add(numericUpDown3);
@@ -347,11 +355,9 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(textBox14);
-            Controls.Add(textBox8);
             Controls.Add(textBox4);
             Controls.Add(textBox3);
             Controls.Add(textBox2);
-            Controls.Add(textBox1);
             Controls.Add(button1);
             Name = "IzmeniNekretninu";
             Text = "IzmeniNekretninu";
@@ -388,11 +394,11 @@
         private Label label2;
         private Label label1;
         private TextBox textBox14;
-        private TextBox textBox8;
         private TextBox textBox4;
         private TextBox textBox3;
         private TextBox textBox2;
-        private TextBox textBox1;
         private Button button1;
+        private ComboBox comboBox1;
+        private ComboBox comboBox2;
     }
 }

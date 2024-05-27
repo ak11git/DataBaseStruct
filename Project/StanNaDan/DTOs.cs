@@ -10,16 +10,16 @@ namespace StanNaDan;
 public class NekretninaBasic
 
 {
-   public int ID { get; set; }
-   public string TipNekretnine { get; set; }
+    public int ID { get; set; }
+    public string TipNekretnine { get; set; }
 
-   public int KucniBroj { get; set; }
+    public int KucniBroj { get; set; }
 
-   public string ImeUlice { get; set; }
+    public string ImeUlice { get; set; }
     public decimal Kvadratura { get; set; }
 
-   public int BrojKupatila { get; set; }
-   public int BrojTerasa { get; set; }
+    public int BrojKupatila { get; set; }
+    public int BrojTerasa { get; set; }
     public int BrojSoba { get; set; }
     public int Internet { get; set; } // 0 ili 1
     public int TV { get; set; } // 0 ili 1
@@ -31,9 +31,9 @@ public class NekretninaBasic
 
     public VlasnikBasic Vlasnik { get; set; }
 
-   public KvartBasic Kvart { get; set; }
+    public KvartBasic Kvart { get; set; }
 
-   public IList<ImaNajamBasic> ListaNajmova { get; set; }
+    public IList<ImaNajamBasic> ListaNajmova { get; set; }
     public IList<DodatnaOpremaBasic> ListaDodatneOpreme { get; set; }
     public IList<ParkingBasic> ListaParkinga { get; set; }
     public IList<SajtoviBasic> ListaSajtova { get; set; }
@@ -278,11 +278,11 @@ public class SobaPregled : NekretninaPregled
 }
 
 
-    #endregion
+#endregion
 
-    #region Poslovnica
+#region Poslovnica
 
-    public class PoslovnicaBasic
+public class PoslovnicaBasic
 {
     public string Adresa { get; set; }
 
@@ -384,15 +384,6 @@ public class VlasnikBasic
 
     public string Drzava { get; set; }
 
-    public string ImeRoditelja { get; set; }
-    public DateTime DatumRodjenja { get; set; }
-
-    public string JMBG { get; set; }
-
-    public string Naziv { get; set; }
-
-    public string PIB { get; set; }
-
     public IList<BankovniRacunBasic>? BankovniRacuni { get; set; }
 
     public IList<BrojTelefonaBasic>? BrojeviTelefona { get; set; }
@@ -413,7 +404,7 @@ public class VlasnikBasic
         Nekretnine = new List<NekretninaBasic>();
     }
 
-    public VlasnikBasic(int id, string ime, string prezime, string adresa, string mesto, string drzava, DateTime datumrodjenja, string jmbg, string naziv, string pib)
+    public VlasnikBasic(int id, string ime, string prezime, string adresa, string mesto, string drzava)
     {
         Id = id;
         Ime = ime;
@@ -421,14 +412,51 @@ public class VlasnikBasic
         Adresa = adresa;
         Mesto = mesto;
         Drzava = drzava;
-        DatumRodjenja = datumrodjenja;
-        JMBG = jmbg;
-        Naziv = naziv;
-        PIB = pib;
+
 
     }
 
 }
+
+public class PravnoLiceBasic : VlasnikBasic
+{
+
+    public string Naziv { get; set; }
+
+    public string PIB { get; set; }
+
+    public PravnoLiceBasic() { }
+
+    public PravnoLiceBasic(int id, string ime, string prezime, string adresa, string mesto, string drzava, string PIB, string naziv) : base(id, ime, prezime, adresa, mesto, drzava)
+    {
+        this.PIB = PIB;
+        this.Naziv = naziv;
+
+    }
+
+}
+
+public class FizickoLiceBasic : VlasnikBasic
+{
+    public string ImeRoditelja { get; set; }
+    public DateTime DatumRodjenja { get; set; }
+
+    public string JMBG { get; set; }
+
+
+    public FizickoLiceBasic() { }
+
+    public FizickoLiceBasic(int id, string ime, string prezime, string adresa, string mesto, string drzava, string imerod, string jmbg, DateTime datumrodjenja) : base(id, ime, prezime, adresa, mesto, drzava)
+    {
+        this.ImeRoditelja = imerod;
+        this.JMBG = jmbg;
+        this.DatumRodjenja = datumrodjenja;
+
+    }
+
+}
+
+
 public class VlasnikPregled
 {
     public int Id { get; set; }
@@ -440,20 +468,9 @@ public class VlasnikPregled
     public string Mesto { get; set; }
 
     public string Drzava { get; set; }
+    public VlasnikPregled() { }
 
-    public string ImeRoditelja { get; set; }
-    public DateTime DatumRodjenja { get; set; }
-
-    public string JMBG { get; set; }
-
-    public string Naziv { get; set; }
-
-    public string PIB { get; set; }
-
-
-
-
-    public VlasnikPregled(int id, string ime, string prezime, string adresa, string mesto, string drzava, DateTime datumrodjenja, string jmbg, string naziv, string pib)
+    public VlasnikPregled(int id, string ime, string prezime, string adresa, string mesto, string drzava)
     {
         Id = id;
         Ime = ime;
@@ -461,14 +478,46 @@ public class VlasnikPregled
         Adresa = adresa;
         Mesto = mesto;
         Drzava = drzava;
-        DatumRodjenja = datumrodjenja;
-        JMBG = jmbg;
-        Naziv = naziv;
-        PIB = pib;
 
     }
 
 }
+
+public class FizickoLicePregled : VlasnikPregled
+{
+    public string ImeRoditelja { get; set; }
+    public DateTime DatumRodjenja { get; set; }
+
+    public string JMBG { get; set; }
+
+
+
+    public FizickoLicePregled(int id, string ime, string prezime, string adresa, string mesto, string drzava, string imerod, string jmbg, DateTime datumrodjenja) : base(id, ime, prezime, adresa, mesto, drzava)
+    {
+        this.ImeRoditelja = imerod;
+        this.JMBG = jmbg;
+        this.DatumRodjenja = datumrodjenja;
+
+    }
+
+}
+public class PravnoLicePregled : VlasnikPregled
+{
+
+    public string Naziv { get; set; }
+
+    public string PIB { get; set; }
+
+    public PravnoLicePregled(int id, string ime, string prezime, string adresa, string mesto, string drzava, string PIB, string naziv) : base(id, ime, prezime, adresa, mesto, drzava)
+    {
+        this.PIB = PIB;
+        this.Naziv = naziv;
+
+    }
+
+}
+
+
 
 
 
@@ -597,6 +646,8 @@ public class ZaposlenBasic
 
     public DateTime DatumZaposlenja { get; set; }
 
+    public ZaposlenBasic() { }
+
     public ZaposlenBasic(string ime, string jmbg, PoslovnicaBasic p, DateTime datum)
     {
         Ime = ime;
@@ -638,7 +689,15 @@ public class SefBasic : ZaposlenBasic
         DatumPostavljanja = datumpost;
     }
 
+    public SefBasic() { }
 
+    public SefBasic(string ime, string jMBG, DateTime datumZaposlenja, DateTime datumPostavljanja)
+    {
+        Ime = ime;
+        JMBG = jMBG;
+        DatumZaposlenja = datumZaposlenja;
+        DatumPostavljanja = datumPostavljanja;
+    }
 }
 
 public class SefPogled : ZaposlenPogled

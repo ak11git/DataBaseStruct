@@ -6,7 +6,7 @@ using StanNaDan.Entiteti;
 using FluentNHibernate.Mapping;
 
 
-namespace StanNaDan;
+namespace StanNaDan.Mapiranja;
 
 //CREATE TABLE BROJ_TELEFONA(
 // ID_VLASNIKA INT,

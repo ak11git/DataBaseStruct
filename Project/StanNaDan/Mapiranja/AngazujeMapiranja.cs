@@ -6,7 +6,7 @@ using StanNaDan.Entiteti;
 using FluentNHibernate.Mapping;
 
 
-namespace StanNaDan;
+namespace StanNaDan.Mapiranja;
 //CREATE TABLE ANGAZUJE(
 // ID_SPOLJNOG_RADNIKA INT,
 // JMBG_AGENTA VARCHAR(13),

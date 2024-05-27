@@ -5,12 +5,12 @@ using System.Text;
 using StanNaDan.Entiteti;
 using FluentNHibernate.Mapping;
 
-
-namespace StanNaDan;
+namespace StanNaDan.Mapiranja;
 
 public class PoslovnicaMapiranja : ClassMap<StanNaDan.Entiteti.Poslovnica>
 {
-    public PoslovnicaMapiranja() {
+    public PoslovnicaMapiranja()
+    {
 
         Table("POSLOVNICA");
 

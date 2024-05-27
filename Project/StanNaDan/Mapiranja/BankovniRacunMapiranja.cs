@@ -6,35 +6,30 @@ using StanNaDan.Entiteti;
 using FluentNHibernate.Mapping;
 
 
-namespace StanNaDan;
+namespace StanNaDan.Mapiranja;
 
-public class BankovniRacunMapiranja : ClassMap<StanNaDan.Entiteti.BankovniRacun>
+//CREATE TABLE BROJ_TELEFONA(
+// ID_VLASNIKA INT,
+// BROJ VARCHAR(255),
+// PRIMARY KEY(ID_VLASNIKA, BROJ),
+// FOREIGN KEY(ID_VLASNIKA) REFERENCES VLASNIK(ID)
+//);
+
+public class BrojTelefonaMapiranja : ClassMap<StanNaDan.Entiteti.BrojtTelefona>
 {
 
-    public BankovniRacunMapiranja()
+    public BrojTelefonaMapiranja()
     {
-        Table("BANKOVNI_RACUN");
+        Table("BROJ_TELEFONA");
 
-        // kompozitni kljuc
         Id(x => x.ID).Column("ID").GeneratedBy.TriggerIdentity();
 
-        Map(x => x.BrojRacuna, "BROJ_RACUNA");
+        Map(x => x.Broj).Column("BROJ");
 
-        Map(x => x.ImeBanke, "IME_BANKE");
-
-      
-
-        References(x => x.Vlasnik).Column("ID_VLASNIKA");
+        References(x => x.Vlasnik).Column("ID_VLASNIKA").LazyLoad();
 
 
 
 
-        //    CREATE TABLE BANKOVNI_RACUN(
-        // BROJ_RACUNA VARCHAR(255),
-        // IME_BANKE VARCHAR(255),
-        // ID_VLASNIKA INT,
-        // PRIMARY KEY(BROJ_RACUNA, IME_BANKE, ID_VLASNIKA),    
-        // FOREIGN KEY(ID_VLASNIKA) REFERENCES VLASNIK(ID)
-        //);
     }
 }

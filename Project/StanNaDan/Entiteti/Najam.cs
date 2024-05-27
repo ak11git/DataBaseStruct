@@ -37,7 +37,7 @@ public class Najam
     {
         ListaNajmova = new List<ImaNajam>();
 
-      
+
     }
 
 

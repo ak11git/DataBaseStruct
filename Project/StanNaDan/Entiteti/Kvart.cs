@@ -15,7 +15,7 @@ namespace StanNaDan.Entiteti;
 
 public class Kvart
 {
-  
+
     public virtual string Naziv { get; set; }
     public virtual string Zona { get; set; }
 

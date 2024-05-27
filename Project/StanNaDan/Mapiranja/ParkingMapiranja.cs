@@ -5,8 +5,7 @@ using System.Text;
 using StanNaDan.Entiteti;
 using FluentNHibernate.Mapping;
 
-
-namespace StanNaDan;
+namespace StanNaDan.Mapiranja;
 //CREATE TABLE PARKING(
 // ID_PARKINGA INT,
 // CENA DECIMAL(10,2),
@@ -30,7 +29,7 @@ public class ParkingMapiranja : ClassMap<StanNaDan.Entiteti.Parking>
 
         // CONSTRAINT PK_PARKING PRIMARY KEY(ID_PARKINGA, ID_NEKRETNINE),
         References(x => x.Nekretnina).Column("ID_NEKRETNINE").Not.Nullable(); //to resava problem da parking ne postoji samostalno nego mora s nekom nekretninom da se ppveze
-       
+
     }
 
 

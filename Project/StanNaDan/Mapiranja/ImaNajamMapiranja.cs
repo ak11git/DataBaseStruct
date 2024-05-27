@@ -8,7 +8,7 @@ using FluentNHibernate.Mapping;
 
 
 
-namespace StanNaDan;
+namespace StanNaDan.Mapiranja;
 
 //CREATE TABLE IMA_NAJAM(
 // ID_NAJMA INT,
@@ -26,11 +26,11 @@ public class ImaNajamMapiranja : ClassMap<StanNaDan.Entiteti.ImaNajam>
 
         Id(x => x.ID).Column("ID").GeneratedBy.TriggerIdentity();
 
-        
+
         References(x => x.Najam).Column("ID_NAJMA");
 
 
-        References(x => x.Nekretnina).Column("ID_NEKRETNINE");
+        References(x => x.Nekretnina).Column("ID_NEKRETNINE").LazyLoad();
 
 
     }

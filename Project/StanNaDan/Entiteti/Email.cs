@@ -11,7 +11,7 @@ public class Email
 {
 
     public virtual int ID { get; set; }
-    
+
     public virtual string EMAIL { get; set; }
 
     //public idnekretnine

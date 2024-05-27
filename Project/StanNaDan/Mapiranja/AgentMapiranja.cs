@@ -5,9 +5,9 @@ using System.Text;
 using StanNaDan.Entiteti;
 using FluentNHibernate.Mapping;
 
-namespace StanNaDan;
+namespace StanNaDan.Mapiranja;
 
-public class AgentMapiranja: SubclassMap<StanNaDan.Entiteti.Agent>
+public class AgentMapiranja : SubclassMap<StanNaDan.Entiteti.Agent>
 {
     public AgentMapiranja()
     {
@@ -15,7 +15,7 @@ public class AgentMapiranja: SubclassMap<StanNaDan.Entiteti.Agent>
 
         KeyColumn("JMBG");
 
-        
+
 
         Map(x => x.StrucnaSprema, "STRUCNA_SPREMA");
 
