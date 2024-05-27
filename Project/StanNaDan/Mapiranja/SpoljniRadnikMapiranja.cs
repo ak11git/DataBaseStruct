@@ -1,3 +1,10 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using StanNaDan.Entiteti;
+using FluentNHibernate.Mapping;
+
 
 namespace StanNaDan;
 
@@ -15,6 +22,13 @@ public class SpoljniRadnikMapiranja : ClassMap<StanNaDan.Entiteti.SpoljniRadnik>
         Map(x => x.DatumAngazovanja, "DATUM_ANGAZOVANJA");
         Map(x => x.Procenat, "PROCENAT");
 
-        HasMany(x => x.Angazovanja).KeyColumn("ID_SPOLJNOG_RADNIKA").LazyLoad().Cascade.All().Inverse();
+
+        HasMany(x => x.Angazovanja).KeyColumn("ID").LazyLoad().Cascade.All().Inverse();
+ 
+
+
+
+
+ 
     }
 }

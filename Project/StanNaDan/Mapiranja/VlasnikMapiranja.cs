@@ -1,3 +1,12 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using StanNaDan.Entiteti;
+using FluentNHibernate.Mapping;
+
+
+
 
 namespace StanNaDan;
 
@@ -20,9 +29,25 @@ public class VlasnikMapiranja : ClassMap<StanNaDan.Entiteti.Vlasnik>
         Map(x => x.Naziv, "NAZIV");
         Map(x => x.PIB, "PIB");
 
-        HasMany(x => x.BankovniRacuni).KeyColumn("ID_VLASNIKA").LazyLoad().Cascade.All().Inverse();
-        HasMany(x => x.BrojeviTelefona).KeyColumn("ID_VLASNIKA").LazyLoad().Cascade.All().Inverse();
-        HasMany(x => x.Emailovi).KeyColumn("ID_VLASNIKA").LazyLoad().Cascade.All().Inverse();
-        HasMany(x => x.Nekretnine).KeyColumn("ID_VLASNIKA").LazyLoad().Cascade.All().Inverse();
+        HasMany(x => x.BankovniRacuni).KeyColumn("ID").LazyLoad().Cascade.All().Inverse();
+        HasMany(x => x.BrojeviTelefona).KeyColumn("ID").LazyLoad().Cascade.All().Inverse();
+        HasMany(x => x.Emailovi).KeyColumn("ID").LazyLoad().Cascade.All().Inverse();
+        HasMany(x => x.Nekretnine).KeyColumn("ID").LazyLoad().Cascade.All().Inverse();
+
+
+
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

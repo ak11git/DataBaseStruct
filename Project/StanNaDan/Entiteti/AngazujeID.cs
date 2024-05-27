@@ -1,8 +1,14 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
 namespace StanNaDan.Entiteti
 {
     public class AngazujeID
     {
         public virtual SpoljniRadnik SpoljniRadnik { get; set; }
+
         public virtual Agent Agent { get; set; }
 
         public override bool Equals(object obj)
@@ -23,10 +29,10 @@ namespace StanNaDan.Entiteti
 
             return false;
         }
+
         public override int GetHashCode()
         {
             return base.GetHashCode();
         }
     }
-
 }

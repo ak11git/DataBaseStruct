@@ -1,8 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <ItemGroup>
-        <Compile Update="Form1.cs">
-            <SubType>Form</SubType>
-        </Compile>
-    </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Forme\BrojTelefonaPravno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forme\DodajNekretninu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forme\DodajVlasnikaPravno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forme\IzmeniNekretninu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forme\IzmeniVlasnikaPravno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forme\NajmoviForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forme\NekretnineForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forme\VlasniciForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forme\VlasnikNekretninePravnoLice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="PocetnaForma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
 </Project>

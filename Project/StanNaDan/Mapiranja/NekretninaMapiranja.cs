@@ -1,3 +1,39 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using StanNaDan.Entiteti;
+using FluentNHibernate.Mapping;
+
+#region CreateTable
+//mapiranje svojstava
+//Map(x => x.Tip, "TIP");
+//CREATE TABLE NEKRETNINA (
+// ID INT PRIMARY KEY,
+// TIP_NEKRETNINE VARCHAR(255),
+// KUCNI_BROJ INT,
+// IME_ULICE VARCHAR(255),
+// KVADRATURA DECIMAL(10,2),
+// BROJ_KUPATILA INT,
+// BROJ_TERASA INT,
+// BROJ_SOBA INT,
+// INTERNET NUMBER(1) CHECK(INTERNET IN(0, 1)),
+// TV NUMBER(1) CHECK(TV IN(0, 1)),
+// KUHINJA NUMBER(1) CHECK(KUHINJA IN(0, 1)),
+// DIMENZIJE VARCHAR(255),
+// TIP_KREVETA VARCHAR(255),
+// SPRATNOST INT,
+// DVORISTE NUMBER(1) CHECK(DVORISTE IN(0, 1)),
+// SPRAT INT,
+// LIFT NUMBER(1) CHECK(LIFT IN(0, 1)),
+// OBJEKAT VARCHAR(255),
+// ID_VLASNIKA INT,
+// NAZIV_KVARTA VARCHAR(255),
+// FOREIGN KEY(ID_VLASNIKA) REFERENCES VLASNIK(ID),
+// FOREIGN KEY(NAZIV_KVARTA) REFERENCES KVART(NAZIV)
+
+#endregion
+
 namespace StanNaDan.Mapiranja
 {
     class NekretninaMapiranja : ClassMap<Nekretnina>
@@ -6,13 +42,16 @@ namespace StanNaDan.Mapiranja
         {
 
             //Mapiranje tabele
-            Table("NEKRETNINA"); 
+            Table("NEKRETNINA");
+
+            //mapiranje podklasa
+            DiscriminateSubClassesOnColumn("TIP_NEKRETNINE"); 
 
             //mapiranje primarnog kljuca
             // Id(x => x.Id, "ID").GeneratedBy.TriggerIdentity().UnsavedValue(-1);
             Id(x => x.ID, "ID").GeneratedBy.TriggerIdentity();
          
-            Map(x => x.KucniBroj, "KUCNI_BROJ");
+            Map(x => x.KucniBroj, "KUCNO_BROJ");
             Map(x => x.ImeUlice, "IME_ULICE");
             Map(x => x.Kvadratura, "KVADRATURA");
             Map(x => x.BrojKupatila, "BROJ_KUPATILA");
@@ -27,18 +66,22 @@ namespace StanNaDan.Mapiranja
             Map(x => x.Dvoriste, "DVORISTE");
             Map(x => x.Sprat, "SPRAT");
             Map(x => x.Lift, "LIFT");
-            Map(x => x.Objekat, "OBJEKAT");
+           // Map(x => x.Objekat, "OBJEKAT"); //OVO JE DISKRIMINISUCI VALJDA?
 
-            References(x => x.Vlasnik).Column("ID").LazyLoad();
-            References(x => x.Kvart).Column("NAZIV").LazyLoad();
+            References(x => x.Vlasnik).Column("ID_VLASNIKA").LazyLoad();
+            HasMany(x => x.DodatnaOprema).KeyColumn("ID").LazyLoad().Cascade.All().Inverse();
+            HasMany(x => x.Parkinzi).KeyColumn("ID").LazyLoad().Cascade.All().Inverse();
+            HasMany(x => x.ListaNajmova).KeyColumn("ID").LazyLoad().Cascade.All().Inverse();
+            HasMany(x => x.Sajtovi).KeyColumn("ID").LazyLoad().Cascade.All().Inverse();
 
-            HasMany(x => x.ListaDodatneOpreme).KeyColumn("ID_NEKRETNINE").LazyLoad().Cascade.All().Inverse();
-            HasMany(x => x.ListaSajtova).KeyColumn("ID_NEKRETNINA").LazyLoad().Cascade.All().Inverse();
-            HasMany(x => x.ListaParkinga).KeyColumn("ID_NEKRETNINE").LazyLoad().Cascade.All().Inverse();
-            HasMany(x => x.ListaNajmova).KeyColumn("ID_NEKRETNINE").LazyLoad().Cascade.All().Inverse();
 
-            //mapiranje podklasa
-            DiscriminateSubClassesOnColumn("TIP_NEKRETNINE");
+
+            //mapiranje veze 1:N Prodavnica-Odeljenje
+            
+
+            References(x => x.Kvart).Column("NAZIV_KVARTA").LazyLoad();
+
+
         }
     }
 
