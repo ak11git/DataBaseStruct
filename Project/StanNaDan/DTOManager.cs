@@ -1883,6 +1883,141 @@ public class DTOManager
 
 
     #endregion
+
+
+    #region DodatnaOprema
+
+    public static void obrisiDodatnuOpremu(int id)
+    {
+        try
+        {
+            ISession s = DataLayer.GetSession();
+
+            DodatnaOprema dodatna = s.Load<DodatnaOprema>(id);
+
+            s.Delete(dodatna);
+            s.Flush();
+
+
+
+            s.Close();
+
+        }
+        catch (Exception ec)
+        {
+            //handle exceptions
+        }
+
+
+    }
+
+    public static DodatnaOpremaBasic vratiDodatnuOpremu(int id)
+    {
+        DodatnaOpremaBasic o = new DodatnaOpremaBasic();
+        try
+        {
+            ISession s = DataLayer.GetSession();
+
+            DodatnaOprema oprema = s.Load<DodatnaOprema>(id);
+
+            o.Tip = oprema.Tip;
+            o.Cena=oprema.Cena;
+        
+
+
+            s.Close();
+
+        }
+        catch (Exception ec)
+        {
+            //handle exceptions
+        }
+
+        return o;
+
+    }
+
+    public static List<DodatnaOpremaPogled> vratiOpremuNekretnine(int nekretninaid)
+    {
+        List<DodatnaOpremaPogled> info = new List<DodatnaOpremaPogled>();
+        try
+        {
+            ISession s = DataLayer.GetSession();
+
+            IEnumerable<DodatnaOprema> dodatnaoprema = from o in s.Query<DodatnaOprema>()
+                                                      where o.Nekretnina.ID == nekretninaid
+                                                       select o;
+
+            foreach (DodatnaOprema o in dodatnaoprema)
+            {
+                info.Add(new DodatnaOprema(o.Cena, o.Tip, o.ID, o.Nekretnina));
+            }
+
+            s.Close();
+
+        }
+        catch (Exception ec)
+        {
+            //handle exceptions
+        }
+
+        return info;
+    }
+    public static void izmeniDodatnuOpremu(DodatnaOpremaBasic dodatnaoprema)
+    {
+        try
+        {
+            ISession s = DataLayer.GetSession();
+
+           DodatnaOprema o = s.Load<DodatnaOprema>(dodatnaoprema.ID);
+
+            o.Cena = dodatnaoprema.Cena;
+            o.Tip=dodatnaoprema.Tip;
+            
+
+
+
+            s.SaveOrUpdate(o);
+
+            s.Flush();
+
+            s.Close();
+        }
+        catch (Exception ec)
+        {
+            //handle exceptions
+        }
+    }
+
+
+    public static void sacuvajDodatnuOpremu(DodatnaOpremaBasic dodatnaoprema)
+    {
+        try
+        {
+            ISession s = DataLayer.GetSession();
+
+            DodatnaOprema o = new DodatnaOprema();
+
+            o.Cena=dodatnaoprema.Cena;
+            o.Tip = dodatnaoprema.Tip;
+
+           Nekretnina p = s.Load<Nekretnina>(dodatnaoprema.Nekretnina.ID);
+           
+
+            s.Save(o);
+
+            s.Flush();
+
+            s.Close();
+        }
+        catch (Exception ec)
+        {
+            //handle exceptions
+        }
+    }
+
+
+    #endregion
 }
 
 
