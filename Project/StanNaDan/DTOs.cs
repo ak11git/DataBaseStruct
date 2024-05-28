@@ -575,7 +575,7 @@ public class BankovniRacunPregled
 
 
 #region SpoljniSaradnik
-public class SpoljniSaradnikBasic
+public class SpoljniRadnikBasic
 {
     public int Id { get; set; }
 
@@ -589,7 +589,7 @@ public class SpoljniSaradnikBasic
 
     public IList<AngazujeBasic> Angazovanja { get; set; }
 
-    public SpoljniSaradnikBasic(int id, string brtel, string ime, DateTime datum, float procemat)
+    public SpoljniRadnikBasic(int id, string brtel, string ime, DateTime datum, float procemat)
     {
         Id = id;
         BrojTelefona = brtel;
@@ -598,14 +598,14 @@ public class SpoljniSaradnikBasic
         Procenat = procemat;
 
     }
-    public SpoljniSaradnikBasic()
+    public SpoljniRadnikBasic()
     {
         Angazovanja = new List<AngazujeBasic>();
 
     }
 
 }
-public class SpoljniSaradnikPregled
+public class SpoljniRadnikPregled
 {
     public int Id { get; set; }
 
@@ -618,7 +618,7 @@ public class SpoljniSaradnikPregled
     public float Procenat { get; set; }
 
 
-    public SpoljniSaradnikPregled(int id, string brtel, string ime, DateTime datum, float procemat)
+    public SpoljniRadnikPregled(int id, string brtel, string ime, DateTime datum, float procemat)
     {
         Id = id;
         BrojTelefona = brtel;
@@ -796,7 +796,7 @@ public class NajamBasic
 
 
 }
-public class NajamPogled
+public class NajamPregled
 {
     public int ID { get; set; }
 
@@ -814,7 +814,7 @@ public class NajamPogled
     public decimal Provizija { get; set; }
 
 
-    public NajamPogled(int id, DateTime datumOd, DateTime datumDo, decimal cenaPoDanu, int brojDana, decimal popust, decimal provizija)
+    public NajamPregled(int id, DateTime datumOd, DateTime datumDo, decimal cenaPoDanu, int brojDana, decimal popust, decimal provizija)
     {
         ID = id;
         DatumOd = datumOd;

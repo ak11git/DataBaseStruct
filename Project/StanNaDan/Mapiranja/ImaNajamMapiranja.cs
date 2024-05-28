@@ -10,13 +10,6 @@ using FluentNHibernate.Mapping;
 
 namespace StanNaDan.Mapiranja;
 
-//CREATE TABLE IMA_NAJAM(
-// ID_NAJMA INT,
-// ID_NEKRETNINE INT,
-// PRIMARY KEY (ID_NAJMA, ID_NEKRETNINE),
-// FOREIGN KEY (ID_NAJMA) REFERENCES NAJAM(ID),
-// FOREIGN KEY (ID_NEKRETNINE) REFERENCES NEKRETNINA(ID)
-//);
 
 public class ImaNajamMapiranja : ClassMap<StanNaDan.Entiteti.ImaNajam>
 {

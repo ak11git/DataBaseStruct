@@ -1,4 +1,4 @@
-using NHibernate;
+﻿using NHibernate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +15,7 @@ using System.Text;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace StanNaDan;
+
 
 
 public class DTOManager
@@ -88,8 +89,96 @@ public class DTOManager
 
         return nb;
     }
+    public static KucaPregled GetKucaPregled(int nekretninaID)
+    {
+        KucaPregled nb = new KucaPregled();
 
-    public static void AzurirajNekretninu(NekretninaBasic nb, int nID)
+        ISession session = null;
+        try
+        {
+            session = DataLayer.GetSession();
+
+            Kuca n = session.Load<Kuca>(nekretninaID);
+
+
+
+            nb = new KucaPregled(n.ID, n.TipNekretnine, n.KucniBroj, n.ImeUlice,
+                                                     n.Kvadratura, n.BrojKupatila, n.BrojTerasa,
+                                                    n.BrojSoba, n.Internet, n.TV, n.Kuhinja,
+                                                     n.Dimenzije, n.TipKreveta, n.Spratnost, n.Dvoriste);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        finally
+        {
+            session.Close();
+        }
+
+        return nb;
+    }
+    public static StanPregled GetStanPregled(int nekretninaID)
+    {
+        StanPregled nb = new StanPregled();
+
+        ISession session = null;
+        try
+        {
+            session = DataLayer.GetSession();
+
+            Stan n = session.Load<Stan>(nekretninaID);
+
+
+
+            nb = new StanPregled(n.ID, n.TipNekretnine, n.KucniBroj, n.ImeUlice,
+                                                     n.Kvadratura, n.BrojKupatila, n.BrojTerasa,
+                                                    n.BrojSoba, n.Internet, n.TV, n.Kuhinja,
+                                                     n.Dimenzije, n.TipKreveta, n.Sprat, n.Lift);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        finally
+        {
+            session.Close();
+        }
+
+        return nb;
+    }
+    public static SobaPregled GetSobaPregled(int nekretninaID)
+    {
+        SobaPregled nb = new SobaPregled();
+
+        ISession session = null;
+        try
+        {
+            session = DataLayer.GetSession();
+
+            Soba n = session.Load<Soba>(nekretninaID);
+
+
+
+            nb = new SobaPregled(n.ID, n.TipNekretnine, n.KucniBroj, n.ImeUlice,
+                                                     n.Kvadratura, n.BrojKupatila, n.BrojTerasa,
+                                                    n.BrojSoba, n.Internet, n.TV, n.Kuhinja,
+                                                     n.Dimenzije, n.TipKreveta, n.Objekat);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        finally
+        {
+            session.Close();
+        }
+
+        return nb;
+    }
+
+
+    public static void AzurirajKuca(KucaBasic nb, int nID)
     {
         ISession session = null;
 
@@ -103,10 +192,9 @@ public class DTOManager
 
 
 
-            Nekretnina n = session.Load<Nekretnina>(nb.ID);
-            Kuca kuca = session.Load<Kuca>(nb.ID);
-            Stan stan = session.Load<Stan>(nb.ID);
-            Soba soba = session.Load<Soba>(nb.ID);
+
+            Kuca n = session.Load<Kuca>(nb.ID);
+
 
             n.ID = nb.ID;
             n.TipNekretnine = nb.TipNekretnine;
@@ -121,20 +209,11 @@ public class DTOManager
             n.Kuhinja = nb.Kuhinja;
             n.Dimenzije = nb.Dimenzije;
             n.TipKreveta = nb.TipKreveta;
+            n.Spratnost = nb.Spratnost;
+            n.Dvoriste = nb.Dvoriste;
 
             n.Vlasnik = v;
             n.Kvart = k;
-            /*   if (n is Kuca kuca1)
-               {
-                   kuca1.Spratnost = nb.Spratnost;
-                   kuca1.Dvoriste = nb.Dvoriste;
-               }
-               else if (n.TipNekretnine == "STAN")
-               {
-                   stan.Sprat = nb.Sprat;
-                   stan.Lift = nb.Lift;
-               }
-   */
             session.SaveOrUpdate(n);
             session.Flush();
 
@@ -149,6 +228,106 @@ public class DTOManager
             session.Close();
         }
     }
+    public static void AzurirajStan(StanBasic nb, int nID)
+    {
+        ISession session = null;
+
+        try
+        {
+            session = DataLayer.GetSession();
+
+
+            Vlasnik v = session.Load<Vlasnik>(nb.Vlasnik.Id);
+            Kvart k = session.Load<Kvart>(nb.Kvart.Naziv);
+
+
+
+
+            Stan n = session.Load<Stan>(nb.ID);
+
+
+            n.ID = nb.ID;
+            n.TipNekretnine = nb.TipNekretnine;
+            n.KucniBroj = nb.KucniBroj;
+            n.ImeUlice = nb.ImeUlice;
+            n.Kvadratura = nb.Kvadratura;
+            n.BrojKupatila = nb.BrojKupatila;
+            n.BrojTerasa = nb.BrojTerasa;
+            n.BrojSoba = nb.BrojSoba;
+            n.Internet = nb.Internet;
+            n.TV = nb.TV;
+            n.Kuhinja = nb.Kuhinja;
+            n.Dimenzije = nb.Dimenzije;
+            n.TipKreveta = nb.TipKreveta;
+            n.Sprat = nb.Sprat;
+            n.Lift = nb.Lift;
+
+            n.Vlasnik = v;
+            n.Kvart = k;
+            session.SaveOrUpdate(n);
+            session.Flush();
+
+
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        finally
+        {
+            session.Close();
+        }
+    }
+    public static void AzurirajSobu(SobaBasic nb, int nID)
+    {
+        ISession session = null;
+
+        try
+        {
+            session = DataLayer.GetSession();
+
+
+            Vlasnik v = session.Load<Vlasnik>(nb.Vlasnik.Id);
+            Kvart k = session.Load<Kvart>(nb.Kvart.Naziv);
+
+
+
+
+            Soba n = session.Load<Soba>(nb.ID);
+
+
+            n.ID = nb.ID;
+            n.TipNekretnine = nb.TipNekretnine;
+            n.KucniBroj = nb.KucniBroj;
+            n.ImeUlice = nb.ImeUlice;
+            n.Kvadratura = nb.Kvadratura;
+            n.BrojKupatila = nb.BrojKupatila;
+            n.BrojTerasa = nb.BrojTerasa;
+            n.BrojSoba = nb.BrojSoba;
+            n.Internet = nb.Internet;
+            n.TV = nb.TV;
+            n.Kuhinja = nb.Kuhinja;
+            n.Dimenzije = nb.Dimenzije;
+            n.TipKreveta = nb.TipKreveta;
+            n.Objekat = nb.Objekat;
+
+            n.Vlasnik = v;
+            n.Kvart = k;
+            session.SaveOrUpdate(n);
+            session.Flush();
+
+
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        finally
+        {
+            session.Close();
+        }
+    }
+
     public static void DodajKucu(KucaBasic nb)
     {
         ISession session = null;
@@ -160,21 +339,7 @@ public class DTOManager
             Kvart k = session.Load<Kvart>(nb.Kvart.Naziv);
             Vlasnik v = session.Load<Vlasnik>(nb.Vlasnik.Id);
 
-            /* DodatnaOprema dod = (from p in session.Query<DodatnaOprema>()
-                                  where p.Nekretnina.ID == nb.ID
-                                  select p).FirstOrDefault();
 
-             Parking pk = (from p in session.Query<Parking>()
-                           where p.Nekretnina.ID == nb.ID
-                           select p).FirstOrDefault();
-
-             Sajtovi sajt = (from p in session.Query<Sajtovi>()
-                             where p.Nekretnina.ID == nb.ID
-                             select p).FirstOrDefault();
-
-             ImaNajam imanajam = (from p in session.Query<ImaNajam>()
-                                  where p.Nekretnina.ID == nb.ID
-                                  select p).FirstOrDefault();*/
 
             Kuca n = new Kuca();
             n.ID = nb.ID;
@@ -197,15 +362,7 @@ public class DTOManager
 
             session.SaveOrUpdate(n);
             session.Flush();
-            /* pk.Nekretnina = n;
-             dod.Nekretnina = n;
-             sajt.Nekretnina = n;
-             imanajam.Nekretnina = n;
 
-             session.Update(pk);
-             session.Update(dod);
-             session.Update(sajt);
-             session.Update(imanajam);*/
             session.Flush();
         }
         catch (Exception ec)
@@ -228,21 +385,7 @@ public class DTOManager
             Kvart k = session.Load<Kvart>(nb.Kvart.Naziv);
             Vlasnik v = session.Load<Vlasnik>(nb.Vlasnik.Id);
 
-            /* DodatnaOprema dod = (from p in session.Query<DodatnaOprema>()
-                                  where p.Nekretnina.ID == nb.ID
-                                  select p).FirstOrDefault();
 
-             Parking pk = (from p in session.Query<Parking>()
-                           where p.Nekretnina.ID == nb.ID
-                           select p).FirstOrDefault();
-
-             Sajtovi sajt = (from p in session.Query<Sajtovi>()
-                             where p.Nekretnina.ID == nb.ID
-                             select p).FirstOrDefault();
-
-             ImaNajam imanajam = (from p in session.Query<ImaNajam>()
-                                  where p.Nekretnina.ID == nb.ID
-                                  select p).FirstOrDefault();*/
 
             Stan n = new Stan();
             n.ID = nb.ID;
@@ -265,15 +408,7 @@ public class DTOManager
 
             session.SaveOrUpdate(n);
             session.Flush();
-            /* pk.Nekretnina = n;
-             dod.Nekretnina = n;
-             sajt.Nekretnina = n;
-             imanajam.Nekretnina = n;
 
-             session.Update(pk);
-             session.Update(dod);
-             session.Update(sajt);
-             session.Update(imanajam);*/
             session.Flush();
         }
         catch (Exception ec)
@@ -296,22 +431,6 @@ public class DTOManager
             Kvart k = session.Load<Kvart>(nb.Kvart.Naziv);
             Vlasnik v = session.Load<Vlasnik>(nb.Vlasnik.Id);
 
-            /*  DodatnaOprema dod = (from p in session.Query<DodatnaOprema>()
-                                   where p.Nekretnina.ID == nb.ID
-                                   select p).FirstOrDefault();
-
-              Parking pk = (from p in session.Query<Parking>()
-                            where p.Nekretnina.ID == nb.ID
-                            select p).FirstOrDefault();
-
-              Sajtovi sajt = (from p in session.Query<Sajtovi>()
-                              where p.Nekretnina.ID == nb.ID
-                              select p).FirstOrDefault();
-
-              ImaNajam imanajam = (from p in session.Query<ImaNajam>()
-                                   where p.Nekretnina.ID == nb.ID
-                                   select p).FirstOrDefault();*/
-
             Soba n = new Soba();
             n.ID = nb.ID;
             n.TipNekretnine = nb.TipNekretnine;
@@ -326,21 +445,13 @@ public class DTOManager
             n.Kuhinja = nb.Kuhinja;
             n.Dimenzije = nb.Dimenzije;
             n.TipKreveta = nb.TipKreveta;
-            //n.Objekat = nb.Objekat;
+            n.Objekat = nb.Objekat;
             n.Vlasnik = v;
             n.Kvart = k;
 
             session.SaveOrUpdate(n);
             session.Flush();
-            /* pk.Nekretnina = n;
-             dod.Nekretnina = n;
-             sajt.Nekretnina = n;
-             imanajam.Nekretnina = n;
 
-             session.Update(pk);
-             session.Update(dod);
-             session.Update(sajt);
-             session.Update(imanajam);*/
             session.Flush();
         }
         catch (Exception ec)
@@ -488,8 +599,7 @@ public class DTOManager
 
             foreach (Vlasnik v in vlasnici)
             {
-                vlasnikInfo.Add(new VlasnikPregled(v.Id, v.Ime, v.Prezime, v.Adresa, v.Mesto, v.Drzava, v.DatumRodjenja,
-                                                    v.JMBG, v.Naziv, v.PIB));
+                vlasnikInfo.Add(new VlasnikPregled(v.Id, v.Ime, v.Prezime, v.Adresa, v.Mesto, v.Drzava));
             }
 
         }
@@ -515,8 +625,7 @@ public class DTOManager
 
             Vlasnik v = session.Load<Vlasnik>(vID);
 
-            vlasnikinfo = new VlasnikPregled(v.Id, v.Ime, v.Prezime, v.Adresa, v.Mesto, v.Drzava, v.DatumRodjenja,
-                                                    v.JMBG, v.Naziv, v.PIB);
+            vlasnikinfo = new VlasnikPregled(v.Id, v.Ime, v.Prezime, v.Adresa, v.Mesto, v.Drzava);
         }
         catch (Exception ex)
         {
@@ -529,7 +638,55 @@ public class DTOManager
 
         return vlasnikinfo;
     }
-    public static bool DodajVlasnika(VlasnikBasic vb)
+    public static PravnoLicePregled GetPravnoLicePregled(int pID)
+    {
+        ISession session = null;
+        PravnoLicePregled vlasnikinfo = new PravnoLicePregled();
+
+        try
+        {
+            session = DataLayer.GetSession();
+
+            PravnoLice v = session.Load<PravnoLice>(pID);
+
+            vlasnikinfo = new PravnoLicePregled(v.Id, v.Ime, v.Prezime, v.Adresa, v.Mesto, v.Drzava, v.PIB, v.Naziv);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        finally
+        {
+            session.Close();
+        }
+
+        return vlasnikinfo;
+    }
+    public static FizickoLicePregled GetFizickoLicePregled(int pID)
+    {
+        ISession session = null;
+        FizickoLicePregled vlasnikinfo = new FizickoLicePregled();
+
+        try
+        {
+            session = DataLayer.GetSession();
+
+            FizickoLicePregled v = session.Load<FizickoLicePregled>(pID);
+
+            vlasnikinfo = new FizickoLicePregled(v.Id, v.Ime, v.Prezime, v.Adresa, v.Mesto, v.Drzava, v.ImeRoditelja, v.JMBG, v.DatumRodjenja);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        finally
+        {
+            session.Close();
+        }
+
+        return vlasnikinfo;
+    }
+    public static bool DodajPravnoLice(PravnoLiceBasic vb)
     {
         ISession session = null;
 
@@ -537,22 +694,8 @@ public class DTOManager
         {
             session = DataLayer.GetSession();
 
-            Vlasnik vl = new Vlasnik();
+            PravnoLice vl = new PravnoLice();
 
-            BankovniRacun bankovni = (from v in session.Query<BankovniRacun>()
-                                      where v.Vlasnik.Id == vb.Id
-                                      select v).FirstOrDefault();
-
-            Email e = (from v in session.Query<Email>()
-                       where v.Vlasnik.Id == vb.Id
-                       select v).FirstOrDefault();
-
-            BrojtTelefona br = (from v in session.Query<BrojtTelefona>()
-                                where v.Vlasnik.Id == vb.Id
-                                select v).FirstOrDefault();
-            Nekretnina n = (from v in session.Query<Nekretnina>()
-                            where v.Vlasnik.Id == vb.Id
-                            select v).FirstOrDefault();
 
             vl.Id = vb.Id;
             vl.Ime = vb.Ime;
@@ -560,25 +703,13 @@ public class DTOManager
             vl.Adresa = vb.Adresa;
             vl.Mesto = vb.Mesto;
             vl.Drzava = vb.Drzava;
-            vl.ImeRoditelja = vb.ImeRoditelja;
-            vl.DatumRodjenja = vb.DatumRodjenja;
-            vl.JMBG = vb.JMBG;
             vl.Naziv = vb.Naziv;
             vl.PIB = vb.PIB;
-            vl.BankovniRacuni.Add(bankovni);
-            vl.BrojeviTelefona.Add(br);
-            vl.Emailovi.Add(e);
-            vl.Nekretnine.Add(n);
-            n.Vlasnik = vl;
-            bankovni.Vlasnik = vl;
-            br.Vlasnik = vl;
-            e.Vlasnik = vl;
+
             session.SaveOrUpdate(vl);
             session.Flush();
-            session.Update(n);
-            session.Update(bankovni);
-            session.Update(br);
-            session.Update(e);
+            session.Update(vl);
+
 
 
             session.Flush();
@@ -594,7 +725,7 @@ public class DTOManager
 
         return true;
     }
-    public static void AzurirajVlasnika(VlasnikBasic vb, int vId)
+    public static bool DodajFizickoLice(FizickoLiceBasic vb)
     {
         ISession session = null;
 
@@ -602,32 +733,64 @@ public class DTOManager
         {
             session = DataLayer.GetSession();
 
-            Operater op = session.Load<Operater>(pkb.IdOperatera);
+            FizickoLice vl = new FizickoLice();
 
-            Parking_Mesto staroPM = session.Load<Parking_Mesto>(pkb.IdParkingMesta);
-            Parking_Mesto novoPM = session.Load<Parking_Mesto>(pmId);
+            vl.Id = vb.Id;
+            vl.Ime = vb.Ime;
+            vl.Prezime = vb.Prezime;
+            vl.Adresa = vb.Adresa;
+            vl.Mesto = vb.Mesto;
+            vl.Drzava = vb.Drzava;
+            vl.ImeRoditelja = vb.ImeRoditelja;
+            vl.DatumRodjenja = vb.DatumRodjenja;
+            vl.JMBG = vb.JMBG;
 
-            PretplatnaKarta pk = session.Load<PretplatnaKarta>(pkb.IdKarte);
 
-            pk.DatumOd = pkb.DatumOd;
-            pk.DatumDo = pkb.DatumDo;
-            pk.ParkingMesto = novoPM;
-            pk.Operater = op;
-
-            session.SaveOrUpdate(pk);
+            session.SaveOrUpdate(vl);
             session.Flush();
 
-            if (staroPM.ID != novoPM.ID)
+
+            session.Flush();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        finally
+        {
+            session.Close();
+        }
+
+        return true;
+    }
+    public static void AzurirajPravnoLice(PravnoLiceBasic vb, int vId)
+    {
+        ISession session = null;
+
+        try
+        {
+            session = DataLayer.GetSession();
+
+
+            PravnoLice p = session.Load<PravnoLice>(vb.Id);
+            if (p != null)
             {
-                staroPM.Status = 'S';
-                staroPM.Karta = null;
-                session.SaveOrUpdate(staroPM);
-                session.Flush();
+
+                p.Adresa = vb.Adresa;
+                p.PIB = vb.PIB;
+                p.Naziv = vb.Naziv;
+                p.Drzava = vb.Drzava;
+                p.BankovniRacuni = (IList<BankovniRacun>?)vb.BankovniRacuni;
+                p.BrojeviTelefona = (IList<BrojtTelefona>?)vb.BrojeviTelefona;
+                p.Ime = vb.Ime;
+                p.Prezime = vb.Prezime;
+                p.Mesto = vb.Mesto;
+                p.Emailovi = (IList<Email>?)vb.Emailovi;
+
+
             }
 
-            novoPM.Status = 'Z';
-            novoPM.Karta = pk;
-            session.SaveOrUpdate(novoPM);
+            session.SaveOrUpdate(p);
             session.Flush();
         }
         catch (Exception ex)
@@ -639,21 +802,299 @@ public class DTOManager
             session.Close();
         }
     }
+    public static void AzurirajFizickoLice(FizickoLiceBasic vb, int vId)
+    {
+        ISession session = null;
+
+        try
+        {
+            session = DataLayer.GetSession();
+
+
+            FizickoLice p = session.Load<FizickoLice>(vb.Id);
+            if (p != null)
+            {
+
+                p.Adresa = vb.Adresa;
+                p.ImeRoditelja = vb.ImeRoditelja;
+                p.JMBG = vb.JMBG;
+                p.DatumRodjenja = vb.DatumRodjenja;
+                p.Drzava = vb.Drzava;
+                p.BankovniRacuni = (IList<BankovniRacun>?)vb.BankovniRacuni;
+                p.BrojeviTelefona = (IList<BrojtTelefona>?)vb.BrojeviTelefona;
+                p.Ime = vb.Ime;
+                p.Prezime = vb.Prezime;
+                p.Mesto = vb.Mesto;
+                p.Emailovi = (IList<Email>?)vb.Emailovi;
+
+
+            }
+
+            session.SaveOrUpdate(p);
+            session.Flush();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        finally
+        {
+            session.Close();
+        }
+    }
+    public static void ObrisiPravnoLice(int id)
+    {
+        ISession session = null;
+        try
+        {
+            session = DataLayer.GetSession();
+            PravnoLice p = session.Load<PravnoLice>(id);
+            //sad da li ovde ide za sve ili cascade all nama to omogucava??
+            session.Delete(p);
+            session.Flush();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        finally
+        {
+            session.Close();
+        }
+    }
+    public static void ObrisiFizickoLice(int id)
+    {
+        ISession session = null;
+        try
+        {
+            session = DataLayer.GetSession();
+            FizickoLice p = session.Load<FizickoLice>(id);
+            //sad da li ovde ide za sve ili cascade all nama to omogucava??
+            session.Delete(p);
+            session.Flush();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        finally
+        {
+            session.Close();
+        }
+    }
+    public static void DodajBankovniRacunPravnoLice(BankovniRacunBasic brb, int id)
+    {
+        ISession session = null;
+        try
+        {
+            session = DataLayer.GetSession();
+            PravnoLice p = session.Load<PravnoLice>(id);
+            BankovniRacun banka = session.Load<BankovniRacun>(brb.ID);
+            p.BankovniRacuni.Add(banka);
+            banka.Vlasnik = p;
+
+            session.SaveOrUpdate(p);
+            session.SaveOrUpdate(banka);
+
+            session.Flush();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        finally
+        {
+            session.Close();
+        }
+
+    }
+    public static void DodajBankovniRacunFizickoLice(BankovniRacunBasic brb, int id)
+    {
+        ISession session = null;
+        try
+        {
+            session = DataLayer.GetSession();
+            FizickoLice p = session.Load<FizickoLice>(id);
+            BankovniRacun banka = session.Load<BankovniRacun>(brb.ID);
+            p.BankovniRacuni.Add(banka);
+            banka.Vlasnik = p;
+
+            session.SaveOrUpdate(p);
+            session.SaveOrUpdate(banka);
+
+            session.Flush();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        finally
+        {
+            session.Close();
+        }
+
+    }
+    public static void DodajEmailPravnoLice(EmailBasic brb, int id)
+    {
+        ISession session = null;
+        try
+        {
+            session = DataLayer.GetSession();
+            PravnoLice p = session.Load<PravnoLice>(id);
+            Email email = session.Load<Email>(brb.ID);
+            p.Emailovi.Add(email);
+            email.Vlasnik = p;
+
+            session.SaveOrUpdate(p);
+            session.SaveOrUpdate(email);
+
+            session.Flush();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        finally
+        {
+            session.Close();
+        }
+
+    }
+    public static void DodajEmailFizickoLice(EmailBasic brb, int id)
+    {
+        ISession session = null;
+        try
+        {
+            session = DataLayer.GetSession();
+            FizickoLice p = session.Load<FizickoLice>(id);
+            Email email = session.Load<Email>(brb.ID);
+            p.Emailovi.Add(email);
+            email.Vlasnik = p;
+
+            session.SaveOrUpdate(p);
+            session.SaveOrUpdate(email);
+
+            session.Flush();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        finally
+        {
+            session.Close();
+        }
+
+    }
+    public static void DodajBrTelPravnoLice(BrojTelefonaBasic brb, int id)
+    {
+        ISession session = null;
+        try
+        {
+            session = DataLayer.GetSession();
+            PravnoLice p = session.Load<PravnoLice>(id);
+            BrojtTelefona brtel = session.Load<BrojtTelefona>(brb.ID);
+            p.BrojeviTelefona.Add(brtel);
+            brtel.Vlasnik = p;
+
+            session.SaveOrUpdate(p);
+            session.SaveOrUpdate(brtel);
+
+            session.Flush();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        finally
+        {
+            session.Close();
+        }
+
+    }
+    public static void DodajBrTelFizickoLice(BrojTelefonaBasic brb, int id)
+    {
+        ISession session = null;
+        try
+        {
+            session = DataLayer.GetSession();
+            FizickoLice p = session.Load<FizickoLice>(id);
+            BrojtTelefona brtel = session.Load<BrojtTelefona>(brb.ID);
+            p.BrojeviTelefona.Add(brtel);
+            brtel.Vlasnik = p;
+
+            session.SaveOrUpdate(p);
+            session.SaveOrUpdate(brtel);
+
+            session.Flush();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        finally
+        {
+            session.Close();
+        }
+
+    }
+    public static void DodajNekretninuPravnoLice(NekretninaBasic brb, int id)
+    {
+        ISession session = null;
+        try
+        {
+            session = DataLayer.GetSession();
+            PravnoLice p = session.Load<PravnoLice>(id);
+            Nekretnina nekretnina = session.Load<Nekretnina>(brb.ID);
+            p.Nekretnine.Add(nekretnina);
+            nekretnina.Vlasnik = p;
+
+            session.SaveOrUpdate(p);
+            session.SaveOrUpdate(nekretnina);
+
+            session.Flush();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        finally
+        {
+            session.Close();
+        }
+
+    }
+    public static void DodajNekretninuFizickoLice(NekretninaBasic brb, int id)
+    {
+        ISession session = null;
+        try
+        {
+            session = DataLayer.GetSession();
+            FizickoLice p = session.Load<FizickoLice>(id);
+            Nekretnina nekretnina = session.Load<Nekretnina>(brb.ID);
+            p.Nekretnine.Add(nekretnina);
+            nekretnina.Vlasnik = p;
+
+            session.SaveOrUpdate(p);
+            session.SaveOrUpdate(nekretnina);
+
+            session.Flush();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        finally
+        {
+            session.Close();
+        }
+
+    }
+
+
     #endregion
 
-    //kvart pa na dole
 
-
-
-
-
-    //Prikazi Brojeve Racuna Vlasnika
-
-
-
-    //Dodaj Kvart
-    //Obrisi Kvart
-    //Izmeni Kvart
     #region Poslovnica i Kvart
     public static void DodajPoslovnicu(PoslovnicaBasic p)
     {
@@ -681,6 +1122,35 @@ public class DTOManager
         {
             session.Close();
         }
+    }
+
+    public static List<PoslovnicaPregled> GetPoslovnicaPregled()
+    {
+        ISession session = null;
+        List<PoslovnicaPregled> poslovnicainfo = new List<PoslovnicaPregled>();
+
+        try
+        {
+            session = DataLayer.GetSession();
+
+            IEnumerable<Poslovnica> poslovnice = from v in session.Query<Poslovnica>() select v;
+
+            foreach (Poslovnica v in poslovnice)
+            {
+                poslovnicainfo.Add(new PoslovnicaPregled(v.Adresa, v.RadnoVreme));
+            }
+
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        finally
+        {
+            session.Close();
+        }
+
+        return vlasnikInfo;
     }
 
 
@@ -712,6 +1182,65 @@ public class DTOManager
         }
     }
 
+    public static List<NekretninaPregled> VratiNekretnineKvarta(string naziv)
+    {
+        List<NekretninaPregled> vp = new List<NekretninaPregled>();
+        try
+        {
+            ISession s = DataLayer.GetSession();
+
+            IEnumerable<Nekretnina> nekretnine = from v in s.Query<Nekretnina>()
+                                         where v.Kvart.Naziv == naziv
+                                         select v;
+
+            foreach (var n in nekretnine)
+            {
+                vp.Add(new NekretninaPregled(n.ID1, n.TipNekretnine1, n.KucniBroj1, n.ImeUlice1, n.Kvadratura1, n.BrojKupatila1, n.BrojTerasa1,
+                    n.BrojSoba1, n.Internet1, n.T, n.Kuhinj1a, n.Dimenzije1, n.TipLreveta1));
+                   
+            }
+
+
+            s.Close();
+
+        }
+        catch (Exception ec)
+        {
+            MessageBox.Show(ec.Message);
+        }
+
+        return vp;
+    }
+
+
+    public static List<KvartPregled> GetKvartPregled()
+    {
+        ISession session = null;
+        List<KvartPregled> kvartinfo = new List<KvartPregled>();
+
+        try
+        {
+            session = DataLayer.GetSession();
+
+            IEnumerable<Kvart> kvartovi = from v in session.Query<Kvart>() select v;
+
+            foreach (Kvart v in kvartovi)
+            {
+                kvartinfo.Add(new KvartPregled(v.Naziv, v.Zona));
+            }
+
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        finally
+        {
+            session.Close();
+        }
+
+        return vlasnikInfo;
+    }
 
 
 
@@ -721,8 +1250,220 @@ public class DTOManager
 
 
 
+    #region Najam
+
+    //dodaj najam, da li moze ovako?
+
+    public static void DodajNajam(NajamBasic nb)
+    {
+        ISession session = null;
+
+        try
+        {
+            session = DataLayer.GetSession();
+
+            // Učitavanje agenta iz baze podataka
+            //Agent a = session.Load<Agent>(nb.AgentId);
+
+            // Kreiranje instance najma
+            Najam n = new Najam
+            {
+                ID = nb.ID,
+                DatumOd = nb.DatumOd,
+                DatumDo = nb.DatumDo,
+                CenaPoDanu = nb.CenaPoDanu,
+                BrojDana = nb.BrojDana,
+                Popust = nb.Popust,
+                Provizija = nb.Provizija,
+                //Agent = a
+            };
+
+            // Spremanje najma u bazu podataka
+            session.SaveOrUpdate(n);
+            session.Flush();
+        }
+        catch (Exception ec)
+        {
+            MessageBox.Show(ec.Message);
+        }
+        finally
+        {
+            if (session != null)
+            {
+                session.Close();
+            }
+        }
+    }
+
+    public static void DodajImaNajam(ImaNajamBasic inb)
+    {
+        ISession session = null;
+
+        try
+        {
+            session = DataLayer.GetSession();
+
+            // Učitavanje najma i nekretnine iz baze podataka
+            Najam najam = session.Load<Najam>(inb.NajamId);
+            Nekretnina nekretnina = session.Load<Nekretnina>(inb.NekretninaId);
+
+            // Kreiranje instance ImaNajam
+            ImaNajam inajam = new ImaNajam
+            {
+                Najam = najam,
+                Nekretnina = nekretnina
+            };
+
+            // Spremanje ili ažuriranje ImaNajam u bazi podataka
+            session.SaveOrUpdate(inajam);
+            session.Flush();
+        }
+        catch (Exception ec)
+        {
+            MessageBox.Show(ec.Message);
+        }
+        finally
+        {
+            if (session != null)
+            {
+                session.Close();
+            }
+        }
+    }
+
+    public static void ObrisiNajam(int najamId)
+    {
+        ISession session = null;
+
+        try
+        {
+            session = DataLayer.GetSession();
+
+            Najam najam = session.Load<Najam>(najamId);
+            session.Delete(najam);
+            session.Flush();
+
+        }
+        catch (Exception ec)
+        {
+            MessageBox.Show(ec.Message);
+        }
+        finally
+        {
+            if (session != null)
+            {
+                session.Close();
+            }
+        }
+    }
+
+    public static void AzurirajNajam(NajamBasic nb)
+    {
+        ISession session = null;
+
+        try
+        {
+            session = DataLayer.GetSession();
+
+            Najam najam = session.Load<Najam>(nb.ID);
+            Agent agent = session.Load<Agent>(nb.AgentId);
+
+            najam.DatumOd = nb.DatumOd;
+            najam.DatumDo = nb.DatumDo;
+            najam.CenaPoDanu = nb.CenaPoDanu;
+            najam.BrojDana = nb.BrojDana;
+            najam.Popust = nb.Popust;
+            najam.Provizija = nb.Provizija;
+            najam.Agent = agent;
+
+            session.Update(najam);
+            session.Flush();
+        }
+        catch (Exception ec)
+        {
+            MessageBox.Show(ec.Message);
+        }
+        finally
+        {
+            if (session != null)
+            {
+                session.Close();
+            }
+        }
+    }
+
+    public static List<NajamPregled> GetNajamPregled()
+    {
+        ISession session = null;
+        List<NajamPregled> najaminfo = new List<NajamPregled>();
+
+        try
+        {
+            session = DataLayer.GetSession();
+
+            IEnumerable<Najam> najmovi = from v in session.Query<Najam>() select v;
+
+            foreach (Najam v in najmovi)
+            {
+                najaminfo.Add(new NajamPregled(v.ID, v.DatumDo, v.DatumDo, v.CenaPoDanu, v.BrojDana, v.Popust, v.Provizija));
+            }
+
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+        finally
+        {
+            session.Close();
+        }
+
+        return vlasnikInfo;
+    }
 
 
+    #endregion
+
+
+    //prikazi sve nekretnine jednog kvarta
+
+    //prikazi sve najmove jedne nekretnine
+
+    //prikazi sve nekretnine jednog vlasnika
+
+    //prikazi sve nekretnine koje imaju parkinge
+
+    //angazuj spoljnog radnika
+
+    //dodaj sefa
+
+
+    //dodaj zaposlenog
+
+    //dodaj agenta
+
+    //neka agent angazuje spoljnog radnika za neki najam
+
+    //
+
+
+    //angazuj agenta za najam tj dodeli najmu agenta ?
+
+    //dodaj kvartu poslovnicu
+
+    //dodaj kvartu nekretninu
+
+    //neke stvari za najam punooo
+
+
+
+    //Prikazi Brojeve Racuna Vlasnika
+
+
+
+    //Dodaj Kvart
+    //Obrisi Kvart
+    //Izmeni Kvart
     //Dodaj Kvart
     //Obrisi Kvart
     //Izmeni Kvart
@@ -742,9 +1483,406 @@ public class DTOManager
     //Obrisi Najam
     //Izmeni Najam
 
+    #region Sef 
+    public static void dodajSefa(SefBasic p)
+    {
+        try
+        {
+            ISession s = DataLayer.GetSession();
+
+            Sef o = new Sef();
+
+            o.DatumPostavljanja = p.DatumPostavljanja;
+            o.DatumZaposlenja = p.DatumZaposlenja;
+            o.Ime=p.Ime;
+            o.JMBG=p.JMBG;
+
+
+            s.SaveOrUpdate(o);
+
+            s.Flush();
+
+            s.Close();
+        }
+        catch (Exception ec)
+        {
+            MessageBox.Show(ec.Message);
+        }
+        finally
+        {
+            if (session != null)
+            {
+                session.Close();
+            }
+        }
+    }
+
+    public static SefBasic azurirajSefa(SefBasic p)
+    {
+        try
+        {
+            ISession s = DataLayer.GetSession();
+
+            Sef o = s.Load<Sef>(p.JMBG);
+            o.DatumPostavljanja=p.DatumPostavljanja;
+            o.DatumZaposlenja=p.DatumZaposlenja;
+            o.Ime=p.Ime;
+            
+
+           
+            s.Update(o);
+            s.Flush();
+
+            s.Close();
+        }
+        catch (Exception ec)
+        {
+            MessageBox.Show(ec.Message);
+        }
+        finally
+        {
+            if (session != null)
+            {
+                session.Close();
+            }
+        }
+
+        return p;
+    }
+
+    public static SefBasic vratiSefa(string JMBG)
+    {
+        SefBasic pb = new SefBasic();
+        try
+        {
+            ISession s = DataLayer.GetSession();
+
+            Sef o = s.Load<Sef>(JMBG);
+            pb = new SefBasic(o.Ime, o.DatumZaposlenja, o.DatumPostavljanja);
+
+            s.Close();
+        }
+        catch (Exception ec)
+        {
+            MessageBox.Show(ec.Message);
+        }
+        finally
+        {
+            if (session != null)
+            {
+                session.Close();
+            }
+        }
+
+        return pb;
+    }
 
 
 
+
+    #endregion
+
+
+    #region Agent
+
+    public static void dodajAgenta(AgentBasic p)
+    {
+        try
+        {
+            ISession s = DataLayer.GetSession();
+
+            Agent o = new Agent();
+
+            o.StrucnaSprema=p.StrucnaSprema;
+
+
+        
+            s.SaveOrUpdate(o);
+
+            s.Flush();
+
+            s.Close();
+        }
+        catch (Exception ec)
+        {
+            MessageBox.Show(ec.Message);
+        }
+        finally
+        {
+            if (session != null)
+            {
+                session.Close();
+            }
+        }
+    }
+
+    public static AgentBasic azurirajAgenta(AgentBasic p)
+    {
+        try
+        {
+            ISession s = DataLayer.GetSession();
+
+            Agent o = s.Load<Agent>(p.JMBG);
+            o.StrucnaSprema = p.StrucnaSprema;
+
+
+
+            s.Update(o);
+            s.Flush();
+
+            s.Close();
+        }
+        catch (Exception ec)
+        {
+            MessageBox.Show(ec.Message);
+        }
+        finally
+        {
+            if (session != null)
+            {
+                session.Close();
+            }
+        }
+
+        return p;
+    }
+
+    public static AgentBasic vratiAgenta(string JMBG)
+    {
+        AgentBasic pb = new AgentBasic();
+        try
+        {
+            ISession s = DataLayer.GetSession();
+
+            Agent o = s.Load<Agent>(JMBG);
+            pb = new AgentBasic(o.StrucnaSprema);
+
+            s.Close();
+        }
+        catch (Exception ec)
+        {
+            MessageBox.Show(ec.Message);
+        }
+        finally
+        {
+            if (session != null)
+            {
+                session.Close();
+            }
+        }
+
+        return pb;
+    }
+
+
+
+    #endregion
+
+    #region SpoljniRadnik
+
+    public static void dodajSpoljnogRadnika(SpoljniRadnikBasic p)
+    {
+        try
+        {
+            ISession s = DataLayer.GetSession();
+
+            SpoljniRadnik o = new SpoljniRadnik();
+
+            o.DatumAngazovanja = p.DatumAngazovanja;
+            o.Procenat=p.Procenat;
+            o.BrojTelefona=p.BrojTelefona;
+            o.Ime=p.Ime;
+           
+
+            s.SaveOrUpdate(o);
+
+            s.Flush();
+
+            s.Close();
+        }
+        catch (Exception ec)
+        {
+            MessageBox.Show(ec.Message);
+        }
+        finally
+        {
+            if (session != null)
+            {
+                session.Close();
+            }
+        }
+    }
+
+    public static SpoljniRadnikBasic azurirajRadnika(SpoljniRadnikBasic p)
+    {
+        try
+        {
+            ISession s = DataLayer.GetSession();
+
+            SpoljniRadnik o = s.Load<SpoljniRadnik>(p.Id);
+            o.DatumAngazovanja = p.DatumAngazovanja;
+            o.Procenat = p.Procenat;
+            o.BrojTelefona = p.BrojTelefona;
+            o.Ime = p.Ime;
+
+
+
+
+            s.Update(o);
+            s.Flush();
+
+            s.Close();
+        }
+        catch (Exception ec)
+        {
+            MessageBox.Show(ec.Message);
+        }
+        finally
+        {
+            if (session != null)
+            {
+                session.Close();
+            }
+        }
+
+        return p;
+    }
+
+    public static SpoljniRadnikBasic vratiRadnika(int id)
+    {
+        AgentBasic pb = new AgentBasic();
+        try
+        {
+            ISession s = DataLayer.GetSession();
+
+            SpoljniRadnik o = s.Load<SpoljniRadnik>(id);
+            pb = new SpoljniRadnik(o.Ime, o.BrojTelefona, o.DatumAngazovanja, o.Procenat);
+
+            s.Close();
+        }
+        catch (Exception ec)
+        {
+            MessageBox.Show(ec.Message);
+        }
+        finally
+        {
+            if (session != null)
+            {
+                session.Close();
+            }
+        }
+
+        return pb;
+    }
+
+
+
+    #endregion
+
+
+
+    
+    #region Parking
+
+    public static void dodajParking(ParkingBasic p, int idnekretnine)
+    {
+        try
+        {
+            ISession s = DataLayer.GetSession();
+            Nekretnina nekretnina = session.Load<Nekretnina>(idnekretnine);
+
+            Parking o = new Parking();
+
+            o.Cena=p.Cena;
+            o.Javni=p.Javni;
+            o.Nekretnina = nekretnina;
+            
+
+            
+
+
+            s.SaveOrUpdate(o);
+
+            s.Flush();
+
+            s.Close();
+        }
+        catch (Exception ec)
+        {
+            MessageBox.Show(ec.Message);
+        }
+        finally
+        {
+            if (session != null)
+            {
+                session.Close();
+            }
+        }
+    }
+
+    public static ParkingBasic azurirajParking(ParkingBasic p)
+    {
+        try
+        {
+            ISession s = DataLayer.GetSession();
+
+            ParkingBasic o = s.Load<ParkingBasic>(p.ID);
+            o.Cena = p.Cena;
+            o.Javni = p.Javni;
+          
+
+
+
+            s.Update(o);
+            s.Flush();
+
+            s.Close();
+        }
+        catch (Exception ec)
+        {
+            MessageBox.Show(ec.Message);
+        }
+        finally
+        {
+            if (session != null)
+            {
+                session.Close();
+            }
+        }
+
+        return p;
+    }
+
+    public static ParkingBasic vratiParking(int id)
+    {
+        AgentBasic pb = new AgentBasic();
+        try
+        {
+            ISession s = DataLayer.GetSession();
+
+            Parking o = s.Load<Parking>(id);
+            pb = new Parking(o.ID, o.Javni, o.Cena, o.Nekretnina);
+            
+            s.Close();
+        }
+        catch (Exception ec)
+        {
+            MessageBox.Show(ec.Message);
+        }
+        finally
+        {
+            if (session != null)
+            {
+                session.Close();
+            }
+        }
+
+        return pb;
+    }
+
+
+
+    #endregion
 }
 
 
