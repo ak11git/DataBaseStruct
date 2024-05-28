@@ -491,7 +491,7 @@ public class FizickoLicePregled : VlasnikPregled
     public string JMBG { get; set; }
 
 
-
+    public FizickoLicePregled():base(){}
     public FizickoLicePregled(int id, string ime, string prezime, string adresa, string mesto, string drzava, string imerod, string jmbg, DateTime datumrodjenja) : base(id, ime, prezime, adresa, mesto, drzava)
     {
         this.ImeRoditelja = imerod;
@@ -507,7 +507,7 @@ public class PravnoLicePregled : VlasnikPregled
     public string Naziv { get; set; }
 
     public string PIB { get; set; }
-
+    public PravnoLicePregled():base(){}
     public PravnoLicePregled(int id, string ime, string prezime, string adresa, string mesto, string drzava, string PIB, string naziv) : base(id, ime, prezime, adresa, mesto, drzava)
     {
         this.PIB = PIB;
@@ -574,7 +574,7 @@ public class BankovniRacunPregled
 #endregion
 
 
-#region SpoljniSaradnik
+#region SpoljniRadnik
 public class SpoljniRadnikBasic
 {
     public int Id { get; set; }
@@ -617,7 +617,7 @@ public class SpoljniRadnikPregled
 
     public float Procenat { get; set; }
 
-
+    public SpoljniRadnikPregled(){}
     public SpoljniRadnikPregled(int id, string brtel, string ime, DateTime datum, float procemat)
     {
         Id = id;
@@ -667,6 +667,7 @@ public class ZaposlenPogled
     public PoslovnicaBasic Poslovnica { get; set; }
 
     public DateTime DatumZaposlenja { get; set; }
+    public ZaposlenPogled(){}
 
     public ZaposlenPogled(string ime, string jmbg, DateTime datum)
     {
@@ -689,7 +690,7 @@ public class SefBasic : ZaposlenBasic
         DatumPostavljanja = datumpost;
     }
 
-    public SefBasic() { }
+    public SefBasic():base() { }
 
     public SefBasic(string ime, string jMBG, DateTime datumZaposlenja, DateTime datumPostavljanja)
     {
@@ -700,10 +701,11 @@ public class SefBasic : ZaposlenBasic
     }
 }
 
-public class SefPogled : ZaposlenPogled
+public class SefPregled : ZaposlenPogled
 {
     public DateTime DatumPostavljanja { get; set; }
-    public SefPogled(string ime, string jmbg, DateTime datum, DateTime datumpost) : base(ime, jmbg, datum)
+    public SefPregled():base(){}
+    public SefPregled(string ime, string jmbg, DateTime datum, DateTime datumpost) : base(ime, jmbg, datum)
     {
         DatumPostavljanja = datumpost;
     }
@@ -719,7 +721,7 @@ public class AgentBasic : ZaposlenBasic
     public string StrucnaSprema { get; set; }
 
     public IList<AngazujeBasic> Angazovanja { get; set; }
-
+    public AgentBasic():base(){}
 
     public AgentBasic(string ime, string jmbg, PoslovnicaBasic p, DateTime datum, string s) : base(ime, jmbg, p, datum)
     {
@@ -735,13 +737,13 @@ public class AgentBasic : ZaposlenBasic
 
 }
 
-public class AgentPogled : ZaposlenPogled
+public class AgentPregled : ZaposlenPogled
 {
     public string StrucnaSprema { get; set; }
 
 
-
-    public AgentPogled(string ime, string jmbg, DateTime datum, string s) : base(ime, jmbg, datum)
+    public AgentPregled():base(){}
+    public AgentPregled(string ime, string jmbg, DateTime datum, string s) : base(ime, jmbg, datum)
     {
         StrucnaSprema = s;
     }
@@ -856,18 +858,18 @@ public class DodatnaOpremaBasic
     }
 }
 
-public class DodatnaOpremaPogled
+public class DodatnaOpremaPregled
 {
     public int ID { get; set; }
     public string Tip { get; set; }
     public decimal Cena { get; set; }
 
 
-    public DodatnaOpremaPogled()
+    public DodatnaOpremaPregled()
     {
     }
 
-    public DodatnaOpremaPogled(int id, string tip, decimal cena)
+    public DodatnaOpremaPregled(int id, string tip, decimal cena)
     {
         ID = id;
         Tip = tip;
@@ -899,18 +901,18 @@ public class ParkingBasic
     }
 }
 
-public class ParkingPogled
+public class ParkingPregled
 {
     public int ID { get; set; }
     public decimal Cena { get; set; }
     public string Javni { get; set; }
 
 
-    public ParkingPogled()
+    public ParkingPregled()
     {
     }
 
-    public ParkingPogled(int id, decimal cena, string javni, NekretninaBasic nekretnina)
+    public ParkingPregled(int id, decimal cena, string javni, NekretninaPregled nekretnina)
     {
         ID = id;
         Cena = cena;
@@ -950,6 +952,30 @@ public class AngazujePogled
 #region ImaNajam
 public class ImaNajamBasic
 {
+    public int Id { get;}
+     public  Najam Najam { get; set; }
+    public  Nekretnina Nekretnina { get; set; }
+
+    public ImaNajamBasic(){}
+    public  ImaNajamBasic(Najam n,Nekretnina ne){
+        this.Najam=n;
+        this.Nekretnina=ne;
+    }
+    
+
+}
+public class ImaNajamPregled
+{
+    public int Id { get;}
+     public  Najam Najam { get; set; }
+    public  Nekretnina Nekretnina { get; set; }
+
+    public ImaNajamPregled(){}
+   /* public  ImaNajamPregled(Najam n,Nekretnina ne){
+        this.Najam=n;
+        this.Nekretnina=ne;
+    }
+    */
 
 }
 #endregion
@@ -1072,14 +1098,14 @@ public class BrojTelefonaPregled
 
 public class AngazujeIDBasic
 {
-    public SpoljniSaradnikBasic SpoljniSaradnik { get; set; }
+    public SpoljniRadnikBasic SpoljniRadnikBasic { get; set; }
 
     public AgentBasic Agent { get; set; }
     public AngazujeIDBasic() { }
 
-    public AngazujeIDBasic(SpoljniSaradnikBasic s, AgentBasic a)
+    public AngazujeIDBasic(SpoljniRadnikBasic s, AgentBasic a)
     {
-        SpoljniSaradnik = s;
+        SpoljniRadnikBasic = s;
         Agent = a;
     }
 }
