@@ -8,7 +8,7 @@
 
 namespace StanNaDan.Entiteti;
 
-public class BrojtTelefona
+public class BrojTelefona
 {
 
     public virtual int ID { get; set; }

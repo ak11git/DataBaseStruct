@@ -30,6 +30,13 @@
         {
             groupBox1 = new GroupBox();
             listView1 = new ListView();
+            ID = new ColumnHeader();
+            DatumOd = new ColumnHeader();
+            DatumDo = new ColumnHeader();
+            CenaPoDanu = new ColumnHeader();
+            BrojDana = new ColumnHeader();
+            Popust = new ColumnHeader();
+            Provizija = new ColumnHeader();
             button1 = new Button();
             label2 = new Label();
             label1 = new Label();
@@ -50,11 +57,48 @@
             // 
             // listView1
             // 
+            listView1.Columns.AddRange(new ColumnHeader[] { ID, DatumOd, DatumDo, CenaPoDanu, BrojDana, Popust, Provizija });
             listView1.Location = new Point(19, 30);
             listView1.Name = "listView1";
             listView1.Size = new Size(691, 474);
             listView1.TabIndex = 0;
             listView1.UseCompatibleStateImageBehavior = false;
+            listView1.View = View.Details;
+            // 
+            // ID
+            // 
+            ID.Text = "ID";
+            ID.Width = 30;
+            // 
+            // DatumOd
+            // 
+            DatumOd.Text = "Datum Od:";
+            DatumOd.Width = 130;
+            // 
+            // DatumDo
+            // 
+            DatumDo.Text = "Datum Do:";
+            DatumDo.Width = 130;
+            // 
+            // CenaPoDanu
+            // 
+            CenaPoDanu.Text = "Cena Po Danu: ";
+            CenaPoDanu.Width = 100;
+            // 
+            // BrojDana
+            // 
+            BrojDana.Text = "Broj Dana: ";
+            BrojDana.Width = 80;
+            // 
+            // Popust
+            // 
+            Popust.Text = "Popust:";
+            Popust.Width = 80;
+            // 
+            // Provizija
+            // 
+            Provizija.Text = "Provizija: ";
+            Provizija.Width = 80;
             // 
             // button1
             // 
@@ -131,5 +175,12 @@
         private Label label1;
         private TextBox textBox1;
         private Label label3;
+        private ColumnHeader ID;
+        private ColumnHeader DatumOd;
+        private ColumnHeader DatumDo;
+        private ColumnHeader CenaPoDanu;
+        private ColumnHeader BrojDana;
+        private ColumnHeader Popust;
+        private ColumnHeader Provizija;
     }
 }

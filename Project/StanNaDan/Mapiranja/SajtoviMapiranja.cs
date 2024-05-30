@@ -26,7 +26,7 @@ public class SajtoviMapiranja : ClassMap<StanNaDan.Entiteti.Sajtovi>
 
         Map(x => x.Sajt, "SAJTOVI");
 
-        References(x => x.Nekretnina).Column("ID_NEKRETNINE").Not.Nullable();
+        References(x => x.Nekretnina).Column("ID_NEKRETNINA").Not.Nullable();
 
     }
 }

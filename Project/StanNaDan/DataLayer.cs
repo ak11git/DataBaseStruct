@@ -39,7 +39,7 @@ namespace StanNaDan
                 var cfg = OracleManagedDataClientConfiguration.Oracle10
                 .ShowSql()
                 .ConnectionString(c =>
-                    c.Is("Data Source=gislab-oracle.elfak.ni.ac.rs:1521/SBP_PDB;User Id=S18577;Password=acasomijanatecko"));
+                    c.Is("Data Source=gislab-oracle.elfak.ni.ac.rs:1521/SBP_PDB;User Id=S18856;Password=S18856"));
 
                 return Fluently.Configure()
                     .Database(cfg)

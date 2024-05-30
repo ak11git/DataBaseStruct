@@ -35,7 +35,7 @@ public class Vlasnik
 
     public virtual IList<BankovniRacun>? BankovniRacuni { get; set; }
 
-    public virtual IList<BrojtTelefona>? BrojeviTelefona { get; set; }
+    public virtual IList<BrojTelefona>? BrojeviTelefona { get; set; }
 
     public virtual IList<Email>? Emailovi { get; set; }
 
@@ -46,7 +46,7 @@ public class Vlasnik
     {
         BankovniRacuni = new List<BankovniRacun>();
 
-        BrojeviTelefona = new List<BrojtTelefona>();
+        BrojeviTelefona = new List<BrojTelefona>();
 
         Emailovi = new List<Email>();
 

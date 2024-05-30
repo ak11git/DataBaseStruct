@@ -29,10 +29,10 @@ namespace StanNaDan.Forme
             v.Adresa = textBox3.Text;
             v.Mesto = textBox4.Text;
             v.Drzava = comboBox1.SelectedItem.ToString();
-            v.Naziv = textBox5.Text;
-            v.PIB = textBox6.Text;
+            //v.Naziv = textBox5.Text;
+            //v.PIB = textBox6.Text;
             v.Nekretnine.Add(nekretnina);
-            DTOManager.DodajVlasnika(v);
+            //DTOManager.DodajVlasnika(v);
             MessageBox.Show("Uspesno ste dodali novog vlasnika!");
             this.Close();
         }

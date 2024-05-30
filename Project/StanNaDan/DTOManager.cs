@@ -26,30 +26,26 @@ public class DTOManager
     {
         List<NekretninaPregled> nekretninaInfo = new List<NekretninaPregled>();
 
-        ISession session = null;
-
         try
         {
-            session = DataLayer.GetSession();
+            ISession session = DataLayer.GetSession();
 
-            IEnumerable<Nekretnina> nekretnine = from pr in session.Query<Nekretnina>() select pr;
+            IEnumerable<Nekretnina> nekretnine = from k in session.Query<Nekretnina>() select k;
 
-            foreach (Nekretnina pk in nekretnine)
+            MessageBox.Show(nekretnine.Count().ToString());
+
+            foreach (Nekretnina k in nekretnine)
             {
-                nekretninaInfo.Add(new NekretninaPregled(pk.ID, pk.TipNekretnine, pk.KucniBroj, pk.ImeUlice, pk.Kvadratura,
-                                                           pk.BrojKupatila, pk.BrojTerasa, pk.BrojSoba, pk.Internet, pk.TV,
-
-                                                           pk.Kuhinja, pk.Dimenzije, pk.TipKreveta));
+                nekretninaInfo.Add(new NekretninaPregled(k.ID, k.TipNekretnine, k.KucniBroj, k.ImeUlice, k.Kvadratura,
+                                                           k.BrojKupatila, k.BrojTerasa, k.BrojSoba, k.Internet, k.TV,
+                                                           k.Kuhinja, k.Dimenzije, k.TipKreveta));
             }
 
+            session.Close();
         }
         catch (Exception ex)
         {
             MessageBox.Show(ex.Message);
-        }
-        finally
-        {
-            session.Close();
         }
 
         return nekretninaInfo;
@@ -586,14 +582,13 @@ public class DTOManager
 
     #region Vlasnik
 
-    public static List<VlasnikPregled> GetVlasnikPregled()
+    public static List<VlasnikPregled> GetVlasnikePregled()
     {
-        ISession session = null;
         List<VlasnikPregled> vlasnikInfo = new List<VlasnikPregled>();
 
         try
         {
-            session = DataLayer.GetSession();
+            ISession session = DataLayer.GetSession();
 
             IEnumerable<Vlasnik> vlasnici = from v in session.Query<Vlasnik>() select v;
 
@@ -602,14 +597,11 @@ public class DTOManager
                 vlasnikInfo.Add(new VlasnikPregled(v.Id, v.Ime, v.Prezime, v.Adresa, v.Mesto, v.Drzava));
             }
 
+            session.Close();
         }
         catch (Exception ex)
         {
             MessageBox.Show(ex.Message);
-        }
-        finally
-        {
-            session.Close();
         }
 
         return vlasnikInfo;
@@ -781,7 +773,7 @@ public class DTOManager
                 p.Naziv = vb.Naziv;
                 p.Drzava = vb.Drzava;
                 p.BankovniRacuni = (IList<BankovniRacun>?)vb.BankovniRacuni;
-                p.BrojeviTelefona = (IList<BrojtTelefona>?)vb.BrojeviTelefona;
+                p.BrojeviTelefona = (IList<BrojTelefona>?)vb.BrojeviTelefona;
                 p.Ime = vb.Ime;
                 p.Prezime = vb.Prezime;
                 p.Mesto = vb.Mesto;
@@ -821,7 +813,7 @@ public class DTOManager
                 p.DatumRodjenja = vb.DatumRodjenja;
                 p.Drzava = vb.Drzava;
                 p.BankovniRacuni = (IList<BankovniRacun>?)vb.BankovniRacuni;
-                p.BrojeviTelefona = (IList<BrojtTelefona>?)vb.BrojeviTelefona;
+                p.BrojeviTelefona = (IList<BrojTelefona>?)vb.BrojeviTelefona;
                 p.Ime = vb.Ime;
                 p.Prezime = vb.Prezime;
                 p.Mesto = vb.Mesto;
@@ -993,7 +985,7 @@ public class DTOManager
         {
             session = DataLayer.GetSession();
             PravnoLice p = session.Load<PravnoLice>(id);
-            BrojtTelefona brtel = session.Load<BrojtTelefona>(brb.ID);
+            BrojTelefona brtel = session.Load<BrojTelefona>(brb.ID);
             p.BrojeviTelefona.Add(brtel);
             brtel.Vlasnik = p;
 
@@ -1019,7 +1011,7 @@ public class DTOManager
         {
             session = DataLayer.GetSession();
             FizickoLice p = session.Load<FizickoLice>(id);
-            BrojtTelefona brtel = session.Load<BrojtTelefona>(brb.ID);
+            BrojTelefona brtel = session.Load<BrojTelefona>(brb.ID);
             p.BrojeviTelefona.Add(brtel);
             brtel.Vlasnik = p;
 
@@ -1247,10 +1239,6 @@ public class DTOManager
 
     #endregion
 
-
-
-
-
     #region Najam
 
     //dodaj najam, da li moze ovako?
@@ -1334,27 +1322,28 @@ public class DTOManager
 
     public static void ObrisiNajam(int najamId)
     {
-        ISession session = null;
-
         try
         {
-            session = DataLayer.GetSession();
+            ISession session = DataLayer.GetSession();
 
             Najam najam = session.Load<Najam>(najamId);
+
+            //najam.ListaNajmova.Clear();
+
+            /*ImaNajam imanajam = (from im in session.Query<ImaNajam>()
+                                 where im.Najam.ID == najamId
+                                 select im).FirstOrDefault();
+            session.Delete(imanajam);
+            session.Flush();*/
+
             session.Delete(najam);
             session.Flush();
 
+            session.Close();
         }
         catch (Exception ec)
         {
             MessageBox.Show(ec.Message);
-        }
-        finally
-        {
-            if (session != null)
-            {
-                session.Close();
-            }
         }
     }
 

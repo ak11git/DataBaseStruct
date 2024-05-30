@@ -15,7 +15,7 @@ namespace StanNaDan.Mapiranja;
 // FOREIGN KEY(ID_VLASNIKA) REFERENCES VLASNIK(ID)
 //);
 
-public class BrojTelefonaMapiranja : ClassMap<StanNaDan.Entiteti.BrojtTelefona>
+public class BrojTelefonaMapiranja : ClassMap<StanNaDan.Entiteti.BrojTelefona>
 {
 
     public BrojTelefonaMapiranja()
@@ -27,9 +27,5 @@ public class BrojTelefonaMapiranja : ClassMap<StanNaDan.Entiteti.BrojtTelefona>
         Map(x => x.Broj).Column("BROJ");
 
         References(x => x.Vlasnik).Column("ID_VLASNIKA").LazyLoad();
-
-
-
-
     }
 }

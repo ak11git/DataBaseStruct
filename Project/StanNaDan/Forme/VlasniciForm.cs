@@ -28,15 +28,15 @@ namespace StanNaDan.Forme
         {
             this.brojVlasnika = 0;
 
-            /*List<VlasnikBasic> listaVlasnika = DTOManager.vratiSveProizvodeBasic();
+            List<VlasnikPregled> listaVlasnika = DTOManager.GetVlasnikePregled();
             this.listView1.Items.Clear();
 
-            foreach (VlasnikBasic vb in listaVlasnika)
+            foreach (VlasnikPregled vb in listaVlasnika)
             {
-                ListViewItem item = new ListViewItem(new string[] { p.BarKod.ToString(), p.Tip, p.Naziv, p.Proizvodjac });
+                ListViewItem item = new ListViewItem(new string[] { vb.Ime, vb.Prezime });
                 this.listView1.Items.Add(item);
                 this.brojVlasnika++;
-            }*/
+            }
 
             textBox1.Text = this.brojVlasnika.ToString();
             this.listView1.Refresh();

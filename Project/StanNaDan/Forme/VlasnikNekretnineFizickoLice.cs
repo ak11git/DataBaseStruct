@@ -42,8 +42,8 @@ namespace StanNaDan.Forme
 
         private void button11_Click(object sender, EventArgs e)
         {
-            DodajVlasnikaFizicko forma = new DodajVlasnikaFizicko(nekretnina);
-            forma.ShowDialog();
+            //DodajVlasnikaFizicko forma = new DodajVlasnikaFizicko(nekretnina);
+            //forma.ShowDialog();
             popuniPodacima();
         }
 

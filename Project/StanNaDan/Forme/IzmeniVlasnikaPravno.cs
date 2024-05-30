@@ -34,8 +34,8 @@ namespace StanNaDan.Forme
             textBox3.Text = vlasnik.Adresa;
             textBox4.Text = vlasnik.Mesto;
             comboBox1.SelectedItem = vlasnik.Drzava;
-            textBox5.Text = vlasnik.Naziv;
-            textBox6.Text = vlasnik.PIB;
+            //textBox5.Text = vlasnik.Naziv;
+            //textBox6.Text = vlasnik.PIB;
         }
 
         private void button11_Click(object sender, EventArgs e)
@@ -45,12 +45,12 @@ namespace StanNaDan.Forme
             v.Prezime = textBox2.Text;
             v.Adresa = textBox3.Text;
             v.Mesto = textBox4.Text;
-            v.Drzava = comboBox1.SelectedItem.ToString();
-            v.Naziv = textBox5.Text;
-            v.PIB = textBox6.Text;
+            //v.Drzava = comboBox1.SelectedItem.ToString();
+            //v.Naziv = textBox5.Text;
+            //v.PIB = textBox6.Text;
             v.Nekretnine.Add(nekretnina);
 
-            DTOManager.AzurirajVlasnika(v, v.Id);
+            //DTOManager.AzurirajVlasnika(v, v.Id);
             MessageBox.Show("Uspesno ste izmenili vlasnika!");
             this.Close();
         }

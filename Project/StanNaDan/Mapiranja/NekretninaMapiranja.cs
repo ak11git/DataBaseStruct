@@ -51,7 +51,7 @@ namespace StanNaDan.Mapiranja
             // Id(x => x.Id, "ID").GeneratedBy.TriggerIdentity().UnsavedValue(-1);
             Id(x => x.ID, "ID").GeneratedBy.TriggerIdentity();
 
-            Map(x => x.KucniBroj, "KUCNO_BROJ");
+            Map(x => x.KucniBroj, "KUCNI_BROJ");
             Map(x => x.ImeUlice, "IME_ULICE");
             Map(x => x.Kvadratura, "KVADRATURA");
             Map(x => x.BrojKupatila, "BROJ_KUPATILA");
@@ -65,8 +65,8 @@ namespace StanNaDan.Mapiranja
 
 
             References(x => x.Vlasnik).Column("ID_VLASNIKA").LazyLoad();
-            HasMany(x => x.DodatnaOprema).KeyColumn("ID").LazyLoad().Cascade.All().Inverse();
-            HasMany(x => x.Parkinzi).KeyColumn("ID").LazyLoad().Cascade.All().Inverse();
+            HasMany(x => x.DodatnaOprema).KeyColumn("ID_OPREME").LazyLoad().Cascade.All().Inverse();
+            HasMany(x => x.Parkinzi).KeyColumn("ID_PARKINGA").LazyLoad().Cascade.All().Inverse();
             HasMany(x => x.ListaNajmova).KeyColumn("ID").LazyLoad().Cascade.All().Inverse();
             HasMany(x => x.Sajtovi).KeyColumn("ID").LazyLoad().Cascade.All().Inverse();
 
@@ -105,7 +105,6 @@ namespace StanNaDan.Mapiranja
         public KucaMapiranja()
         {
             DiscriminatorValue("KUCA");
-
             Map(x => x.Spratnost, "SPRATNOST");
             Map(x => x.Dvoriste, "DVORISTE");
         }

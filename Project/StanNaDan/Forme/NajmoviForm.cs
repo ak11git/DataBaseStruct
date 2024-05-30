@@ -27,15 +27,15 @@ namespace StanNaDan.Forme
         {
             this.brojNajmova = 0;
 
-            //List<NajamBasic> listaNajmova = DTOManager.vratiSveProizvodeBasic();
+            List<NajamPregled> listaNajmova = DTOManager.GetNajamPregled();
             this.listView1.Items.Clear();
 
-            /*foreach (NajamBasic nb in listaNajmova)
+            foreach (NajamPregled np in listaNajmova)
             {
-                ListViewItem item = new ListViewItem(new string[] { nb.BarKod.ToString(), nb.Tip, nb.Naziv, nb.Proizvodjac });
+                ListViewItem item = new ListViewItem(new string[] { np.ID.ToString(), np.DatumOd.ToString(), np.DatumDo.ToString(), np.CenaPoDanu.ToString(), np.BrojDana.ToString(), np.Popust.ToString(), np.Provizija.ToString() });
                 this.listView1.Items.Add(item);
                 this.brojNajmova++;
-            }*/
+            }
 
             textBox1.Text = this.brojNajmova.ToString();
             this.listView1.Refresh();
@@ -57,8 +57,8 @@ namespace StanNaDan.Forme
 
             if (result == DialogResult.OK)
             {
-                //DTOManager.obrisiIgrackuIzSistema(idNajma);
-                MessageBox.Show("Brisanje igracke je uspesno obavljeno!");
+                DTOManager.ObrisiNajam(idNajma);
+                MessageBox.Show("Brisanje najma je uspesno obavljeno!");
                 this.popuniPodacima();
             }
             else

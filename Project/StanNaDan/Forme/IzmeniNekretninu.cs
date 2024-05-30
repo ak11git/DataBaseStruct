@@ -77,7 +77,7 @@ namespace StanNaDan.Forme
                 comboBox1.SelectedItem.ToString() == "Stan" ||
                     comboBox1.SelectedItem.ToString() == "Soba")
                 {
-                    DTOManager.AzurirajNekretninu(this.nekretnina, this.nekretnina.ID);
+                    //DTOManager.AzurirajNekretninu(this.nekretnina, this.nekretnina.ID);
                     MessageBox.Show("Uspesno ste izmenili ovu nekretninu!");
                     this.Close();
                 }

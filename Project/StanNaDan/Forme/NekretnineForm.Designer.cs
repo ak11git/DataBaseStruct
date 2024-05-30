@@ -29,6 +29,18 @@
         private void InitializeComponent()
         {
             listView1 = new ListView();
+            ID = new ColumnHeader();
+            Tip = new ColumnHeader();
+            KucniBr = new ColumnHeader();
+            NazivUlice = new ColumnHeader();
+            Kvadratura = new ColumnHeader();
+            BrojKupatila = new ColumnHeader();
+            BrojTerasa = new ColumnHeader();
+            BrojSoba = new ColumnHeader();
+            Internet = new ColumnHeader();
+            Kuhinja = new ColumnHeader();
+            Dimenzije = new ColumnHeader();
+            TipKreveta = new ColumnHeader();
             button1 = new Button();
             button2 = new Button();
             button3 = new Button();
@@ -48,6 +60,7 @@
             button11 = new Button();
             label3 = new Label();
             textBox1 = new TextBox();
+            TV = new ColumnHeader();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -59,11 +72,66 @@
             // 
             // listView1
             // 
+            listView1.Columns.AddRange(new ColumnHeader[] { ID, Tip, KucniBr, NazivUlice, Kvadratura, BrojKupatila, BrojTerasa, BrojSoba, Internet, TV, Kuhinja, Dimenzije, TipKreveta });
             listView1.Location = new Point(18, 41);
             listView1.Name = "listView1";
             listView1.Size = new Size(633, 548);
             listView1.TabIndex = 0;
             listView1.UseCompatibleStateImageBehavior = false;
+            listView1.View = View.Details;
+            // 
+            // ID
+            // 
+            ID.Text = "ID:";
+            // 
+            // Tip
+            // 
+            Tip.Text = "Tip:";
+            // 
+            // KucniBr
+            // 
+            KucniBr.Text = "Kucni Broj:";
+            // 
+            // NazivUlice
+            // 
+            NazivUlice.Text = "Naziv Ulice:";
+            // 
+            // Kvadratura
+            // 
+            Kvadratura.Text = "Kvadratura:";
+            // 
+            // BrojKupatila
+            // 
+            BrojKupatila.Text = "Broj Kupatila:";
+            // 
+            // BrojTerasa
+            // 
+            BrojTerasa.DisplayIndex = 7;
+            BrojTerasa.Text = "Broj Terasa:";
+            // 
+            // BrojSoba
+            // 
+            BrojSoba.DisplayIndex = 6;
+            BrojSoba.Text = "Broj Soba:";
+            // 
+            // Internet
+            // 
+            Internet.Text = "Internet:";
+            // 
+            // Kuhinja
+            // 
+            Kuhinja.DisplayIndex = 9;
+            Kuhinja.Text = "Kuhinja:";
+            // 
+            // Dimenzije
+            // 
+            Dimenzije.DisplayIndex = 10;
+            Dimenzije.Text = "Dimenzije:";
+            // 
+            // TipKreveta
+            // 
+            TipKreveta.DisplayIndex = 11;
+            TipKreveta.Text = "Tip Kreveta:";
             // 
             // button1
             // 
@@ -191,6 +259,7 @@
             button8.TabIndex = 9;
             button8.Text = "Prikazi Kvart Nekretnine";
             button8.UseVisualStyleBackColor = false;
+            button8.Click += button8_Click;
             // 
             // groupBox5
             // 
@@ -271,6 +340,11 @@
             textBox1.Size = new Size(72, 31);
             textBox1.TabIndex = 19;
             // 
+            // TV
+            // 
+            TV.DisplayIndex = 12;
+            TV.Text = "TV:";
+            // 
             // NekretnineForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -322,5 +396,18 @@
         private Button button10;
         private Label label3;
         private TextBox textBox1;
+        private ColumnHeader ID;
+        private ColumnHeader Tip;
+        private ColumnHeader KucniBr;
+        private ColumnHeader NazivUlice;
+        private ColumnHeader Kvadratura;
+        private ColumnHeader BrojKupatila;
+        private ColumnHeader BrojSoba;
+        private ColumnHeader BrojTerasa;
+        private ColumnHeader Internet;
+        private ColumnHeader Kuhinja;
+        private ColumnHeader Dimenzije;
+        private ColumnHeader TipKreveta;
+        private ColumnHeader TV;
     }
 }

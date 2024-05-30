@@ -36,14 +36,5 @@ public class Najam
     public Najam()
     {
         ListaNajmova = new List<ImaNajam>();
-
-
     }
-
-
-
-
-
-
-
 }

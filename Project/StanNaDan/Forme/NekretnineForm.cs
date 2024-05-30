@@ -17,7 +17,7 @@ namespace StanNaDan.Forme
             InitializeComponent();
         }
 
-        public int brojNekretnina = 0;
+        public int brojNekretnina;
 
         private void NekretnineForm_Load(object sender, EventArgs e)
         {
@@ -28,15 +28,31 @@ namespace StanNaDan.Forme
         {
             this.brojNekretnina = 0;
 
-            /*List<NekretninaBasic> listaNekretnina = DTOManager.vratiSveProizvodeBasic();
+            List<NekretninaPregled> listaNekretnina = DTOManager.GetNekretninaPregled();
             this.listView1.Items.Clear();
 
-            foreach (NekretninaBasic nb in listaNekretnina)
+            if (listaNekretnina == null)
             {
-                ListViewItem item = new ListViewItem(new string[] { p.BarKod.ToString(), p.Tip, p.Naziv, p.Proizvodjac });
+                MessageBox.Show("Lista nekretnina je null.");
+            }
+
+            if (listaNekretnina.Count == 0)
+            {
+                MessageBox.Show("Lista nekretnina je prazna.");
+            }
+
+            foreach (NekretninaPregled np in listaNekretnina)
+            {
+                if (np == null)
+                {
+                    MessageBox.Show("NekretninaPregled objekat je null.");
+                    continue;
+                }
+
+                ListViewItem item = new ListViewItem(new string[] { np.TipNekretnine, np.ImeUlice, np.KucniBroj.ToString() });
                 this.listView1.Items.Add(item);
                 this.brojNekretnina++;
-            }*/
+            }
 
             textBox1.Text = this.brojNekretnina.ToString();
             this.listView1.Refresh();
@@ -123,6 +139,11 @@ namespace StanNaDan.Forme
         {
             BrojeviRacunaVlasnika forma = new BrojeviRacunaVlasnika();
             forma.ShowDialog();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -121,7 +121,7 @@ namespace StanNaDan.Forme
                     comboBox1.SelectedItem.ToString() == "Stan" ||
                     comboBox1.SelectedItem.ToString() == "Soba")
                 {
-                    DTOManager.DodajNekretninu(this.nekretnina);
+                    //DTOManager.dodajNek(this.nekretnina);
                     MessageBox.Show("Uspesno ste dodali novu nekretninu!");
                     this.Close();
                 }

@@ -36,15 +36,6 @@ public class AgentMapiranja : SubclassMap<StanNaDan.Entiteti.Agent>
         // FOREIGN KEY(JMBG) REFERENCES ZAPOSLEN(JMBG)
         //);
 
-
-
-
-
-
-
-
-
-
     }
 
 }

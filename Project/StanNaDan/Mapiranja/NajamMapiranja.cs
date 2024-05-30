@@ -27,10 +27,7 @@ public class NajamMapiranja : ClassMap<StanNaDan.Entiteti.Najam>
 
         HasMany(x => x.ListaNajmova).KeyColumn("ID").LazyLoad().Cascade.All().Inverse();
 
-        //strani kljucevi
-
         References(x => x.Agent).Column("JMBG_AGENTA").LazyLoad();
-        // HasMany(x => x.DodatnaOprema).KeyColumn("ID").LazyLoad().Cascade.All().Inverse();
 
     }
     // CREATE TABLE NAJAM(

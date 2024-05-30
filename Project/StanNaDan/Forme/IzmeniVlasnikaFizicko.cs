@@ -12,10 +12,12 @@ namespace StanNaDan.Forme
 {
     public partial class IzmeniVlasnikaFizicko : Form
     {
-        public IzmeniVlasnikaFizicko()
+        VlasnikBasic vlasnik;
+        public IzmeniVlasnikaFizicko(VlasnikBasic vlasnik)
         {
             InitializeComponent();
             textBox6.MaxLength = 13;
+            this.vlasnik = vlasnik;
         }
 
         private void textBox6_KeyPress(object sender, KeyPressEventArgs e)
