@@ -82,7 +82,7 @@
             // 
             button1.BackColor = Color.FromArgb(255, 192, 128);
             button1.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
-            button1.Location = new Point(1029, 334);
+            button1.Location = new Point(1029, 381);
             button1.Name = "button1";
             button1.Size = new Size(151, 103);
             button1.TabIndex = 3;
@@ -389,7 +389,7 @@
             listView2.Columns.AddRange(new ColumnHeader[] { Naziv, Zona });
             listView2.Location = new Point(6, 30);
             listView2.Name = "listView2";
-            listView2.Size = new Size(196, 101);
+            listView2.Size = new Size(196, 160);
             listView2.TabIndex = 52;
             listView2.UseCompatibleStateImageBehavior = false;
             listView2.View = View.Details;
@@ -417,7 +417,7 @@
             groupBox2.Controls.Add(listView2);
             groupBox2.Location = new Point(712, 294);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(208, 143);
+            groupBox2.Size = new Size(208, 196);
             groupBox2.TabIndex = 54;
             groupBox2.TabStop = false;
             groupBox2.Text = "Kvartovi";
@@ -427,7 +427,7 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(1207, 457);
+            ClientSize = new Size(1207, 502);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Controls.Add(comboBox2);

@@ -98,14 +98,14 @@ public class DTOManager
 
 
 
-            nb = new KucaPregled(n.ID, n.TipNekretnine, n.KucniBroj, n.ImeUlice,
+            nb = new KucaPregled(n.ID, "KUCA", n.KucniBroj, n.ImeUlice,
                                                      n.Kvadratura, n.BrojKupatila, n.BrojTerasa,
                                                     n.BrojSoba, n.Internet, n.TV, n.Kuhinja,
                                                      n.Dimenzije, n.TipKreveta, n.Spratnost, n.Dvoriste);
         }
         catch (Exception ex)
         {
-            MessageBox.Show(ex.Message);
+            return null;
         }
         finally
         {
@@ -125,16 +125,15 @@ public class DTOManager
 
             Stan n = session.Load<Stan>(nekretninaID);
 
-
-
-            nb = new StanPregled(n.ID, n.TipNekretnine, n.KucniBroj, n.ImeUlice,
+            nb = new StanPregled(n.ID, "STAN", n.KucniBroj, n.ImeUlice,
                                                      n.Kvadratura, n.BrojKupatila, n.BrojTerasa,
                                                     n.BrojSoba, n.Internet, n.TV, n.Kuhinja,
                                                      n.Dimenzije, n.TipKreveta, n.Sprat, n.Lift);
+
         }
         catch (Exception ex)
         {
-            MessageBox.Show(ex.Message);
+            return null;
         }
         finally
         {
@@ -156,14 +155,14 @@ public class DTOManager
 
 
 
-            nb = new SobaPregled(n.ID, n.TipNekretnine, n.KucniBroj, n.ImeUlice,
+            nb = new SobaPregled(n.ID, "SOBA", n.KucniBroj, n.ImeUlice,
                                                      n.Kvadratura, n.BrojKupatila, n.BrojTerasa,
                                                     n.BrojSoba, n.Internet, n.TV, n.Kuhinja,
                                                      n.Dimenzije, n.TipKreveta, n.Objekat);
         }
         catch (Exception ex)
         {
-            MessageBox.Show(ex.Message);
+            return null;
         }
         finally
         {
@@ -336,7 +335,7 @@ public class DTOManager
             Vlasnik v = session.Load<Vlasnik>(kb.Vlasnik.Id);
 
             Kuca n = new Kuca();
-            n.ID = kb.ID; //ID stavlja null?
+            //n.ID = kb.ID; //ID stavlja null?
             n.TipNekretnine = kb.TipNekretnine;
             n.KucniBroj = kb.KucniBroj;
             n.ImeUlice = kb.ImeUlice;
@@ -378,7 +377,7 @@ public class DTOManager
 
 
             Stan n = new Stan();
-            n.ID = nb.ID;
+            //n.ID = nb.ID;
             n.TipNekretnine = nb.TipNekretnine;
             n.KucniBroj = nb.KucniBroj;
             n.ImeUlice = nb.ImeUlice;
@@ -422,7 +421,7 @@ public class DTOManager
             Vlasnik v = session.Load<Vlasnik>(nb.Vlasnik.Id);
 
             Soba n = new Soba();
-            n.ID = nb.ID;
+            //n.ID = nb.ID;
             n.TipNekretnine = nb.TipNekretnine;
             n.KucniBroj = nb.KucniBroj;
             n.ImeUlice = nb.ImeUlice;
@@ -462,10 +461,10 @@ public class DTOManager
         {
             session = DataLayer.GetSession();
 
-            Nekretnina n = session.Load<Nekretnina>(idNekretnine);
+            Nekretnina n = session.Get<Nekretnina>(idNekretnine);
             if (n == null)
                 return false;
-            var dodatnaOprema = from p in session.Query<DodatnaOprema>()
+            /*var dodatnaOprema = from p in session.Query<DodatnaOprema>()
                                 where p.Nekretnina.ID == idNekretnine
                                 select p;
 
@@ -500,7 +499,8 @@ public class DTOManager
             {
                 session.Delete(najamItem);
             }
-
+*/
+            //session.Delete(n);
             session.Delete(n);
             session.Flush();
 
@@ -508,7 +508,7 @@ public class DTOManager
         }
         catch (Exception ex)
         {
-            MessageBox.Show(ex.Message);
+            return false;
         }
 
         return true;

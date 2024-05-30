@@ -24,8 +24,9 @@ namespace StanNaDan.Forme
 
         }
 
-        private void SajtoviNekretnine_Load(object sender, EventArgs e)
+        private void popuni()
         {
+            this.listView1.Items.Clear();
             foreach (SajtoviPregled sp in listaSajtova)
             {
                 if (sp == null)
@@ -38,6 +39,10 @@ namespace StanNaDan.Forme
                 this.listView1.Items.Add(item);
             }
             this.listView1.Refresh();
+        }
+        private void SajtoviNekretnine_Load(object sender, EventArgs e)
+        {
+            popuni();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -81,12 +86,17 @@ namespace StanNaDan.Forme
                 textBox1.Clear();
                 textBox1.Visible = false;
 
-                listView1.Refresh();
+                popuni();
             }
             else
             {
                 MessageBox.Show("Tekst mora da počinje sa 'www.'!");
             }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            popuni();
         }
     }
 }

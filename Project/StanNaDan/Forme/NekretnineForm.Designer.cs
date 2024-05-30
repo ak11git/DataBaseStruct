@@ -58,6 +58,7 @@
             button11 = new Button();
             label3 = new Label();
             textBox1 = new TextBox();
+            button5 = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -84,7 +85,7 @@
             // Tip
             // 
             Tip.Text = "Tip:";
-            Tip.Width = 40;
+            Tip.Width = 70;
             // 
             // KucniBr
             // 
@@ -281,7 +282,7 @@
             groupBox7.Size = new Size(300, 148);
             groupBox7.TabIndex = 11;
             groupBox7.TabStop = false;
-            groupBox7.Text = "Najmovi";
+            groupBox7.Text = "Dodatna Oprema";
             // 
             // button11
             // 
@@ -291,7 +292,7 @@
             button11.Name = "button11";
             button11.Size = new Size(223, 77);
             button11.TabIndex = 12;
-            button11.Text = "Prikazi Najmove Nekretnine";
+            button11.Text = "Prikazi Dodatnu Opremu Nekretnine";
             button11.UseVisualStyleBackColor = false;
             button11.Click += button11_Click;
             // 
@@ -311,12 +312,25 @@
             textBox1.Size = new Size(72, 31);
             textBox1.TabIndex = 19;
             // 
+            // button5
+            // 
+            button5.BackColor = Color.FromArgb(255, 192, 128);
+            button5.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
+            button5.Location = new Point(700, 573);
+            button5.Name = "button5";
+            button5.Size = new Size(142, 76);
+            button5.TabIndex = 9;
+            button5.Text = "Refresh";
+            button5.UseVisualStyleBackColor = false;
+            button5.Click += button5_Click_1;
+            // 
             // NekretnineForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(1352, 690);
+            Controls.Add(button5);
             Controls.Add(label3);
             Controls.Add(textBox1);
             Controls.Add(groupBox7);
@@ -370,5 +384,6 @@
         private ColumnHeader Dimenzije;
         private ColumnHeader TipKreveta;
         private ColumnHeader TV;
+        private Button button5;
     }
 }

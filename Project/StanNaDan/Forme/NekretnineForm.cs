@@ -34,20 +34,37 @@ namespace StanNaDan.Forme
 
             foreach (NekretninaPregled np in listaNekretnina)
             {
+                KucaPregled kuca = null;
+                StanPregled stan = null;
+                SobaPregled soba = null;
+
                 if (np == null)
                 {
                     MessageBox.Show("NekretninaPregled objekat je null.");
                     continue;
                 }
+                //MessageBox.Show(np.GetType().ToString());
 
-                //MessageBox.Show(np.TipNekretnine);
+                string tip = "";
+                kuca = DTOManager.GetKucaPregled(np.ID);
+                stan = DTOManager.GetStanPregled(np.ID);
+                soba = DTOManager.GetSobaPregled(np.ID);
 
-                ListViewItem item = new ListViewItem(new string[] { np.ID.ToString(), np.TipNekretnine, np.KucniBroj.ToString(),
+                if (kuca != null)
+                    tip = "KUCA";
+                else if (stan != null)
+                    tip = "STAN";
+                else if (soba != null)
+                    tip = "SOBA";
+
+
+                ListViewItem item = new ListViewItem(new string[] { np.ID.ToString(), tip, np.KucniBroj.ToString(),
                                                                     np.ImeUlice, np.Kvadratura.ToString(), np.BrojKupatila.ToString(),
                                                                     np.BrojTerasa.ToString(), np.BrojSoba.ToString(), np.Internet.ToString(),
                                                                     np.TV.ToString(), np.Kuhinja.ToString(), np.Dimenzije, np.TipKreveta});
                 this.listView1.Items.Add(item);
                 this.brojNekretnina++;
+
             }
 
             textBox1.Text = this.brojNekretnina.ToString();
@@ -68,7 +85,7 @@ namespace StanNaDan.Forme
                 return;
             }
 
-            int idProdavnice = Int32.Parse(listView1.SelectedItems[0].SubItems[0].Text);
+            int idNekretnine = Int32.Parse(listView1.SelectedItems[0].SubItems[0].Text);
             string poruka = "Da li zelite da obrišete izabranu nekretninu?";
             string title = "Pitanje";
             MessageBoxButtons buttons = MessageBoxButtons.OKCancel;
@@ -76,9 +93,15 @@ namespace StanNaDan.Forme
 
             if (result == DialogResult.OK)
             {
-                //DTOManager.obrisiProdavnicu(idProdavnice);
-                MessageBox.Show("Brisanje nekretnine je uspešno obavljeno!");
-                //this.popuniPodacima();
+                if (DTOManager.ObrisiNekretninu(idNekretnine) == true)
+                {
+                    MessageBox.Show("Brisanje nekretnine je uspešno obavljeno!");
+                }
+                else
+                {
+                    MessageBox.Show("Brisanje nekretnine je NEUSPESNO!");
+                }
+                this.popuniPodacima();
             }
             else
             {
@@ -95,12 +118,12 @@ namespace StanNaDan.Forme
             }
 
             int idNekretnine = Int32.Parse(listView1.SelectedItems[0].SubItems[0].Text);
-            //NekretninaBasic ne = DTOManager.vratiProdavnicu(idNekretnine);
+            NekretninaBasic ne = DTOManager.GetNekretninaPregled(idNekretnine);
 
-            //IzmeniNekretninu formaUpdate = new IzmeniNekretninu(ne);
-            //formaUpdate.ShowDialog();
+            IzmeniNekretninu formaUpdate = new IzmeniNekretninu(ne);
+            formaUpdate.ShowDialog();
 
-            //this.popuniPodacima();
+            this.popuniPodacima();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -171,7 +194,22 @@ namespace StanNaDan.Forme
 
         private void button11_Click(object sender, EventArgs e)
         {
+            if (listView1.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Izaberite Nekretninu cija Vas oprema zanima!");
+                return;
+            }
+            else
+            {
+                int idNekretnine = Int32.Parse(listView1.SelectedItems[0].SubItems[0].Text);
+                DodatnaOpremaNekretnine forma = new DodatnaOpremaNekretnine(idNekretnine);
+                forma.ShowDialog();
+            }
+        }
 
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            popuniPodacima();
         }
     }
 }

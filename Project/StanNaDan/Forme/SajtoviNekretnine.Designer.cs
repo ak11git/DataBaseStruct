@@ -35,6 +35,7 @@
             button2 = new Button();
             textBox1 = new TextBox();
             button3 = new Button();
+            button5 = new Button();
             SuspendLayout();
             // 
             // listView1
@@ -91,13 +92,25 @@
             // 
             button3.BackColor = Color.Green;
             button3.Font = new Font("Modern No. 20", 9F, FontStyle.Bold);
-            button3.Location = new Point(621, 49);
+            button3.Location = new Point(589, 49);
             button3.Name = "button3";
-            button3.Size = new Size(35, 30);
+            button3.Size = new Size(67, 38);
             button3.TabIndex = 6;
             button3.UseVisualStyleBackColor = false;
             button3.Visible = false;
             button3.Click += button3_Click;
+            // 
+            // button5
+            // 
+            button5.BackColor = Color.FromArgb(255, 192, 128);
+            button5.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
+            button5.Location = new Point(381, 212);
+            button5.Name = "button5";
+            button5.Size = new Size(124, 49);
+            button5.TabIndex = 10;
+            button5.Text = "Refresh";
+            button5.UseVisualStyleBackColor = false;
+            button5.Click += button5_Click;
             // 
             // SajtoviNekretnine
             // 
@@ -105,6 +118,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(668, 273);
+            Controls.Add(button5);
             Controls.Add(button3);
             Controls.Add(textBox1);
             Controls.Add(button2);
@@ -126,5 +140,6 @@
         private ColumnHeader Sajt;
         private TextBox textBox1;
         private Button button3;
+        private Button button5;
     }
 }

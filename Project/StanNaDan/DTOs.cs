@@ -161,7 +161,6 @@ public class NekretninaPregled
         this.Kuhinja = Kuhinj1a;
         this.Dimenzije = Dimenzije1;
         this.TipKreveta = TipKreveta1;
-
     }
 
 }

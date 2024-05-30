@@ -105,8 +105,8 @@ namespace StanNaDan.Forme
                                                         listView1.SelectedItems[0].SubItems[5].Text,
                                                         listView1.SelectedItems[0].SubItems[6].Text);
 
-                    this.kuca.Kvart = new KvartBasic(listView2.SelectedItems[0].SubItems[1].Text,
-                                                        listView2.SelectedItems[0].SubItems[2].Text);
+                    this.kuca.Kvart = new KvartBasic(listView2.SelectedItems[0].SubItems[0].Text,
+                                                        listView2.SelectedItems[0].SubItems[1].Text);
 
                     if (listView1.SelectedItems.Count == 0)
                     {
@@ -148,8 +148,8 @@ namespace StanNaDan.Forme
                                                         listView1.SelectedItems[0].SubItems[5].Text,
                                                         listView1.SelectedItems[0].SubItems[6].Text);
 
-                    this.stan.Kvart = new KvartBasic(listView2.SelectedItems[0].SubItems[1].Text,
-                                                        listView2.SelectedItems[0].SubItems[2].Text);
+                    this.stan.Kvart = new KvartBasic(listView2.SelectedItems[0].SubItems[0].Text,
+                                                        listView2.SelectedItems[0].SubItems[1].Text);
 
                     if (listView1.SelectedItems.Count == 0)
                     {
@@ -189,8 +189,8 @@ namespace StanNaDan.Forme
                                                         listView1.SelectedItems[0].SubItems[5].Text,
                                                         listView1.SelectedItems[0].SubItems[6].Text);
 
-                    this.soba.Kvart = new KvartBasic(listView2.SelectedItems[0].SubItems[1].Text,
-                                                        listView2.SelectedItems[0].SubItems[2].Text);
+                    this.soba.Kvart = new KvartBasic(listView2.SelectedItems[0].SubItems[0].Text,
+                                                        listView2.SelectedItems[0].SubItems[1].Text);
 
                     if (listView1.SelectedItems.Count == 0)
                     {
@@ -212,7 +212,6 @@ namespace StanNaDan.Forme
                     comboBox1.SelectedItem.ToString() == "Stan" ||
                     comboBox1.SelectedItem.ToString() == "Soba")
                 {
-                    //DTOManager.dodajNek(this.nekretnina);
                     MessageBox.Show("Uspesno ste dodali novu nekretninu!");
                     this.Close();
                 }

@@ -19,6 +19,9 @@
     <Compile Update="Forme\DodajVlasnikaPravno.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forme\DodatnaOpremaNekretnine.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forme\IzmeniNekretninu.cs">
       <SubType>Form</SubType>
     </Compile>
