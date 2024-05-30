@@ -375,6 +375,7 @@ public class KvartPregled
 public class VlasnikBasic
 {
     public int Id { get; set; }
+    public string TipVlasnika { get; set; }
     public string Ime { get; set; }
     public string Prezime { get; set; }
 
@@ -404,9 +405,10 @@ public class VlasnikBasic
         Nekretnine = new List<NekretninaBasic>();
     }
 
-    public VlasnikBasic(int id, string ime, string prezime, string adresa, string mesto, string drzava)
+    public VlasnikBasic(int id, string tip, string ime, string prezime, string adresa, string mesto, string drzava)
     {
         Id = id;
+        TipVlasnika = tip;
         Ime = ime;
         Prezime = prezime;
         Adresa = adresa;
@@ -427,7 +429,7 @@ public class PravnoLiceBasic : VlasnikBasic
 
     public PravnoLiceBasic() { }
 
-    public PravnoLiceBasic(int id, string ime, string prezime, string adresa, string mesto, string drzava, string PIB, string naziv) : base(id, ime, prezime, adresa, mesto, drzava)
+    public PravnoLiceBasic(int id, string tip, string ime, string prezime, string adresa, string mesto, string drzava, string PIB, string naziv) : base(id, tip, ime, prezime, adresa, mesto, drzava)
     {
         this.PIB = PIB;
         this.Naziv = naziv;
@@ -446,7 +448,7 @@ public class FizickoLiceBasic : VlasnikBasic
 
     public FizickoLiceBasic() { }
 
-    public FizickoLiceBasic(int id, string ime, string prezime, string adresa, string mesto, string drzava, string imerod, string jmbg, DateTime datumrodjenja) : base(id, ime, prezime, adresa, mesto, drzava)
+    public FizickoLiceBasic(int id, string tip, string ime, string prezime, string adresa, string mesto, string drzava, string imerod, string jmbg, DateTime datumrodjenja) : base(id, tip, ime, prezime, adresa, mesto, drzava)
     {
         this.ImeRoditelja = imerod;
         this.JMBG = jmbg;
@@ -460,6 +462,7 @@ public class FizickoLiceBasic : VlasnikBasic
 public class VlasnikPregled
 {
     public int Id { get; set; }
+    public string TipVlasnika { get; set; }
     public string Ime { get; set; }
     public string Prezime { get; set; }
 
@@ -470,9 +473,10 @@ public class VlasnikPregled
     public string Drzava { get; set; }
     public VlasnikPregled() { }
 
-    public VlasnikPregled(int id, string ime, string prezime, string adresa, string mesto, string drzava)
+    public VlasnikPregled(int id, string tip, string ime, string prezime, string adresa, string mesto, string drzava)
     {
         Id = id;
+        TipVlasnika = tip;
         Ime = ime;
         Prezime = prezime;
         Adresa = adresa;
@@ -492,7 +496,7 @@ public class FizickoLicePregled : VlasnikPregled
 
 
     public FizickoLicePregled():base(){}
-    public FizickoLicePregled(int id, string ime, string prezime, string adresa, string mesto, string drzava, string imerod, string jmbg, DateTime datumrodjenja) : base(id, ime, prezime, adresa, mesto, drzava)
+    public FizickoLicePregled(int id, string tip, string ime, string prezime, string adresa, string mesto, string drzava, string imerod, string jmbg, DateTime datumrodjenja) : base(id, tip, ime, prezime, adresa, mesto, drzava)
     {
         this.ImeRoditelja = imerod;
         this.JMBG = jmbg;
@@ -508,7 +512,7 @@ public class PravnoLicePregled : VlasnikPregled
 
     public string PIB { get; set; }
     public PravnoLicePregled():base(){}
-    public PravnoLicePregled(int id, string ime, string prezime, string adresa, string mesto, string drzava, string PIB, string naziv) : base(id, ime, prezime, adresa, mesto, drzava)
+    public PravnoLicePregled(int id, string tip, string ime, string prezime, string adresa, string mesto, string drzava, string PIB, string naziv) : base(id, tip, ime, prezime, adresa, mesto, drzava)
     {
         this.PIB = PIB;
         this.Naziv = naziv;

@@ -28,22 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            listView1 = new ListView();
             groupBox1 = new GroupBox();
             button11 = new Button();
             button1 = new Button();
             button2 = new Button();
             button3 = new Button();
+            listView1 = new ListView();
+            ID = new ColumnHeader();
+            Tip = new ColumnHeader();
+            Ime = new ColumnHeader();
+            Prezime = new ColumnHeader();
+            Adresa = new ColumnHeader();
+            Mesto = new ColumnHeader();
+            Drzava = new ColumnHeader();
             groupBox1.SuspendLayout();
             SuspendLayout();
-            // 
-            // listView1
-            // 
-            listView1.Location = new Point(6, 30);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(516, 390);
-            listView1.TabIndex = 0;
-            listView1.UseCompatibleStateImageBehavior = false;
             // 
             // groupBox1
             // 
@@ -103,6 +102,47 @@
             button3.UseVisualStyleBackColor = false;
             button3.Click += button3_Click;
             // 
+            // listView1
+            // 
+            listView1.Columns.AddRange(new ColumnHeader[] { ID, Tip, Ime, Prezime, Adresa, Mesto, Drzava });
+            listView1.Location = new Point(6, 30);
+            listView1.Name = "listView1";
+            listView1.Size = new Size(516, 390);
+            listView1.TabIndex = 53;
+            listView1.UseCompatibleStateImageBehavior = false;
+            listView1.View = View.Details;
+            // 
+            // ID
+            // 
+            ID.Text = "ID:";
+            ID.Width = 30;
+            // 
+            // Tip
+            // 
+            Tip.DisplayIndex = 2;
+            Tip.Text = "Tip:";
+            // 
+            // Ime
+            // 
+            Ime.DisplayIndex = 1;
+            Ime.Text = "Ime:";
+            // 
+            // Prezime
+            // 
+            Prezime.Text = "Prezime:";
+            // 
+            // Adresa
+            // 
+            Adresa.Text = "Adresa:";
+            // 
+            // Mesto
+            // 
+            Mesto.Text = "Mesto:";
+            // 
+            // Drzava
+            // 
+            Drzava.Text = "Drzava:";
+            // 
             // VlasnikNekretninePravnoLice
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -122,12 +162,18 @@
         }
 
         #endregion
-
-        private ListView listView1;
         private GroupBox groupBox1;
         private Button button11;
         private Button button1;
         private Button button2;
         private Button button3;
+        private ListView listView1;
+        private ColumnHeader ID;
+        private ColumnHeader Tip;
+        private ColumnHeader Ime;
+        private ColumnHeader Prezime;
+        private ColumnHeader Adresa;
+        private ColumnHeader Mesto;
+        private ColumnHeader Drzava;
     }
 }

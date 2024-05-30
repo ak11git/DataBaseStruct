@@ -22,6 +22,7 @@ namespace StanNaDan.Entiteti;
 public class Vlasnik
 {
     public virtual int Id { get; set; }
+    public virtual string TipVlasnika { get; set; }
     public virtual string Ime { get; set; }
     public virtual string Prezime { get; set; }
 

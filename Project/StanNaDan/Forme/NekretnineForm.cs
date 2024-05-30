@@ -31,15 +31,6 @@ namespace StanNaDan.Forme
             List<NekretninaPregled> listaNekretnina = DTOManager.GetNekretninaPregled();
             this.listView1.Items.Clear();
 
-            if (listaNekretnina == null)
-            {
-                MessageBox.Show("Lista nekretnina je null.");
-            }
-
-            if (listaNekretnina.Count == 0)
-            {
-                MessageBox.Show("Lista nekretnina je prazna.");
-            }
 
             foreach (NekretninaPregled np in listaNekretnina)
             {
@@ -49,7 +40,12 @@ namespace StanNaDan.Forme
                     continue;
                 }
 
-                ListViewItem item = new ListViewItem(new string[] { np.TipNekretnine, np.ImeUlice, np.KucniBroj.ToString() });
+                //MessageBox.Show(np.TipNekretnine);
+
+                ListViewItem item = new ListViewItem(new string[] { np.ID.ToString(), np.TipNekretnine, np.KucniBroj.ToString(),
+                                                                    np.ImeUlice, np.Kvadratura.ToString(), np.BrojKupatila.ToString(),
+                                                                    np.BrojTerasa.ToString(), np.BrojSoba.ToString(), np.Internet.ToString(),
+                                                                    np.TV.ToString(), np.Kuhinja.ToString(), np.Dimenzije, np.TipKreveta});
                 this.listView1.Items.Add(item);
                 this.brojNekretnina++;
             }
@@ -111,14 +107,16 @@ namespace StanNaDan.Forme
         {
             if (listView1.SelectedItems.Count == 0)
             {
-                MessageBox.Show("Izaberite Nekretninu cijeg Vlasnika [pravno lice] zelite da vidite!");
+                MessageBox.Show("Izaberite Nekretninu cijeg Vlasnika zelite da vidite!");
                 return;
             }
 
-            int idVlasnika = Int32.Parse(listView1.SelectedItems[0].SubItems[0].Text);
-            /*VlasnikBasic vb = DTOManager.vratiProdavnicu(idProdavnice);
-            VlasnikNekretninePravnoLice forma = new VlasnikNekretninePravnoLice(vb);
-            forma.ShowDialog();*/
+            int idNekretnine = Int32.Parse(listView1.SelectedItems[0].SubItems[0].Text);
+
+            VlasnikPregled v = DTOManager.GetPregledVlasnikNekretnine(idNekretnine);
+
+            MessageBox.Show("Vlasnik: " + v.Id + ", " + v.Ime + ", " + v.Prezime + ", "
+                            + v.TipVlasnika + ", " + v.Adresa + ", " + v.Mesto + ", " + v.Drzava);
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -142,6 +140,36 @@ namespace StanNaDan.Forme
         }
 
         private void button8_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Izaberite Nekretninu ciji Kvart zelite da vidite!");
+                return;
+            }
+
+            int idNekretnine = Int32.Parse(listView1.SelectedItems[0].SubItems[0].Text);
+
+            KvartPregled k = DTOManager.GetPregledKvartNekretnine(idNekretnine);
+
+            MessageBox.Show("Kvart: " + k.Naziv + ", " + k.Zona);
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Izaberite Nekretninu ciji Vas Sajtovi zanimaju!");
+                return;
+            }
+            else
+            {
+                int idNekretnine = Int32.Parse(listView1.SelectedItems[0].SubItems[0].Text);
+                SajtoviNekretnine forma = new SajtoviNekretnine(idNekretnine);
+                forma.ShowDialog();
+            }
+        }
+
+        private void button11_Click(object sender, EventArgs e)
         {
 
         }

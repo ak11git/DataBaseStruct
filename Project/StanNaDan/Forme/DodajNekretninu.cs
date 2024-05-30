@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace StanNaDan.Forme
@@ -35,7 +36,7 @@ namespace StanNaDan.Forme
             }
 
             // only allow one decimal point
-            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            if ((e.KeyChar == '.') && ((sender as System.Windows.Forms.TextBox).Text.IndexOf('.') > -1))
             {
                 e.Handled = true;
             }
@@ -80,44 +81,134 @@ namespace StanNaDan.Forme
 
             if (result == DialogResult.OK)
             {
-                this.nekretnina.TipNekretnine = comboBox1.SelectedItem.ToString();
-                this.nekretnina.ImeUlice = textBox2.Text;
-                this.nekretnina.KucniBroj = int.Parse(textBox3.Text);
-                this.nekretnina.Kvadratura = int.Parse(textBox4.Text);
-                this.nekretnina.TipKreveta = comboBox2.SelectedItem.ToString();
-                this.nekretnina.Dimenzije = textBox14.Text;
-                this.nekretnina.BrojKupatila = (int)numericUpDown1.Value;
-                this.nekretnina.BrojTerasa = (int)numericUpDown2.Value;
-                this.nekretnina.BrojSoba = (int)numericUpDown3.Value;
-
                 if (comboBox1.SelectedItem.ToString() == "Kuća")
                 {
-                    numericUpDown4.Enabled = true;
-                    checkBox4.Enabled = true;
+                    this.kuca.TipNekretnine = comboBox1.SelectedItem.ToString();
+                    this.kuca.ImeUlice = textBox2.Text;
+                    this.kuca.KucniBroj = int.Parse(textBox3.Text);
+                    this.kuca.Kvadratura = int.Parse(textBox4.Text);
+                    this.kuca.TipKreveta = comboBox2.SelectedItem.ToString();
+                    this.kuca.Dimenzije = textBox14.Text;
+                    this.kuca.BrojKupatila = (int)numericUpDown1.Value;
+                    this.kuca.BrojTerasa = (int)numericUpDown2.Value;
+                    this.kuca.BrojSoba = (int)numericUpDown3.Value;
                     this.kuca.Spratnost = (int)numericUpDown4.Value;
                     this.kuca.Internet = checkBox1.Checked ? 1 : 0;
                     this.kuca.TV = checkBox2.Checked ? 1 : 0;
                     this.kuca.Kuhinja = checkBox3.Checked ? 1 : 0;
                     this.kuca.Dvoriste = checkBox4.Checked ? 1 : 0;
+                    this.kuca.Vlasnik = new VlasnikBasic(Int32.Parse(listView1.SelectedItems[0].SubItems[0].Text),
+                                                        listView1.SelectedItems[0].SubItems[1].Text,
+                                                        listView1.SelectedItems[0].SubItems[2].Text,
+                                                        listView1.SelectedItems[0].SubItems[3].Text,
+                                                        listView1.SelectedItems[0].SubItems[4].Text,
+                                                        listView1.SelectedItems[0].SubItems[5].Text,
+                                                        listView1.SelectedItems[0].SubItems[6].Text);
+
+                    this.kuca.Kvart = new KvartBasic(listView2.SelectedItems[0].SubItems[1].Text,
+                                                        listView2.SelectedItems[0].SubItems[2].Text);
+
+                    if (listView1.SelectedItems.Count == 0)
+                    {
+                        MessageBox.Show("Izaberite vlasnika za novu nekretninu!");
+                        return;
+                    }
+                    else if (listView2.SelectedItems.Count == 0)
+                    {
+                        MessageBox.Show("Izaberite kvart za novu nekretninu!");
+                        return;
+                    }
+                    else
+                    {
+                        DTOManager.DodajKucu(kuca);
+                    }
                 }
-                else if(comboBox1.SelectedItem.ToString() == "Stan")
+                else if (comboBox1.SelectedItem.ToString() == "Stan")
                 {
-                    numericUpDown5.Enabled = true;
-                    checkBox5.Enabled = true;
-                    this.stan.Sprat = (int)numericUpDown5.Value;
+                    this.stan.TipNekretnine = comboBox1.SelectedItem.ToString();
+                    this.stan.ImeUlice = textBox2.Text;
+                    this.stan.KucniBroj = int.Parse(textBox3.Text);
+                    this.stan.Kvadratura = int.Parse(textBox4.Text);
+                    this.stan.TipKreveta = comboBox2.SelectedItem.ToString();
+                    this.stan.Dimenzije = textBox14.Text;
+                    this.stan.BrojKupatila = (int)numericUpDown1.Value;
+                    this.stan.BrojTerasa = (int)numericUpDown2.Value;
+                    this.stan.BrojSoba = (int)numericUpDown3.Value;
                     this.stan.Internet = checkBox1.Checked ? 1 : 0;
                     this.stan.TV = checkBox2.Checked ? 1 : 0;
                     this.stan.Kuhinja = checkBox3.Checked ? 1 : 0;
+                    this.stan.Sprat = (int)numericUpDown5.Value;
                     this.stan.Lift = checkBox5.Checked ? 1 : 0;
+
+                    this.stan.Vlasnik = new VlasnikBasic(Int32.Parse(listView1.SelectedItems[0].SubItems[0].Text),
+                                                        listView1.SelectedItems[0].SubItems[1].Text,
+                                                        listView1.SelectedItems[0].SubItems[2].Text,
+                                                        listView1.SelectedItems[0].SubItems[3].Text,
+                                                        listView1.SelectedItems[0].SubItems[4].Text,
+                                                        listView1.SelectedItems[0].SubItems[5].Text,
+                                                        listView1.SelectedItems[0].SubItems[6].Text);
+
+                    this.stan.Kvart = new KvartBasic(listView2.SelectedItems[0].SubItems[1].Text,
+                                                        listView2.SelectedItems[0].SubItems[2].Text);
+
+                    if (listView1.SelectedItems.Count == 0)
+                    {
+                        MessageBox.Show("Izaberite vlasnika za novu nekretninu!");
+                        return;
+                    }
+                    else if (listView2.SelectedItems.Count == 0)
+                    {
+                        MessageBox.Show("Izaberite kvart za novu nekretninu!");
+                        return;
+                    }
+                    else
+                    {
+                        DTOManager.DodajStan(stan);
+                    }
                 }
                 else if (comboBox1.SelectedItem.ToString() == "Soba")
                 {
+                    this.soba.TipNekretnine = comboBox1.SelectedItem.ToString();
+                    this.soba.ImeUlice = textBox2.Text;
+                    this.soba.KucniBroj = int.Parse(textBox3.Text);
+                    this.soba.Kvadratura = int.Parse(textBox4.Text);
+                    this.soba.TipKreveta = comboBox2.SelectedItem.ToString();
+                    this.soba.Dimenzije = textBox14.Text;
+                    this.soba.BrojKupatila = (int)numericUpDown1.Value;
+                    this.soba.BrojTerasa = (int)numericUpDown2.Value;
+                    this.soba.BrojSoba = (int)numericUpDown3.Value;
                     this.soba.Internet = checkBox1.Checked ? 1 : 0;
                     this.soba.TV = checkBox2.Checked ? 1 : 0;
                     this.soba.Kuhinja = checkBox3.Checked ? 1 : 0;
+
+                    this.soba.Vlasnik = new VlasnikBasic(Int32.Parse(listView1.SelectedItems[0].SubItems[0].Text),
+                                                        listView1.SelectedItems[0].SubItems[1].Text,
+                                                        listView1.SelectedItems[0].SubItems[2].Text,
+                                                        listView1.SelectedItems[0].SubItems[3].Text,
+                                                        listView1.SelectedItems[0].SubItems[4].Text,
+                                                        listView1.SelectedItems[0].SubItems[5].Text,
+                                                        listView1.SelectedItems[0].SubItems[6].Text);
+
+                    this.soba.Kvart = new KvartBasic(listView2.SelectedItems[0].SubItems[1].Text,
+                                                        listView2.SelectedItems[0].SubItems[2].Text);
+
+                    if (listView1.SelectedItems.Count == 0)
+                    {
+                        MessageBox.Show("Izaberite vlasnika za novu nekretninu!");
+                        return;
+                    }
+                    else if(listView2.SelectedItems.Count == 0)
+                    {
+                        MessageBox.Show("Izaberite kvart za novu nekretninu!");
+                        return;
+                    }
+                    else
+                    {
+                        DTOManager.DodajSobu(soba);
+                    }
                 }
 
-                if(comboBox1.SelectedItem.ToString() == "Kuća" || 
+                if (comboBox1.SelectedItem.ToString() == "Kuća" ||
                     comboBox1.SelectedItem.ToString() == "Stan" ||
                     comboBox1.SelectedItem.ToString() == "Soba")
                 {
@@ -137,6 +228,55 @@ namespace StanNaDan.Forme
             {
 
             }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedItem.ToString() == "Kuća")
+            {
+                numericUpDown4.Enabled = true;
+                checkBox4.Enabled = true;
+                numericUpDown5.Enabled = false;
+                checkBox5.Enabled = false;
+            }
+            else if (comboBox1.SelectedItem.ToString() == "Stan")
+            {
+                numericUpDown5.Enabled = true;
+                checkBox5.Enabled = true;
+                numericUpDown4.Enabled = false;
+                checkBox4.Enabled = false;
+            }
+            else if (comboBox1.SelectedItem.ToString() == "Soba")
+            {
+                numericUpDown5.Enabled = false;
+                checkBox5.Enabled = false;
+                numericUpDown4.Enabled = false;
+                checkBox4.Enabled = false;
+            }
+        }
+
+        private void DodajNekretninu_Load(object sender, EventArgs e)
+        {
+            List<VlasnikPregled> listaVlasnika = DTOManager.GetVlasnikePregled();
+            this.listView1.Items.Clear();
+
+            foreach (VlasnikPregled vb in listaVlasnika)
+            {
+                ListViewItem item = new ListViewItem(new string[] { vb.Id.ToString(), vb.TipVlasnika, vb.Ime, vb.Prezime, vb.Adresa, vb.Mesto, vb.Drzava });
+                this.listView1.Items.Add(item);
+            }
+            this.listView1.Refresh();
+
+
+            List<KvartPregled> kvartovi = DTOManager.GetKvartPregled();
+
+
+            foreach (KvartPregled k in kvartovi)
+            {
+                ListViewItem item = new ListViewItem(new string[] { k.Naziv, k.Zona });
+                this.listView2.Items.Add(item);
+            }
+            this.listView2.Refresh();
         }
     }
 }

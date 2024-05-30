@@ -33,7 +33,7 @@ namespace StanNaDan.Forme
 
             foreach (VlasnikPregled vb in listaVlasnika)
             {
-                ListViewItem item = new ListViewItem(new string[] { vb.Ime, vb.Prezime });
+                ListViewItem item = new ListViewItem(new string[] { vb.Id.ToString(), vb.TipVlasnika, vb.Ime, vb.Prezime, vb.Adresa, vb.Mesto, vb.Drzava});
                 this.listView1.Items.Add(item);
                 this.brojVlasnika++;
             }
@@ -57,9 +57,30 @@ namespace StanNaDan.Forme
 
             if (result == DialogResult.OK)
             {
-                //DTOManager.obrisiRadnikaIzSistema(idZaposleni);
-                MessageBox.Show("Brisanje zaposlenog je uspesno obavljeno!");
-                //this.popuniPodacima();
+                if (listView1.SelectedItems[0].SubItems[2].Text == "FIZICKO_LICE")
+                {
+                    if (DTOManager.ObrisiFizickoLice(idVlasnika) == true)
+                    {
+                        MessageBox.Show("Brisanje vlasnika je uspesno obavljeno!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Brisanje vlasnika je NEUSPESNO!");
+                    }
+                }
+                else if (listView1.SelectedItems[0].SubItems[2].Text == "PRAVNO_LICE")
+                {
+                    if (DTOManager.ObrisiPravnoLice(idVlasnika) == true)
+                    { 
+                        MessageBox.Show("Brisanje vlasnika je uspesno obavljeno!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Brisanje vlasnika je NEUSPESNO!");
+                    }
+                }
+                MessageBox.Show(listView1.SelectedItems[0].SubItems[3].Text); //ne selektuje tipVlasnika??
+                this.popuniPodacima();
             }
             else
             {

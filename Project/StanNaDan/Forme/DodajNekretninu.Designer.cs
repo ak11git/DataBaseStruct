@@ -56,20 +56,35 @@
             numericUpDown5 = new NumericUpDown();
             comboBox1 = new ComboBox();
             comboBox2 = new ComboBox();
+            listView1 = new ListView();
+            ID = new ColumnHeader();
+            Tip = new ColumnHeader();
+            Ime = new ColumnHeader();
+            Prezime = new ColumnHeader();
+            Adresa = new ColumnHeader();
+            Mesto = new ColumnHeader();
+            Drzava = new ColumnHeader();
+            listView2 = new ListView();
+            Naziv = new ColumnHeader();
+            Zona = new ColumnHeader();
+            groupBox1 = new GroupBox();
+            groupBox2 = new GroupBox();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown5).BeginInit();
+            groupBox1.SuspendLayout();
+            groupBox2.SuspendLayout();
             SuspendLayout();
             // 
             // button1
             // 
             button1.BackColor = Color.FromArgb(255, 192, 128);
             button1.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
-            button1.Location = new Point(505, 362);
+            button1.Location = new Point(1029, 334);
             button1.Name = "button1";
-            button1.Size = new Size(223, 53);
+            button1.Size = new Size(151, 103);
             button1.TabIndex = 3;
             button1.Text = "Dodaj Nekretninu";
             button1.UseVisualStyleBackColor = false;
@@ -149,7 +164,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
-            label5.Location = new Point(498, 37);
+            label5.Location = new Point(442, 44);
             label5.Name = "label5";
             label5.Size = new Size(155, 24);
             label5.TabIndex = 23;
@@ -159,7 +174,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
-            label6.Location = new Point(520, 80);
+            label6.Location = new Point(464, 87);
             label6.Name = "label6";
             label6.Size = new Size(133, 24);
             label6.TabIndex = 24;
@@ -169,7 +184,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
-            label7.Location = new Point(539, 123);
+            label7.Location = new Point(483, 130);
             label7.Name = "label7";
             label7.Size = new Size(114, 24);
             label7.TabIndex = 25;
@@ -179,7 +194,7 @@
             // 
             checkBox1.AutoSize = true;
             checkBox1.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
-            checkBox1.Location = new Point(69, 335);
+            checkBox1.Location = new Point(84, 334);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(118, 28);
             checkBox1.TabIndex = 31;
@@ -190,7 +205,7 @@
             // 
             checkBox2.AutoSize = true;
             checkBox2.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
-            checkBox2.Location = new Point(204, 335);
+            checkBox2.Location = new Point(219, 334);
             checkBox2.Name = "checkBox2";
             checkBox2.Size = new Size(66, 28);
             checkBox2.TabIndex = 32;
@@ -201,7 +216,7 @@
             // 
             checkBox3.AutoSize = true;
             checkBox3.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
-            checkBox3.Location = new Point(95, 387);
+            checkBox3.Location = new Point(110, 386);
             checkBox3.Name = "checkBox3";
             checkBox3.Size = new Size(118, 28);
             checkBox3.TabIndex = 33;
@@ -213,7 +228,7 @@
             checkBox4.AutoSize = true;
             checkBox4.Enabled = false;
             checkBox4.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
-            checkBox4.Location = new Point(229, 387);
+            checkBox4.Location = new Point(244, 386);
             checkBox4.Name = "checkBox4";
             checkBox4.Size = new Size(119, 28);
             checkBox4.TabIndex = 34;
@@ -225,7 +240,7 @@
             checkBox5.AutoSize = true;
             checkBox5.Enabled = false;
             checkBox5.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
-            checkBox5.Location = new Point(291, 335);
+            checkBox5.Location = new Point(306, 334);
             checkBox5.Name = "checkBox5";
             checkBox5.Size = new Size(77, 28);
             checkBox5.TabIndex = 35;
@@ -256,7 +271,7 @@
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
-            label10.Location = new Point(542, 169);
+            label10.Location = new Point(486, 176);
             label10.Name = "label10";
             label10.Size = new Size(111, 24);
             label10.TabIndex = 38;
@@ -266,7 +281,7 @@
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
-            label11.Location = new Point(583, 213);
+            label11.Location = new Point(527, 220);
             label11.Name = "label11";
             label11.Size = new Size(70, 24);
             label11.TabIndex = 39;
@@ -274,21 +289,21 @@
             // 
             // numericUpDown1
             // 
-            numericUpDown1.Location = new Point(659, 34);
+            numericUpDown1.Location = new Point(603, 41);
             numericUpDown1.Name = "numericUpDown1";
             numericUpDown1.Size = new Size(69, 31);
             numericUpDown1.TabIndex = 40;
             // 
             // numericUpDown2
             // 
-            numericUpDown2.Location = new Point(659, 77);
+            numericUpDown2.Location = new Point(603, 84);
             numericUpDown2.Name = "numericUpDown2";
             numericUpDown2.Size = new Size(69, 31);
             numericUpDown2.TabIndex = 41;
             // 
             // numericUpDown3
             // 
-            numericUpDown3.Location = new Point(659, 120);
+            numericUpDown3.Location = new Point(603, 127);
             numericUpDown3.Name = "numericUpDown3";
             numericUpDown3.Size = new Size(69, 31);
             numericUpDown3.TabIndex = 42;
@@ -296,7 +311,7 @@
             // numericUpDown4
             // 
             numericUpDown4.Enabled = false;
-            numericUpDown4.Location = new Point(659, 163);
+            numericUpDown4.Location = new Point(603, 170);
             numericUpDown4.Name = "numericUpDown4";
             numericUpDown4.Size = new Size(69, 31);
             numericUpDown4.TabIndex = 43;
@@ -304,7 +319,7 @@
             // numericUpDown5
             // 
             numericUpDown5.Enabled = false;
-            numericUpDown5.Location = new Point(659, 210);
+            numericUpDown5.Location = new Point(603, 217);
             numericUpDown5.Name = "numericUpDown5";
             numericUpDown5.Size = new Size(69, 31);
             numericUpDown5.TabIndex = 44;
@@ -317,6 +332,7 @@
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(178, 33);
             comboBox1.TabIndex = 45;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // comboBox2
             // 
@@ -327,12 +343,93 @@
             comboBox2.Size = new Size(178, 33);
             comboBox2.TabIndex = 46;
             // 
+            // listView1
+            // 
+            listView1.Columns.AddRange(new ColumnHeader[] { ID, Tip, Ime, Prezime, Adresa, Mesto, Drzava });
+            listView1.Location = new Point(6, 32);
+            listView1.Name = "listView1";
+            listView1.Size = new Size(456, 209);
+            listView1.TabIndex = 51;
+            listView1.UseCompatibleStateImageBehavior = false;
+            listView1.View = View.Details;
+            // 
+            // ID
+            // 
+            ID.Text = "ID:";
+            ID.Width = 30;
+            // 
+            // Tip
+            // 
+            Tip.DisplayIndex = 2;
+            Tip.Text = "Tip:";
+            // 
+            // Ime
+            // 
+            Ime.DisplayIndex = 1;
+            Ime.Text = "Ime:";
+            // 
+            // Prezime
+            // 
+            Prezime.Text = "Prezime:";
+            // 
+            // Adresa
+            // 
+            Adresa.Text = "Adresa:";
+            // 
+            // Mesto
+            // 
+            Mesto.Text = "Mesto:";
+            // 
+            // Drzava
+            // 
+            Drzava.Text = "Drzava:";
+            // 
+            // listView2
+            // 
+            listView2.Columns.AddRange(new ColumnHeader[] { Naziv, Zona });
+            listView2.Location = new Point(6, 30);
+            listView2.Name = "listView2";
+            listView2.Size = new Size(196, 101);
+            listView2.TabIndex = 52;
+            listView2.UseCompatibleStateImageBehavior = false;
+            listView2.View = View.Details;
+            // 
+            // Naziv
+            // 
+            Naziv.Text = "Naziv:";
+            // 
+            // Zona
+            // 
+            Zona.Text = "Zona:";
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(listView1);
+            groupBox1.Location = new Point(712, 41);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(468, 247);
+            groupBox1.TabIndex = 53;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Vlasnici";
+            // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(listView2);
+            groupBox2.Location = new Point(712, 294);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(208, 143);
+            groupBox2.TabIndex = 54;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Kvartovi";
+            // 
             // DodajNekretninu
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(757, 437);
+            ClientSize = new Size(1207, 457);
+            Controls.Add(groupBox2);
+            Controls.Add(groupBox1);
             Controls.Add(comboBox2);
             Controls.Add(comboBox1);
             Controls.Add(numericUpDown5);
@@ -363,11 +460,14 @@
             Controls.Add(button1);
             Name = "DodajNekretninu";
             Text = "DodajNekretninu";
+            Load += DodajNekretninu_Load;
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown3).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown4).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown5).EndInit();
+            groupBox1.ResumeLayout(false);
+            groupBox2.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -402,5 +502,18 @@
         private NumericUpDown numericUpDown5;
         private ComboBox comboBox1;
         private ComboBox comboBox2;
+        private ListView listView1;
+        private ListView listView2;
+        private GroupBox groupBox1;
+        private GroupBox groupBox2;
+        private ColumnHeader ID;
+        private ColumnHeader Tip;
+        private ColumnHeader Ime;
+        private ColumnHeader Prezime;
+        private ColumnHeader Adresa;
+        private ColumnHeader Mesto;
+        private ColumnHeader Drzava;
+        private ColumnHeader Naziv;
+        private ColumnHeader Zona;
     }
 }

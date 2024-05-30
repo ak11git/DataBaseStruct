@@ -38,6 +38,7 @@
             BrojTerasa = new ColumnHeader();
             BrojSoba = new ColumnHeader();
             Internet = new ColumnHeader();
+            TV = new ColumnHeader();
             Kuhinja = new ColumnHeader();
             Dimenzije = new ColumnHeader();
             TipKreveta = new ColumnHeader();
@@ -48,24 +49,19 @@
             groupBox2 = new GroupBox();
             groupBox3 = new GroupBox();
             button7 = new Button();
-            button5 = new Button();
             button4 = new Button();
             groupBox4 = new GroupBox();
             button8 = new Button();
-            groupBox5 = new GroupBox();
-            button9 = new Button();
             groupBox6 = new GroupBox();
             button10 = new Button();
             groupBox7 = new GroupBox();
             button11 = new Button();
             label3 = new Label();
             textBox1 = new TextBox();
-            TV = new ColumnHeader();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
             groupBox4.SuspendLayout();
-            groupBox5.SuspendLayout();
             groupBox6.SuspendLayout();
             groupBox7.SuspendLayout();
             SuspendLayout();
@@ -75,7 +71,7 @@
             listView1.Columns.AddRange(new ColumnHeader[] { ID, Tip, KucniBr, NazivUlice, Kvadratura, BrojKupatila, BrojTerasa, BrojSoba, Internet, TV, Kuhinja, Dimenzije, TipKreveta });
             listView1.Location = new Point(18, 41);
             listView1.Name = "listView1";
-            listView1.Size = new Size(633, 548);
+            listView1.Size = new Size(633, 577);
             listView1.TabIndex = 0;
             listView1.UseCompatibleStateImageBehavior = false;
             listView1.View = View.Details;
@@ -83,10 +79,12 @@
             // ID
             // 
             ID.Text = "ID:";
+            ID.Width = 30;
             // 
             // Tip
             // 
             Tip.Text = "Tip:";
+            Tip.Width = 40;
             // 
             // KucniBr
             // 
@@ -117,6 +115,11 @@
             // Internet
             // 
             Internet.Text = "Internet:";
+            // 
+            // TV
+            // 
+            TV.DisplayIndex = 12;
+            TV.Text = "TV:";
             // 
             // Kuhinja
             // 
@@ -186,7 +189,7 @@
             groupBox2.Controls.Add(listView1);
             groupBox2.Location = new Point(12, 12);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(669, 607);
+            groupBox2.Size = new Size(669, 637);
             groupBox2.TabIndex = 6;
             groupBox2.TabStop = false;
             groupBox2.Text = "Lista Nekretnina";
@@ -194,11 +197,10 @@
             // groupBox3
             // 
             groupBox3.Controls.Add(button7);
-            groupBox3.Controls.Add(button5);
             groupBox3.Controls.Add(button4);
             groupBox3.Location = new Point(711, 243);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(300, 288);
+            groupBox3.Size = new Size(300, 202);
             groupBox3.TabIndex = 7;
             groupBox3.TabStop = false;
             groupBox3.Text = "Vlasnici";
@@ -207,25 +209,13 @@
             // 
             button7.BackColor = Color.FromArgb(255, 192, 128);
             button7.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
-            button7.Location = new Point(35, 196);
+            button7.Location = new Point(35, 113);
             button7.Name = "button7";
-            button7.Size = new Size(223, 72);
+            button7.Size = new Size(223, 76);
             button7.TabIndex = 8;
             button7.Text = "Prikazi Brojeve Racuna Vlasnika";
             button7.UseVisualStyleBackColor = false;
             button7.Click += button7_Click;
-            // 
-            // button5
-            // 
-            button5.BackColor = Color.FromArgb(255, 192, 128);
-            button5.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
-            button5.Location = new Point(35, 113);
-            button5.Name = "button5";
-            button5.Size = new Size(223, 77);
-            button5.TabIndex = 6;
-            button5.Text = "Prikazi Vlasnika [fizicko lice]";
-            button5.UseVisualStyleBackColor = false;
-            button5.Click += button5_Click;
             // 
             // button4
             // 
@@ -235,7 +225,7 @@
             button4.Name = "button4";
             button4.Size = new Size(223, 77);
             button4.TabIndex = 5;
-            button4.Text = "Prikazi Vlasnika [pravno lice]";
+            button4.Text = "Prikazi Vlasnika Nekretnine";
             button4.UseVisualStyleBackColor = false;
             button4.Click += button4_Click;
             // 
@@ -244,7 +234,7 @@
             groupBox4.Controls.Add(button8);
             groupBox4.Location = new Point(1040, 12);
             groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(300, 118);
+            groupBox4.Size = new Size(300, 142);
             groupBox4.TabIndex = 8;
             groupBox4.TabStop = false;
             groupBox4.Text = "Kvartovi";
@@ -255,39 +245,18 @@
             button8.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
             button8.Location = new Point(40, 35);
             button8.Name = "button8";
-            button8.Size = new Size(223, 64);
+            button8.Size = new Size(223, 89);
             button8.TabIndex = 9;
             button8.Text = "Prikazi Kvart Nekretnine";
             button8.UseVisualStyleBackColor = false;
             button8.Click += button8_Click;
             // 
-            // groupBox5
-            // 
-            groupBox5.Controls.Add(button9);
-            groupBox5.Location = new Point(1040, 140);
-            groupBox5.Name = "groupBox5";
-            groupBox5.Size = new Size(300, 140);
-            groupBox5.TabIndex = 9;
-            groupBox5.TabStop = false;
-            groupBox5.Text = "Parkinzi";
-            // 
-            // button9
-            // 
-            button9.BackColor = Color.FromArgb(255, 192, 128);
-            button9.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
-            button9.Location = new Point(40, 35);
-            button9.Name = "button9";
-            button9.Size = new Size(223, 88);
-            button9.TabIndex = 10;
-            button9.Text = "Prikazi koji parking ima Nekretnina";
-            button9.UseVisualStyleBackColor = false;
-            // 
             // groupBox6
             // 
             groupBox6.Controls.Add(button10);
-            groupBox6.Location = new Point(1040, 291);
+            groupBox6.Location = new Point(1040, 181);
             groupBox6.Name = "groupBox6";
-            groupBox6.Size = new Size(300, 154);
+            groupBox6.Size = new Size(300, 169);
             groupBox6.TabIndex = 10;
             groupBox6.TabStop = false;
             groupBox6.Text = "Sajtovi";
@@ -298,17 +267,18 @@
             button10.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
             button10.Location = new Point(40, 30);
             button10.Name = "button10";
-            button10.Size = new Size(223, 96);
+            button10.Size = new Size(223, 120);
             button10.TabIndex = 11;
             button10.Text = "Prikazi Sajtove na kojima je oglasena Nekretnina";
             button10.UseVisualStyleBackColor = false;
+            button10.Click += button10_Click;
             // 
             // groupBox7
             // 
             groupBox7.Controls.Add(button11);
-            groupBox7.Location = new Point(1040, 465);
+            groupBox7.Location = new Point(1040, 384);
             groupBox7.Name = "groupBox7";
-            groupBox7.Size = new Size(300, 154);
+            groupBox7.Size = new Size(300, 148);
             groupBox7.TabIndex = 11;
             groupBox7.TabStop = false;
             groupBox7.Text = "Najmovi";
@@ -323,11 +293,12 @@
             button11.TabIndex = 12;
             button11.Text = "Prikazi Najmove Nekretnine";
             button11.UseVisualStyleBackColor = false;
+            button11.Click += button11_Click;
             // 
             // label3
             // 
             label3.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
-            label3.Location = new Point(711, 569);
+            label3.Location = new Point(711, 448);
             label3.Name = "label3";
             label3.Size = new Size(142, 50);
             label3.TabIndex = 20;
@@ -335,27 +306,21 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(859, 588);
+            textBox1.Location = new Point(781, 501);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(72, 31);
             textBox1.TabIndex = 19;
-            // 
-            // TV
-            // 
-            TV.DisplayIndex = 12;
-            TV.Text = "TV:";
             // 
             // NekretnineForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(1352, 655);
+            ClientSize = new Size(1352, 690);
             Controls.Add(label3);
             Controls.Add(textBox1);
             Controls.Add(groupBox7);
             Controls.Add(groupBox6);
-            Controls.Add(groupBox5);
             Controls.Add(groupBox4);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
@@ -367,7 +332,6 @@
             groupBox2.ResumeLayout(false);
             groupBox3.ResumeLayout(false);
             groupBox4.ResumeLayout(false);
-            groupBox5.ResumeLayout(false);
             groupBox6.ResumeLayout(false);
             groupBox7.ResumeLayout(false);
             ResumeLayout(false);
@@ -383,15 +347,12 @@
         private GroupBox groupBox1;
         private GroupBox groupBox2;
         private GroupBox groupBox3;
-        private Button button5;
         private Button button4;
         private GroupBox groupBox4;
-        private GroupBox groupBox5;
         private GroupBox groupBox6;
         private GroupBox groupBox7;
         private Button button7;
         private Button button8;
-        private Button button9;
         private Button button11;
         private Button button10;
         private Label label3;

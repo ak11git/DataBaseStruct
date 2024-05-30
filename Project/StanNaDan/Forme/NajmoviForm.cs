@@ -57,8 +57,10 @@ namespace StanNaDan.Forme
 
             if (result == DialogResult.OK)
             {
-                DTOManager.ObrisiNajam(idNajma);
-                MessageBox.Show("Brisanje najma je uspesno obavljeno!");
+                if (DTOManager.ObrisiNajam(idNajma) == true)
+                    MessageBox.Show("Brisanje najma je uspesno obavljeno!");
+                else
+                    MessageBox.Show("Brisanje najma je NEUSPESNO!");
                 this.popuniPodacima();
             }
             else

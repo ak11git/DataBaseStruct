@@ -30,6 +30,13 @@
         {
             groupBox1 = new GroupBox();
             listView1 = new ListView();
+            ID = new ColumnHeader();
+            Tip = new ColumnHeader();
+            Ime = new ColumnHeader();
+            Prezime = new ColumnHeader();
+            Adresa = new ColumnHeader();
+            Mesto = new ColumnHeader();
+            Drzava = new ColumnHeader();
             button2 = new Button();
             label1 = new Label();
             label2 = new Label();
@@ -50,11 +57,44 @@
             // 
             // listView1
             // 
-            listView1.Location = new Point(16, 31);
+            listView1.Columns.AddRange(new ColumnHeader[] { ID, Tip, Ime, Prezime, Adresa, Mesto, Drzava });
+            listView1.Location = new Point(6, 30);
             listView1.Name = "listView1";
-            listView1.Size = new Size(695, 448);
-            listView1.TabIndex = 0;
+            listView1.Size = new Size(715, 459);
+            listView1.TabIndex = 52;
             listView1.UseCompatibleStateImageBehavior = false;
+            listView1.View = View.Details;
+            // 
+            // ID
+            // 
+            ID.Text = "ID:";
+            ID.Width = 30;
+            // 
+            // Tip
+            // 
+            Tip.DisplayIndex = 2;
+            Tip.Text = "Tip:";
+            // 
+            // Ime
+            // 
+            Ime.DisplayIndex = 1;
+            Ime.Text = "Ime:";
+            // 
+            // Prezime
+            // 
+            Prezime.Text = "Prezime:";
+            // 
+            // Adresa
+            // 
+            Adresa.Text = "Adresa:";
+            // 
+            // Mesto
+            // 
+            Mesto.Text = "Mesto:";
+            // 
+            // Drzava
+            // 
+            Drzava.Text = "Drzava:";
             // 
             // button2
             // 
@@ -73,7 +113,7 @@
             label1.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
             label1.Location = new Point(802, 128);
             label1.Name = "label1";
-            label1.Size = new Size(243, 138);
+            label1.Size = new Size(243, 150);
             label1.TabIndex = 5;
             label1.Text = "NAPOMENA: Brisanjem vlasnika iz ove tabele nepovratno ga izbacujete iz sistema!";
             // 
@@ -82,22 +122,22 @@
             label2.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
             label2.Location = new Point(802, 17);
             label2.Name = "label2";
-            label2.Size = new Size(243, 74);
+            label2.Size = new Size(243, 111);
             label2.TabIndex = 6;
             label2.Text = "Svi vlasnici svojih nekretnina su prikazani u tabeli. ";
             // 
             // label3
             // 
             label3.Font = new Font("Modern No. 20", 11F, FontStyle.Bold);
-            label3.Location = new Point(874, 412);
+            label3.Location = new Point(825, 412);
             label3.Name = "label3";
-            label3.Size = new Size(142, 50);
+            label3.Size = new Size(142, 84);
             label3.TabIndex = 18;
             label3.Text = "Ukupan broj Vlasnika:";
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(973, 465);
+            textBox1.Location = new Point(973, 437);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(72, 31);
             textBox1.TabIndex = 17;
@@ -125,11 +165,18 @@
         #endregion
 
         private GroupBox groupBox1;
-        private ListView listView1;
         private Button button2;
         private Label label1;
         private Label label2;
         private Label label3;
         private TextBox textBox1;
+        private ListView listView1;
+        private ColumnHeader ID;
+        private ColumnHeader Tip;
+        private ColumnHeader Ime;
+        private ColumnHeader Prezime;
+        private ColumnHeader Adresa;
+        private ColumnHeader Mesto;
+        private ColumnHeader Drzava;
     }
 }

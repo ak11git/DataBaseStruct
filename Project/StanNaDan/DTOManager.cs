@@ -32,10 +32,10 @@ public class DTOManager
 
             IEnumerable<Nekretnina> nekretnine = from k in session.Query<Nekretnina>() select k;
 
-            MessageBox.Show(nekretnine.Count().ToString());
-
             foreach (Nekretnina k in nekretnine)
             {
+                //MessageBox.Show(k.TipNekretnine);
+
                 nekretninaInfo.Add(new NekretninaPregled(k.ID, k.TipNekretnine, k.KucniBroj, k.ImeUlice, k.Kvadratura,
                                                            k.BrojKupatila, k.BrojTerasa, k.BrojSoba, k.Internet, k.TV,
                                                            k.Kuhinja, k.Dimenzije, k.TipKreveta));
@@ -65,7 +65,7 @@ public class DTOManager
             Vlasnik v = session.Load<Vlasnik>(n.Vlasnik.Id);
 
             KvartBasic kb = new KvartBasic(k.Naziv, k.Zona);
-            VlasnikBasic vb = new VlasnikBasic(v.Id, v.Ime, v.Prezime,
+            VlasnikBasic vb = new VlasnikBasic(v.Id, v.TipVlasnika, v.Ime, v.Prezime,
                                                 v.Adresa, v.Mesto, v.Drzava
                                                 );
 
@@ -324,7 +324,7 @@ public class DTOManager
         }
     }
 
-    public static void DodajKucu(KucaBasic nb)
+    public static void DodajKucu(KucaBasic kb)
     {
         ISession session = null;
 
@@ -332,42 +332,36 @@ public class DTOManager
         {
             session = DataLayer.GetSession();
 
-            Kvart k = session.Load<Kvart>(nb.Kvart.Naziv);
-            Vlasnik v = session.Load<Vlasnik>(nb.Vlasnik.Id);
-
-
+            Kvart k = session.Load<Kvart>(kb.Kvart.Naziv);
+            Vlasnik v = session.Load<Vlasnik>(kb.Vlasnik.Id);
 
             Kuca n = new Kuca();
-            n.ID = nb.ID;
-            n.TipNekretnine = nb.TipNekretnine;
-            n.KucniBroj = nb.KucniBroj;
-            n.ImeUlice = nb.ImeUlice;
-            n.Kvadratura = nb.Kvadratura;
-            n.BrojKupatila = nb.BrojKupatila;
-            n.BrojTerasa = nb.BrojTerasa;
-            n.BrojSoba = nb.BrojSoba;
-            n.Internet = nb.Internet;
-            n.TV = nb.TV;
-            n.Kuhinja = nb.Kuhinja;
-            n.Dimenzije = nb.Dimenzije;
-            n.TipKreveta = nb.TipKreveta;
-            n.Spratnost = nb.Spratnost;
-            n.Dvoriste = nb.Dvoriste;
+            n.ID = kb.ID; //ID stavlja null?
+            n.TipNekretnine = kb.TipNekretnine;
+            n.KucniBroj = kb.KucniBroj;
+            n.ImeUlice = kb.ImeUlice;
+            n.Kvadratura = kb.Kvadratura;
+            n.BrojKupatila = kb.BrojKupatila;
+            n.BrojTerasa = kb.BrojTerasa;
+            n.BrojSoba = kb.BrojSoba;
+            n.Internet = kb.Internet;
+            n.TV = kb.TV;
+            n.Kuhinja = kb.Kuhinja;
+            n.Dimenzije = kb.Dimenzije;
+            n.TipKreveta = kb.TipKreveta;
+            n.Spratnost = kb.Spratnost;
+            n.Dvoriste = kb.Dvoriste;
             n.Vlasnik = v;
             n.Kvart = k;
 
             session.SaveOrUpdate(n);
             session.Flush();
 
-            session.Flush();
+            session.Close();
         }
         catch (Exception ec)
         {
             MessageBox.Show(ec.Message);
-        }
-        finally
-        {
-            session.Close();
         }
     }
     public static void DodajStan(StanBasic nb)
@@ -539,7 +533,7 @@ public class DTOManager
                 return null;
 
 
-            vp = new VlasnikPregled(vl.Id, vl.Ime, vl.Prezime, vl.Adresa, vl.Mesto, vl.Drzava);
+            vp = new VlasnikPregled(vl.Id, vl.TipVlasnika, vl.Ime, vl.Prezime, vl.Adresa, vl.Mesto, vl.Drzava);
             session.Close();
         }
         catch (Exception ec)
@@ -562,6 +556,7 @@ public class DTOManager
             IEnumerable<Kvart> kvart = from o in session.Query<Kvart>()
                                        where o.Nekretnine.Contains(nekretnina)
                                        select o;
+
             Kvart kv = kvart.FirstOrDefault();
             if (kv == null)
                 return null;
@@ -594,7 +589,7 @@ public class DTOManager
 
             foreach (Vlasnik v in vlasnici)
             {
-                vlasnikInfo.Add(new VlasnikPregled(v.Id, v.Ime, v.Prezime, v.Adresa, v.Mesto, v.Drzava));
+                vlasnikInfo.Add(new VlasnikPregled(v.Id, v.TipVlasnika, v.Ime, v.Prezime, v.Adresa, v.Mesto, v.Drzava));
             }
 
             session.Close();
@@ -617,7 +612,7 @@ public class DTOManager
 
             Vlasnik v = session.Load<Vlasnik>(vID);
 
-            vlasnikinfo = new VlasnikPregled(v.Id, v.Ime, v.Prezime, v.Adresa, v.Mesto, v.Drzava);
+            vlasnikinfo = new VlasnikPregled(v.Id, v.TipVlasnika, v.Ime, v.Prezime, v.Adresa, v.Mesto, v.Drzava);
         }
         catch (Exception ex)
         {
@@ -641,7 +636,7 @@ public class DTOManager
 
             PravnoLice v = session.Load<PravnoLice>(pID);
 
-            vlasnikinfo = new PravnoLicePregled(v.Id, v.Ime, v.Prezime, v.Adresa, v.Mesto, v.Drzava, v.PIB, v.Naziv);
+            vlasnikinfo = new PravnoLicePregled(v.Id, v.TipVlasnika, v.Ime, v.Prezime, v.Adresa, v.Mesto, v.Drzava, v.PIB, v.Naziv);
         }
         catch (Exception ex)
         {
@@ -665,7 +660,7 @@ public class DTOManager
 
             FizickoLicePregled v = session.Load<FizickoLicePregled>(pID);
 
-            vlasnikinfo = new FizickoLicePregled(v.Id, v.Ime, v.Prezime, v.Adresa, v.Mesto, v.Drzava, v.ImeRoditelja, v.JMBG, v.DatumRodjenja);
+            vlasnikinfo = new FizickoLicePregled(v.Id, v.TipVlasnika, v.Ime, v.Prezime, v.Adresa, v.Mesto, v.Drzava, v.ImeRoditelja, v.JMBG, v.DatumRodjenja);
         }
         catch (Exception ex)
         {
@@ -834,7 +829,7 @@ public class DTOManager
             session.Close();
         }
     }
-    public static void ObrisiPravnoLice(int id)
+    public static bool ObrisiPravnoLice(int id)
     {
         ISession session = null;
         try
@@ -844,17 +839,17 @@ public class DTOManager
             //sad da li ovde ide za sve ili cascade all nama to omogucava??
             session.Delete(p);
             session.Flush();
+
+            session.Close();
+            return true;
         }
         catch (Exception ex)
         {
             MessageBox.Show(ex.Message);
-        }
-        finally
-        {
-            session.Close();
+            return false;
         }
     }
-    public static void ObrisiFizickoLice(int id)
+    public static bool ObrisiFizickoLice(int id)
     {
         ISession session = null;
         try
@@ -864,14 +859,14 @@ public class DTOManager
             //sad da li ovde ide za sve ili cascade all nama to omogucava??
             session.Delete(p);
             session.Flush();
+
+            session.Close();
+            return true;
         }
         catch (Exception ex)
         {
             MessageBox.Show(ex.Message);
-        }
-        finally
-        {
-            session.Close();
+            return false;
         }
     }
     public static void DodajBankovniRacunPravnoLice(BankovniRacunBasic brb, int id)
@@ -1320,7 +1315,7 @@ public class DTOManager
         }
     }
 
-    public static void ObrisiNajam(int najamId)
+    public static bool ObrisiNajam(int najamId)
     {
         try
         {
@@ -1332,18 +1327,25 @@ public class DTOManager
 
             /*ImaNajam imanajam = (from im in session.Query<ImaNajam>()
                                  where im.Najam.ID == najamId
-                                 select im).FirstOrDefault();
-            session.Delete(imanajam);
-            session.Flush();*/
+                                 select im).FirstOrDefault();*/
+
+            ImaNajam imn = session.Load<ImaNajam>(najam.ListaNajmova);
+
+            imn.Najam = null;
+            //imn.Nekretnine = null;
+            session.SaveOrUpdate(imn);
+            session.Flush();
 
             session.Delete(najam);
             session.Flush();
 
             session.Close();
+            return true;
         }
         catch (Exception ec)
         {
             MessageBox.Show(ec.Message);
+            return false;
         }
     }
 
@@ -1771,8 +1773,6 @@ public class DTOManager
 
     #endregion
 
-
-
     
     #region Parking
 
@@ -2014,6 +2014,7 @@ public class DTOManager
 
 
     #endregion
+
     #region Sajtovi
     public static SajtoviPregled VratiSajtoveP(int id)
     {  
@@ -2039,7 +2040,7 @@ public class DTOManager
 
     }
     
-    public static void DodajSajtoveBasic(SajtoviBasic sb)
+    public static bool DodajSajtoveBasic(SajtoviBasic sb)
     {   ISession session = null;
         try 
         {
@@ -2051,6 +2052,7 @@ public class DTOManager
            
 
            Nekretnina p = s.Load<Nekretnina>(sb.Nekretnina.ID);
+           o.ID = sb.ID;
            o.Nekretnina=p;
            p.Sajtovi.Add(o);
 
@@ -2060,10 +2062,12 @@ public class DTOManager
             s.Flush();
 
             s.Close();
+
+            return true;
         }
         catch (Exception ec)
         {
-            //handle exceptions
+            return false;
         }
     }
     public static List<SajtoviPregled> vratiSajtoveNekretnine(int nekretninaid)

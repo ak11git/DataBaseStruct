@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace StanNaDan.Forme
 {
@@ -27,22 +28,12 @@ namespace StanNaDan.Forme
 
         private void VlasnikNekretninePravnoLice_Load(object sender, EventArgs e)
         {
-            //this.Text = "NEKRETNINA " + nekretnina.Vlasnik.ToUpper();
             popuniPodacima();
         }
 
         public void popuniPodacima()
         {
-            listView1.Items.Clear();
-            /*List<VlasnikNekretninePravnoLice> podaci = DTOManager.vratiOdeljenjaDo5Prodavnice(nekretnina.Id);
-
-            foreach (VlasnikNekretninePravnoLice v in podaci)
-            {
-                ListViewItem item = new ListViewItem(new string[] { p.OdeljenjeId.ToString(), p.Lokacija, p.BrojKasa.ToString(), p.InfoPult });
-                listView1.Items.Add(item);
-            }*/
-
-            listView1.Refresh();
+            
         }
 
         private void button11_Click(object sender, EventArgs e)
