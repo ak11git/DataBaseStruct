@@ -7,19 +7,19 @@
       "RelativeMoniker": "D:0:0:{1795D3D3-3CF0-4188-8534-3C7177F7C675}|StanNaDan.csproj|solutionrelative:forme\\nekretnineform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1795D3D3-3CF0-4188-8534-3C7177F7C675}|StanNaDan.csproj|c:\\users\\krstic\\desktop\\baze\\databasestruct\\project\\stannadan\\dtomanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1795D3D3-3CF0-4188-8534-3C7177F7C675}|StanNaDan.csproj|C:\\Users\\krstic\\Desktop\\baze\\DataBaseStruct\\Project\\StanNaDan\\dtomanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1795D3D3-3CF0-4188-8534-3C7177F7C675}|StanNaDan.csproj|solutionrelative:dtomanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1795D3D3-3CF0-4188-8534-3C7177F7C675}|StanNaDan.csproj|c:\\users\\krstic\\desktop\\baze\\databasestruct\\project\\stannadan\\forme\\nekretnineform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1795D3D3-3CF0-4188-8534-3C7177F7C675}|StanNaDan.csproj|C:\\Users\\krstic\\Desktop\\baze\\DataBaseStruct\\Project\\StanNaDan\\forme\\nekretnineform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1795D3D3-3CF0-4188-8534-3C7177F7C675}|StanNaDan.csproj|solutionrelative:forme\\nekretnineform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1795D3D3-3CF0-4188-8534-3C7177F7C675}|StanNaDan.csproj|c:\\users\\krstic\\desktop\\baze\\databasestruct\\project\\stannadan\\forme\\sajtovinekretnine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{1795D3D3-3CF0-4188-8534-3C7177F7C675}|StanNaDan.csproj|C:\\Users\\krstic\\Desktop\\baze\\DataBaseStruct\\Project\\StanNaDan\\forme\\sajtovinekretnine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{1795D3D3-3CF0-4188-8534-3C7177F7C675}|StanNaDan.csproj|solutionrelative:forme\\sajtovinekretnine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1795D3D3-3CF0-4188-8534-3C7177F7C675}|StanNaDan.csproj|c:\\users\\krstic\\desktop\\baze\\databasestruct\\project\\stannadan\\forme\\sajtovinekretnine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{1795D3D3-3CF0-4188-8534-3C7177F7C675}|StanNaDan.csproj|C:\\Users\\krstic\\Desktop\\baze\\DataBaseStruct\\Project\\StanNaDan\\forme\\sajtovinekretnine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1795D3D3-3CF0-4188-8534-3C7177F7C675}|StanNaDan.csproj|solutionrelative:forme\\sajtovinekretnine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -42,8 +42,7 @@
               "RelativeToolTip": "DTOManager.cs",
               "ViewState": "AQIAAB4CAAAAAAAAAAAmwCMCAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-30T21:43:02.997Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-30T21:43:02.997Z"
             },
             {
               "$type": "Document",
@@ -68,8 +67,7 @@
               "RelativeToolTip": "Forme\\SajtoviNekretnine.cs",
               "ViewState": "AQIAABUAAAAAAAAAAAAMwBwAAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-30T21:37:20.974Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-30T21:37:20.974Z"
             },
             {
               "$type": "Document",
@@ -80,8 +78,7 @@
               "ToolTip": "C:\\Users\\krstic\\Desktop\\baze\\DataBaseStruct\\Project\\StanNaDan\\Forme\\SajtoviNekretnine.cs [Design]",
               "RelativeToolTip": "Forme\\SajtoviNekretnine.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-30T21:37:15.131Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2024-05-30T21:37:15.131Z"
             },
             {
               "$type": "Document",
