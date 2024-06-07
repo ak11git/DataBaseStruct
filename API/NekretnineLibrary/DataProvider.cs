@@ -11,7 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ProdavnicaLibrary;
+using StanNaDan;
 using static System.Collections.Specialized.BitVector32;
 
 namespace StanNaDan;
@@ -503,7 +503,7 @@ public class DataProvider
         return true;
     }
 
-    public static VlasnikPregled GetPregledVlasnikNekretnine(int idNekretnine)
+    public static Result<VlasnikPregled, ErrorMessage> GetPregledVlasnikNekretnine(int idNekretnine)
     {
         ISession session = null;
         VlasnikPregled vp = null;
@@ -518,8 +518,9 @@ public class DataProvider
                                            where o.Nekretnine.Contains(nekretnina)
                                            select o;
             Vlasnik vl = vlasnik.FirstOrDefault();
+
             if (vl == null)
-                return null;
+                return new VlasnikPregled();
 
 
             vp = new VlasnikPregled(vl.Id, vl.TipVlasnika, vl.Ime, vl.Prezime, vl.Adresa, vl.Mesto, vl.Drzava);
@@ -531,7 +532,7 @@ public class DataProvider
         }
         return vp;
     }
-    public static KvartPregled GetPregledKvartNekretnine(int idNekretnine)
+    public static Result<KvartPregled, ErrorMessage> GetPregledKvartNekretnine(int idNekretnine)
     {
         ISession session = null;
         KvartPregled kp = null;
@@ -547,9 +548,12 @@ public class DataProvider
                                        select o;
 
             Kvart kv = kvart.FirstOrDefault();
-            if (kv == null)
-                return null;
 
+            if (kv == null)
+            {
+                return new KvartPregled();
+                session.Close();
+            }
 
             kp = new KvartPregled(kv.Naziv, kv.Zona);
             session.Close();
@@ -566,7 +570,7 @@ public class DataProvider
 
     #region Vlasnik
 
-    public static List<VlasnikPregled> GetVlasnikePregled()
+    public static Result<List<VlasnikPregled>, ErrorMessage> GetVlasnikePregled()
     {
         List<VlasnikPregled> vlasnikInfo = new List<VlasnikPregled>();
 
@@ -662,7 +666,8 @@ public class DataProvider
 
         return vlasnikinfo;
     }
-    public static bool DodajPravnoLice(PravnoLiceBasic vb)
+
+    public async static Task<Result<bool, ErrorMessage>> DodajPravnoLiceAsync(PravnoLiceBasic vb)
     {
         ISession session = null;
 
@@ -682,13 +687,10 @@ public class DataProvider
             vl.Naziv = vb.Naziv;
             vl.PIB = vb.PIB;
 
-            session.SaveOrUpdate(vl);
-            session.Flush();
-            session.Update(vl);
+            await session.SaveOrUpdateAsync(vl);
+            await session.FlushAsync();
 
-
-
-            session.Flush();
+            session.Close();
         }
         catch (Exception ex)
         {
@@ -696,12 +698,13 @@ public class DataProvider
         }
         finally
         {
-            session.Close();
+            session?.Close();
+            session?.Dispose();
         }
 
         return true;
     }
-    public static bool DodajFizickoLice(FizickoLiceBasic vb)
+    public async static Task<Result<bool, ErrorMessage>> DodajFizickoLiceAsync(FizickoLiceBasic vb)
     {
         ISession session = null;
 
@@ -721,10 +724,8 @@ public class DataProvider
             vl.DatumRodjenja = vb.DatumRodjenja;
             vl.JMBG = vb.JMBG;
 
-
-            session.SaveOrUpdate(vl);
-            session.Flush();
-
+            await session.SaveOrUpdateAsync(vl);
+            await session.FlushAsync();
 
             session.Flush();
         }
@@ -734,12 +735,14 @@ public class DataProvider
         }
         finally
         {
-            session.Close();
+            session?.Close();
+            session?.Dispose();
         }
 
         return true;
     }
-    public static void AzurirajPravnoLice(PravnoLiceBasic vb, int vId)
+
+    public async static Task<Result<PravnoLiceBasic, ErrorMessage>> AzurirajPravnoLiceAsync(PravnoLiceBasic vb, int vId)
     {
         ISession session = null;
 
@@ -766,19 +769,21 @@ public class DataProvider
 
             }
 
-            session.SaveOrUpdate(p);
-            session.Flush();
+            await session.UpdateAsync(p);
+            await session.FlushAsync();
         }
         catch (Exception ex)
         {
-            throw;
+            return "Nemoguće ažurirati pravno lice.".ToError(400);
         }
         finally
         {
-            session.Close();
+            session?.Close();
+            session?.Dispose();
         }
+        return vb;
     }
-    public static void AzurirajFizickoLice(FizickoLiceBasic vb, int vId)
+    public async static Task<Result<FizickoLiceBasic, ErrorMessage>> AzurirajFizickoLiceAsync(FizickoLiceBasic vb, int vId)
     {
         ISession session = null;
 
@@ -806,19 +811,21 @@ public class DataProvider
 
             }
 
-            session.SaveOrUpdate(p);
-            session.Flush();
+            await session.UpdateAsync(p);
+            await session.FlushAsync();
         }
         catch (Exception ex)
         {
-            throw;
+            return "Nemoguće ažurirati fizicko lice.".ToError(400);
         }
         finally
         {
-            session.Close();
+            session?.Close();
+            session?.Dispose();
         }
+        return vb;
     }
-    public static bool ObrisiPravnoLice(int id)
+    public async static Task<Result<bool, ErrorMessage>> ObrisiPravnoLiceAsync(int id)
     {
         ISession session = null;
         try
@@ -826,18 +833,22 @@ public class DataProvider
             session = DataLayer.GetSession();
             PravnoLice p = session.Load<PravnoLice>(id);
             //sad da li ovde ide za sve ili cascade all nama to omogucava??
-            session.Delete(p);
-            session.Flush();
-
-            session.Close();
-            return true;
+            await session.DeleteAsync(p);
+            await session.FlushAsync();
         }
         catch (Exception ex)
         {
-            throw;
+            return "Nemoguće obrisati pravno lice.".ToError(400);
         }
+        finally
+        {
+            session?.Close();
+            session?.Dispose();
+        }
+
+        return true;
     }
-    public static bool ObrisiFizickoLice(int id)
+    public async static Task<Result<bool, ErrorMessage>> ObrisiFizickoLiceAsync(int id)
     {
         ISession session = null;
         try
@@ -845,18 +856,22 @@ public class DataProvider
             session = DataLayer.GetSession();
             FizickoLice p = session.Load<FizickoLice>(id);
             //sad da li ovde ide za sve ili cascade all nama to omogucava??
-            session.Delete(p);
-            session.Flush();
-
-            session.Close();
-            return true;
+            await session.DeleteAsync(p);
+            await session.FlushAsync();
         }
         catch (Exception ex)
         {
-            throw;
+            return "Nemoguće obrisati fizicko lice.".ToError(400);
         }
+        finally
+        {
+            session?.Close();
+            session?.Dispose();
+        }
+
+        return true;
     }
-    public static void DodajBankovniRacunPravnoLice(BankovniRacunBasic brb, int id)
+    public async static Task<Result<bool, ErrorMessage>> DodajBankovniRacunPravnoLiceAsync(BankovniRacunBasic brb, int id)
     {
         ISession session = null;
         try
@@ -867,22 +882,25 @@ public class DataProvider
             p.BankovniRacuni.Add(banka);
             banka.Vlasnik = p;
 
-            session.SaveOrUpdate(p);
-            session.SaveOrUpdate(banka);
-
-            session.Flush();
+            await session.SaveOrUpdateAsync(p);
+            await session.SaveOrUpdateAsync(banka);
+            await session.FlushAsync();
         }
         catch (Exception ex)
         {
-            throw;
+            return "Nemoguće dodati bankovni racun.".ToError(400);
         }
         finally
         {
-            session.Close();
+            session?.Close();
+            session?.Dispose();
         }
 
+        return true;
+
     }
-    public static void DodajBankovniRacunFizickoLice(BankovniRacunBasic brb, int id)
+
+    public async static Task<Result<bool, ErrorMessage>> DodajBankovniRacunFizickoLiceAsync(BankovniRacunBasic brb, int id)
     {
         ISession session = null;
         try
@@ -893,19 +911,21 @@ public class DataProvider
             p.BankovniRacuni.Add(banka);
             banka.Vlasnik = p;
 
-            session.SaveOrUpdate(p);
-            session.SaveOrUpdate(banka);
-
-            session.Flush();
+            await session.SaveOrUpdateAsync(p);
+            await session.SaveOrUpdateAsync(banka);
+            await session.FlushAsync();
         }
         catch (Exception ex)
         {
-            throw;
+            return "Nemoguće dodati bankovni racun.".ToError(400);
         }
         finally
         {
-            session.Close();
+            session?.Close();
+            session?.Dispose();
         }
+
+        return true;
 
     }
     public static void DodajEmailPravnoLice(EmailBasic brb, int id)
@@ -1225,7 +1245,7 @@ public class DataProvider
 
     //dodaj najam, da li moze ovako?
 
-    public static void DodajNajam(NajamBasic nb)
+    public async static Task<Result<bool, ErrorMessage>> DodajNajamAsync(NajamBasic nb)
     {
         ISession session = null;
 
@@ -1250,23 +1270,22 @@ public class DataProvider
             };
 
             // Spremanje najma u bazu podataka
-            session.SaveOrUpdate(n);
-            session.Flush();
+            await session.SaveOrUpdateAsync(n);
+            await session.FlushAsync();
         }
         catch (Exception ec)
         {
-            throw;
+            return "Nemoguće dodati najam.".ToError(400);
         }
         finally
         {
-            if (session != null)
-            {
-                session.Close();
-            }
+            session?.Close();
+            session?.Dispose();
         }
+        return true;
     }
 
-    public static void DodajImaNajam(ImaNajamBasic inb)
+    public async static Task<Result<bool, ErrorMessage>> DodajImaNajamAsync(ImaNajamBasic inb)
     {
         ISession session = null;
 
@@ -1286,57 +1305,61 @@ public class DataProvider
             };
 
             // Spremanje ili ažuriranje ImaNajam u bazi podataka
-            session.SaveOrUpdate(inajam);
-            session.Flush();
+            await session.SaveOrUpdateAsync(inajam);
+            await session.FlushAsync();
         }
         catch (Exception ec)
         {
-            throw;
+            return "Nemoguće dodati ImaNajam.".ToError(400);
         }
         finally
         {
-            if (session != null)
-            {
-                session.Close();
-            }
+            session?.Close();
+            session?.Dispose();
         }
+        return true;
     }
 
-    public static bool ObrisiNajam(int najamId)
+    public async static Task<Result<bool, ErrorMessage>> ObrisiNajamAsync(int najamId)
     {
+        ISession session = null;
         try
         {
-            ISession session = DataLayer.GetSession();
+            session = DataLayer.GetSession();
 
             Najam najam = session.Load<Najam>(najamId);
 
-            //najam.ListaNajmova.Clear();
+            najam.ListaNajmova.Clear(); //???? treba
 
             /*ImaNajam imanajam = (from im in session.Query<ImaNajam>()
                                  where im.Najam.ID == najamId
                                  select im).FirstOrDefault();*/
 
-            ImaNajam imn = session.Load<ImaNajam>(najam.ListaNajmova);
+            //ImaNajam imn = session.Load<ImaNajam>(najam.ListaNajmova);
 
-            imn.Najam = null;
+            //imn.Najam = null;
             //imn.Nekretnine = null;
-            session.SaveOrUpdate(imn);
-            session.Flush();
+            //session.SaveOrUpdate(imn);
+            //session.Flush();
 
-            session.Delete(najam);
-            session.Flush();
-
-            session.Close();
-            return true;
+            await session.DeleteAsync(najam);
+            await session.FlushAsync();
         }
         catch (Exception ec)
         {
-            throw;
-            return false;
+            //throw;
+            return "Nemoguće obrisati najam sa zadatim ID-jem.".ToError(400);
         }
+        finally
+        {
+            session?.Close();
+            session?.Dispose();
+        }
+
+        return true;
     }
 
-    public static void AzurirajNajam(NajamBasic nb)
+    public async static Task<Result<NajamBasic, ErrorMessage>> AzurirajNajamAsync(NajamBasic nb)
     {
         ISession session = null;
 
@@ -1357,23 +1380,22 @@ public class DataProvider
             najam.Provizija = nb.Provizija;
             najam.Agent = agent;
 
-            session.Update(najam);
-            session.Flush();
+            await session.UpdateAsync(najam);
+            await session.FlushAsync();
         }
-        catch (Exception ec)
+        catch (Exception)
         {
-            throw;
+            //throw;
+            return "Nemoguće ažurirati Najam.".ToError(400);
         }
         finally
         {
-            if (session != null)
-            {
-                session.Close();
-            }
+            session?.Close();
+            session?.Dispose();
         }
+        return nb;
     }
-
-    public static List<NajamPregled> GetNajamPregled()
+    public static Result<List<NajamPregled>, ErrorMessage> GetNajamPregled()
     {
         ISession session = null;
         List<NajamPregled> najaminfo = new List<NajamPregled>();
@@ -1404,65 +1426,6 @@ public class DataProvider
 
 
     #endregion
-
-
-    //prikazi sve nekretnine jednog kvarta
-
-    //prikazi sve najmove jedne nekretnine
-
-    //prikazi sve nekretnine jednog vlasnika
-
-    //prikazi sve nekretnine koje imaju parkinge
-
-    //angazuj spoljnog radnika
-
-    //dodaj sefa
-
-
-    //dodaj zaposlenog
-
-    //dodaj agenta
-
-    //neka agent angazuje spoljnog radnika za neki najam
-
-    //
-
-
-    //angazuj agenta za najam tj dodeli najmu agenta ?
-
-    //dodaj kvartu poslovnicu
-
-    //dodaj kvartu nekretninu
-
-    //neke stvari za najam punooo
-
-
-
-    //Prikazi Brojeve Racuna Vlasnika
-
-
-
-    //Dodaj Kvart
-    //Obrisi Kvart
-    //Izmeni Kvart
-    //Dodaj Kvart
-    //Obrisi Kvart
-    //Izmeni Kvart
-
-    //Prikazi koji parking ima Nekretnina
-    //Dodaj Parking
-    //Obrisi Parking
-    //Izmeni Parking
-
-    //Prikazi Sajtove na kojima je oglasena Nekretnina??
-    //Dodaj Sajt
-    //Obrisi Sajt
-    //Izmeni Sajt
-
-    //Prikazi najmove Nekretnine
-    //Dodaj Najam
-    //Obrisi Najam
-    //Izmeni Najam
 
     #region Sef 
     public static void dodajSefa(SefBasic p)
@@ -1661,11 +1624,11 @@ public class DataProvider
 
     #region SpoljniRadnik
 
-    public static void dodajSpoljnogRadnika(SpoljniRadnikBasic p)
+    public async static Task<Result<bool, ErrorMessage>> dodajSpoljnogRadnikaAsync(SpoljniRadnikBasic p)
     {   ISession session = null;
         try
         {
-            ISession s = DataLayer.GetSession();
+            session = DataLayer.GetSession();
 
             SpoljniRadnik o = new SpoljniRadnik();
 
@@ -1673,63 +1636,53 @@ public class DataProvider
             o.Procenat=p.Procenat;
             o.BrojTelefona=p.BrojTelefona;
             o.Ime=p.Ime;
-           
 
-            s.SaveOrUpdate(o);
 
-            s.Flush();
-
-            s.Close();
+            await session.SaveOrUpdateAsync(o);
+            await session.FlushAsync();
         }
         catch (Exception ec)
         {
-            throw;
+            return "Nemoguće dodati radnika.".ToError(400);
         }
         finally
         {
-            if (session != null)
-            {
-                session.Close();
-            }
+            session?.Close();
+            session?.Dispose();
         }
+        return true;
     }
 
-    public static SpoljniRadnikBasic azurirajRadnika(SpoljniRadnikBasic p)
+    public async static Task<Result<SpoljniRadnikBasic, ErrorMessage>> azurirajRadnikaAsync(SpoljniRadnikBasic p)
     {   ISession session = null;
         try
         {
-            ISession s = DataLayer.GetSession();
+            session = DataLayer.GetSession();
 
-            SpoljniRadnik o = s.Load<SpoljniRadnik>(p.Id);
+            SpoljniRadnik o = session.Load<SpoljniRadnik>(p.Id);
             o.DatumAngazovanja = p.DatumAngazovanja;
             o.Procenat = p.Procenat;
             o.BrojTelefona = p.BrojTelefona;
             o.Ime = p.Ime;
 
 
-
-
-            s.Update(o);
-            s.Flush();
-
-            s.Close();
+            await session.UpdateAsync(o);
+            await session.FlushAsync();
         }
-        catch (Exception ec)
+        catch (Exception)
         {
-            throw;
+            //throw;
+            return "Nemoguće ažurirati radnika.".ToError(400);
         }
         finally
         {
-            if (session != null)
-            {
-                session.Close();
-            }
+            session?.Close();
+            session?.Dispose();
         }
-
         return p;
     }
 
-    public static SpoljniRadnikPregled vratiRadnika(int id)
+    public static Result<SpoljniRadnikPregled, ErrorMessage> vratiRadnika(int id)
     {   ISession session = null;
         SpoljniRadnikPregled pb = new SpoljniRadnikPregled();
         try
@@ -1756,18 +1709,46 @@ public class DataProvider
         return pb;
     }
 
+    public async static Task<Result<bool, ErrorMessage>> ObrisiRadnikaAsync(int radnikId)
+    {
+        ISession session = null;
+        try
+        {
+            session = DataLayer.GetSession();
+
+            SpoljniRadnik radnik = session.Load<SpoljniRadnik>(radnikId);
+
+            radnik.Angazovanja.Clear();
+
+            await session.DeleteAsync(radnik);
+            await session.FlushAsync();
+        }
+        catch (Exception ec)
+        {
+            //throw;
+            return "Nemoguće obrisati radnika sa zadatim ID-jem.".ToError(400);
+        }
+        finally
+        {
+            session?.Close();
+            session?.Dispose();
+        }
+
+        return true;
+    }
+
 
 
     #endregion
 
-    
+
     #region Parking
 
-    public static void dodajParking(ParkingBasic p, int idnekretnine)
+    public async static Task<Result<bool, ErrorMessage>> dodajParking(ParkingBasic p, int idnekretnine)
     {   ISession session = null;
         try
         {
-            ISession s = DataLayer.GetSession();
+            session = DataLayer.GetSession();
             Nekretnina nekretnina = session.Load<Nekretnina>(idnekretnine);
 
             Parking o = new Parking();
@@ -1775,83 +1756,74 @@ public class DataProvider
             o.Cena=p.Cena;
             o.Javni=p.Javni;
             o.Nekretnina = nekretnina;
-            
-
-            
 
 
-            s.SaveOrUpdate(o);
-
-            s.Flush();
-
-            s.Close();
+            await session.SaveOrUpdateAsync(o);
+            await session.FlushAsync();
         }
         catch (Exception ec)
         {
-            throw;
+            return "Nemoguće dodati Parking.".ToError(400);
         }
         finally
         {
-            if (session != null)
-            {
-                session.Close();
-            }
+            session?.Close();
+            session?.Dispose();
         }
+        return true;
     }
 
-    public static void azurirajParking(ParkingBasic p)
+    public async static Task<Result<ParkingBasic, ErrorMessage>> azurirajParkingAsync(ParkingBasic p)
     {   ISession session = null;
         
         try
         {
-            ISession s = DataLayer.GetSession();
+            session = DataLayer.GetSession();
 
-            Parking o = s.Load<Parking>(p.ID);
+            Parking o = session.Load<Parking>(p.ID);
             o.ID=p.ID;
             o.Cena=p.Cena;
             o.Javni=p.Javni;
-            Nekretnina n=s.Load<Nekretnina>(p.Nekretnina.ID);
+            Nekretnina n = session.Load<Nekretnina>(p.Nekretnina.ID);
             o.Nekretnina=n;
 
-            s.Update(o);
-            s.Flush();
-
-            s.Close();
+            await session.UpdateAsync(o);
+            await session.FlushAsync();
         }
-        catch (Exception ec)
+        catch (Exception)
         {
-            throw;
+            //throw;
+            return "Nemoguće ažurirati Parking.".ToError(400);
         }
         finally
         {
-            if (session != null)
-            {
-                session.Close();
-            }
+            session?.Close();
+            session?.Dispose();
         }
-
-       
+        return p;
     }
 
-    public static ParkingPregled vratiParking(int id)
+    public static Result<ParkingPregled, ErrorMessage> vratiParking(int id)
     {   ISession session = null;
         ParkingPregled pb = new ParkingPregled();
         try
         {
-            ISession s = DataLayer.GetSession();
+            session = DataLayer.GetSession();
 
-            Parking o = s.Load<Parking>(id);
-          Nekretnina n=s.Load<Nekretnina>(o.Nekretnina.ID);
+            Parking o = session.Load<Parking>(id);
+            Nekretnina n = session.Load<Nekretnina>(o.Nekretnina.ID);
+            //ne pronalazi nekretninu???
+
             NekretninaPregled nb=new NekretninaPregled(n.ID,n.TipNekretnine,n.KucniBroj,n.ImeUlice,n.Kvadratura,
                                                     n.BrojKupatila,n.BrojTerasa,n.BrojSoba,n.Internet,n.TV,n.Kuhinja,
                                                     n.Dimenzije,n.TipKreveta);
             pb = new ParkingPregled(o.ID, o.Cena,o.Javni, nb);
-            
-            s.Close();
+
+            session.Close();
         }
         catch (Exception ec)
         {
-            throw;
+            return ("Nije moguce vratiti parking zbog: " + ec.ToString()).ToError(400);
         }
         finally
         {
@@ -1864,6 +1836,31 @@ public class DataProvider
         return pb;
     }
 
+    public async static Task<Result<bool, ErrorMessage>> obrisiParkingAsync(int parkingId)
+    {
+        ISession session = null;
+        try
+        {
+            session = DataLayer.GetSession();
+
+            Parking parking = session.Load<Parking>(parkingId);
+
+            await session.DeleteAsync(parking);
+            await session.FlushAsync();
+        }
+        catch (Exception ec)
+        {
+            //throw;
+            return "Nemoguće obrisati parking sa zadatim ID-jem.".ToError(400);
+        }
+        finally
+        {
+            session?.Close();
+            session?.Dispose();
+        }
+
+        return true;
+    }
 
 
     #endregion
@@ -2009,13 +2006,13 @@ public class DataProvider
         SajtoviPregled o = new SajtoviPregled();
         try
         {
-            ISession s = DataLayer.GetSession();
+            session = DataLayer.GetSession();
 
-            Sajtovi sajt = s.Load<Sajtovi>(id);
-            o=new SajtoviPregled(sajt.ID,sajt.Sajt);
+            Sajtovi sajt = session.Load<Sajtovi>(id);
+            o = new SajtoviPregled(sajt.ID,sajt.Sajt);
 
 
-            s.Close();
+            session.Close();
 
         }
         catch (Exception ec)
@@ -2027,44 +2024,47 @@ public class DataProvider
 
     }
     
-    public static bool DodajSajtoveBasic(SajtoviBasic sb)
+    public async static Task<Result<bool, ErrorMessage>> DodajSajtoveBasic(SajtoviBasic sb)
     {   ISession session = null;
         try 
         {
-            ISession s = DataLayer.GetSession();
+            session = DataLayer.GetSession();
 
             Sajtovi o = new Sajtovi();
 
             o.Sajt=sb.Sajt;
            
 
-           Nekretnina p = s.Load<Nekretnina>(sb.Nekretnina.ID);
+           Nekretnina p = session.Load<Nekretnina>(sb.Nekretnina.ID);
            o.ID = sb.ID;
            o.Nekretnina=p;
            p.Sajtovi.Add(o);
 
-            s.Save(o);
-            s.SaveOrUpdate(p);
-
-            s.Flush();
-
-            s.Close();
-
-            return true;
+            await session.SaveAsync(o);
+            await session.SaveOrUpdateAsync(p);
+            await session.FlushAsync();
         }
         catch (Exception ec)
         {
-            return false;
+            return "Nemoguće dodati sajt.".ToError(400);
         }
+        finally
+        {
+            session?.Close();
+            session?.Dispose();
+        }
+        return true;
+        
     }
-    public static List<SajtoviPregled> vratiSajtoveNekretnine(int nekretninaid)
-    {   ISession session = null;
+    public static Result<List<SajtoviPregled>, ErrorMessage>  vratiSajtoveNekretnine(int nekretninaid)
+    {   
+        ISession session = null;
         List<SajtoviPregled> info = new List<SajtoviPregled>();
         try
         {
-            ISession s = DataLayer.GetSession();
+            session = DataLayer.GetSession();
 
-            IEnumerable<Sajtovi> sajtovi = from o in s.Query<Sajtovi>()
+            IEnumerable<Sajtovi> sajtovi = from o in session.Query<Sajtovi>()
                                                       where o.Nekretnina.ID == nekretninaid
                                                        select o;
 
@@ -2073,7 +2073,7 @@ public class DataProvider
                 info.Add(new SajtoviPregled(o.ID, o.Sajt));
             }
 
-            s.Close();
+            session.Close();
 
         }
         catch (Exception ec)
@@ -2083,35 +2083,34 @@ public class DataProvider
 
         return info;
     }
-    public static void izmeniSajt(SajtoviBasic sb)
+    public async static Task<Result<SajtoviBasic, ErrorMessage>> izmeniSajt(SajtoviBasic sb)
     {   ISession session = null;
         try
         {
-            ISession s = DataLayer.GetSession();
+            session = DataLayer.GetSession();
 
-           Sajtovi o = s.Load<Sajtovi>(sb.ID);
-           Nekretnina n=s.Load<Nekretnina>(sb.Nekretnina.ID);
+           Sajtovi o = session.Load<Sajtovi>(sb.ID);
+           Nekretnina n = session.Load<Nekretnina>(sb.Nekretnina.ID);
 
            o.Sajt=sb.Sajt;
            o.Nekretnina=n;
-           
-            
 
-
-
-            s.SaveOrUpdate(o);
-            s.SaveOrUpdate(n);
-
-            s.Flush();
-
-            s.Close();
+            await session.UpdateAsync(o);
+            await session.UpdateAsync(n);
+            await session.FlushAsync();
         }
         catch (Exception ec)
         {
-            //handle exceptions
+            return "Nemoguće izmeniti sajt.".ToError(400);
         }
+        finally
+        {
+            session?.Close();
+            session?.Dispose();
+        }
+        return sb;
     }
-     public static void obrisiSajtove(int id)
+     public async static Task<Result<bool, ErrorMessage>> obrisiSajt(int id)
     {   ISession session = null;
         try
         {
@@ -2119,18 +2118,20 @@ public class DataProvider
 
             Sajtovi sajt = s.Load<Sajtovi>(id);
 
-            s.Delete(sajt);
-            s.Flush();
-
-
-
-            s.Close();
+            await session.DeleteAsync(sajt);
+            await session.FlushAsync();
 
         }
         catch (Exception ec)
         {
-            //handle exceptions
+            return "Nemoguće obrisati sajt.".ToError(400);
         }
+        finally
+        {
+            session?.Close();
+            session?.Dispose();
+        }
+        return true;
 
 
     }

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using StanNaDan;
+using StanNaDan.Entiteti;
 
 namespace WebAPI.Controllers
 {
@@ -22,6 +23,40 @@ namespace WebAPI.Controllers
             }
 
             return Ok(nekretnine);
+        }
+
+        [HttpGet]
+        [Route("PreuzmiVlasnikaNekretnine")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        public IActionResult GetVlasnik([FromForm] int id)
+        {
+            (bool isError, VlasnikPregled vlasnik, ErrorMessage? error) = DataProvider.GetPregledVlasnikNekretnine(id);
+
+            if (isError)
+            {
+                return StatusCode(error?.StatusCode ?? 400, error?.Message);
+            }
+
+            return Ok(vlasnik);
+        }
+
+        [HttpGet]
+        [Route("PreuzmiKvartNekretnine")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        public IActionResult GetKvart([FromForm] int id)
+        {
+            (bool isError, KvartPregled kvart, ErrorMessage? error) = DataProvider.GetPregledKvartNekretnine(id);
+
+            if (isError)
+            {
+                return StatusCode(error?.StatusCode ?? 400, error?.Message);
+            }
+
+            return Ok(kvart);
         }
 
         [HttpPost]

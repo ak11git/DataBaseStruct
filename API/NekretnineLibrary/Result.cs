@@ -1,4 +1,4 @@
-﻿namespace ProdavnicaLibrary;
+﻿namespace StanNaDan;
 
 public readonly struct Result<TValue, TError>
 {

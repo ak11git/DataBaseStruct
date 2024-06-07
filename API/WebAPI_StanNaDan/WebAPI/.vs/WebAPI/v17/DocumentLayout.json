@@ -3,14 +3,7 @@
   "WorkspaceRootPath": "C:\\Users\\krstic\\Desktop\\baze\\DataBaseStruct\\API\\WebAPI_StanNaDan\\WebAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2ACB308F-B340-4777-850A-58B90ADD5315}|WebAPI.csproj|c:\\users\\krstic\\desktop\\baze\\databasestruct\\api\\webapi_stannadan\\webapi\\controllers\\nekretninacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2ACB308F-B340-4777-850A-58B90ADD5315}|WebAPI.csproj|solutionrelative:controllers\\nekretninacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{907A49F6-33BE-4B83-B493-BF5FEF1B76AF}|..\\..\\NekretnineLibrary\\StanNaDanLibrary.csproj|c:\\users\\krstic\\desktop\\baze\\databasestruct\\api\\nekretninelibrary\\dataprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2ACB308F-B340-4777-850A-58B90ADD5315}|WebAPI.csproj|c:\\users\\krstic\\desktop\\baze\\databasestruct\\api\\webapi_stannadan\\webapi\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "AbsoluteMoniker": "D:0:0:{2ACB308F-B340-4777-850A-58B90ADD5315}|WebAPI.csproj|C:\\Users\\krstic\\Desktop\\baze\\DataBaseStruct\\API\\WebAPI_StanNaDan\\WebAPI\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{2ACB308F-B340-4777-850A-58B90ADD5315}|WebAPI.csproj|solutionrelative:properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
@@ -21,45 +14,20 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "launchSettings.json",
               "DocumentMoniker": "C:\\Users\\krstic\\Desktop\\baze\\DataBaseStruct\\API\\WebAPI_StanNaDan\\WebAPI\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "Properties\\launchSettings.json",
               "ToolTip": "C:\\Users\\krstic\\Desktop\\baze\\DataBaseStruct\\API\\WebAPI_StanNaDan\\WebAPI\\Properties\\launchSettings.json",
               "RelativeToolTip": "Properties\\launchSettings.json",
-              "ViewState": "AQIAABMAAAAAAAAAAADwvyIAAAAeAAAA",
+              "ViewState": "AQIAABMAAAAAAAAAAADwvxYAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2024-06-06T21:10:19.363Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "DataProvider.cs",
-              "DocumentMoniker": "C:\\Users\\krstic\\Desktop\\baze\\DataBaseStruct\\API\\NekretnineLibrary\\DataProvider.cs",
-              "RelativeDocumentMoniker": "..\\..\\NekretnineLibrary\\DataProvider.cs",
-              "ToolTip": "C:\\Users\\krstic\\Desktop\\baze\\DataBaseStruct\\API\\NekretnineLibrary\\DataProvider.cs",
-              "RelativeToolTip": "..\\..\\NekretnineLibrary\\DataProvider.cs",
-              "ViewState": "AQIAANMBAAAAAAAAAAAiwOkBAAApAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-06T21:07:52.402Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "NekretninaController.cs",
-              "DocumentMoniker": "C:\\Users\\krstic\\Desktop\\baze\\DataBaseStruct\\API\\WebAPI_StanNaDan\\WebAPI\\Controllers\\NekretninaController.cs",
-              "RelativeDocumentMoniker": "Controllers\\NekretninaController.cs",
-              "ToolTip": "C:\\Users\\krstic\\Desktop\\baze\\DataBaseStruct\\API\\WebAPI_StanNaDan\\WebAPI\\Controllers\\NekretninaController.cs",
-              "RelativeToolTip": "Controllers\\NekretninaController.cs",
-              "ViewState": "AQIAAI8AAAAAAAAAAADwv5YAAABEAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-06T20:56:35.798Z",
+              "IsPinned": true,
               "EditorCaption": ""
             }
           ]
