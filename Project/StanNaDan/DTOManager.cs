@@ -336,7 +336,7 @@ public class DTOManager
 
             Kuca n = new Kuca();
             //n.ID = kb.ID; //ID stavlja null?
-            n.TipNekretnine = kb.TipNekretnine;
+            n.TipNekretnine = "KUCA";
             n.KucniBroj = kb.KucniBroj;
             n.ImeUlice = kb.ImeUlice;
             n.Kvadratura = kb.Kvadratura;
@@ -378,7 +378,7 @@ public class DTOManager
 
             Stan n = new Stan();
             //n.ID = nb.ID;
-            n.TipNekretnine = nb.TipNekretnine;
+            n.TipNekretnine = "STAN";
             n.KucniBroj = nb.KucniBroj;
             n.ImeUlice = nb.ImeUlice;
             n.Kvadratura = nb.Kvadratura;
@@ -422,7 +422,7 @@ public class DTOManager
 
             Soba n = new Soba();
             //n.ID = nb.ID;
-            n.TipNekretnine = nb.TipNekretnine;
+            n.TipNekretnine = "SOBA";
             n.KucniBroj = nb.KucniBroj;
             n.ImeUlice = nb.ImeUlice;
             n.Kvadratura = nb.Kvadratura;
@@ -2022,13 +2022,13 @@ public class DTOManager
         SajtoviPregled o = new SajtoviPregled();
         try
         {
-            ISession s = DataLayer.GetSession();
+            session = DataLayer.GetSession();
 
-            Sajtovi sajt = s.Load<Sajtovi>(id);
+            Sajtovi sajt = session.Load<Sajtovi>(id);
             o=new SajtoviPregled(sajt.ID,sajt.Sajt);
 
 
-            s.Close();
+            session.Close();
 
         }
         catch (Exception ec)

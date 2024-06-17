@@ -83,7 +83,7 @@ namespace StanNaDan.Forme
             {
                 if (comboBox1.SelectedItem.ToString() == "Kuća")
                 {
-                    this.kuca.TipNekretnine = comboBox1.SelectedItem.ToString();
+                    this.kuca.TipNekretnine = "KUCA";
                     this.kuca.ImeUlice = textBox2.Text;
                     this.kuca.KucniBroj = int.Parse(textBox3.Text);
                     this.kuca.Kvadratura = int.Parse(textBox4.Text);
@@ -125,7 +125,7 @@ namespace StanNaDan.Forme
                 }
                 else if (comboBox1.SelectedItem.ToString() == "Stan")
                 {
-                    this.stan.TipNekretnine = comboBox1.SelectedItem.ToString();
+                    this.stan.TipNekretnine = "STAN";
                     this.stan.ImeUlice = textBox2.Text;
                     this.stan.KucniBroj = int.Parse(textBox3.Text);
                     this.stan.Kvadratura = int.Parse(textBox4.Text);
@@ -168,7 +168,7 @@ namespace StanNaDan.Forme
                 }
                 else if (comboBox1.SelectedItem.ToString() == "Soba")
                 {
-                    this.soba.TipNekretnine = comboBox1.SelectedItem.ToString();
+                    this.soba.TipNekretnine = "SOBA";
                     this.soba.ImeUlice = textBox2.Text;
                     this.soba.KucniBroj = int.Parse(textBox3.Text);
                     this.soba.Kvadratura = int.Parse(textBox4.Text);

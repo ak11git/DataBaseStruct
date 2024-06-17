@@ -64,7 +64,7 @@ namespace WebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
-        public async Task<IActionResult> AddKuca([FromBody] KucaBasic kb)
+        public async Task<IActionResult> AddKuca([FromForm] KucaBasic kb)
         {
             var data = await DataProvider.DodajKucuAsync(kb);
 
@@ -81,7 +81,7 @@ namespace WebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
-        public async Task<IActionResult> AddStan([FromBody] StanBasic sb)
+        public async Task<IActionResult> AddStan([FromForm] StanBasic sb)
         {
             var data = await DataProvider.DodajStanAsync(sb);
 
@@ -98,7 +98,7 @@ namespace WebAPI.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
-        public async Task<IActionResult> AddSoba([FromBody] SobaBasic sb)
+        public async Task<IActionResult> AddSoba([FromForm] SobaBasic sb)
         {
             var data = await DataProvider.DodajSobuAsync(sb);
 

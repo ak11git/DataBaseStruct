@@ -96,6 +96,7 @@ namespace StanNaDan.Forme
 
         private void button5_Click(object sender, EventArgs e)
         {
+            this.listView1.Items.Clear();
             popuni();
         }
     }

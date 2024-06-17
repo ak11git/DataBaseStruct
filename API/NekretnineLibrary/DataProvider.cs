@@ -487,6 +487,11 @@ public class DataProvider
 
             Nekretnina n = await session.LoadAsync<Nekretnina>(id);
 
+            if(n == null)
+            {
+                return "Nema nekretnine sa tim ID-jem.".ToError(403);
+            }
+
             await session.DeleteAsync(n);
             await session.FlushAsync();
         }
@@ -2114,9 +2119,9 @@ public class DataProvider
     {   ISession session = null;
         try
         {
-            ISession s = DataLayer.GetSession();
+            session = DataLayer.GetSession();
 
-            Sajtovi sajt = s.Load<Sajtovi>(id);
+            Sajtovi sajt = session.Load<Sajtovi>(id);
 
             await session.DeleteAsync(sajt);
             await session.FlushAsync();

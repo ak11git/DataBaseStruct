@@ -65,10 +65,10 @@ namespace StanNaDan.Mapiranja
 
 
             References(x => x.Vlasnik).Column("ID_VLASNIKA").LazyLoad();
-            HasMany(x => x.DodatnaOprema).KeyColumn("ID_OPREME").LazyLoad().Cascade.All().Inverse();
-            HasMany(x => x.Parkinzi).KeyColumn("ID_PARKINGA").LazyLoad().Cascade.All().Inverse();
-            HasMany(x => x.ListaNajmova).KeyColumn("ID").LazyLoad().Cascade.All().Inverse();
-            HasMany(x => x.Sajtovi).KeyColumn("ID").LazyLoad().Cascade.All().Inverse();
+            //HasMany(x => x.DodatnaOprema).KeyColumn("ID_OPREME").LazyLoad().Cascade.All().Inverse();
+            //HasMany(x => x.Parkinzi).KeyColumn("ID_PARKINGA").LazyLoad().Cascade.All().Inverse();
+            //HasMany(x => x.ListaNajmova).KeyColumn("ID").LazyLoad().Cascade.All().Inverse();
+            //HasMany(x => x.Sajtovi).KeyColumn("ID").LazyLoad().Cascade.All().Inverse();
 
 
 
